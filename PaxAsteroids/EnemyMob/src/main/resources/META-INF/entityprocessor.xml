@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.enemymob">
+    <implementation class="group7.enemymob.EnemyController"/>
+    <service>
+        <provide interface="group7.common.services.IEntityProcessingService"/>
+    </service>
+</scr:component>

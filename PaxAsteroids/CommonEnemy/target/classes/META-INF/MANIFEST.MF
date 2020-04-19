@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1586850277081
+Build-Jdk: 1.8.0_241
+Built-By: mathi
+Bundle-Description: Generated using Pax-Construct
+Bundle-ManifestVersion: 2
+Bundle-Name: CommonEnemy
+Bundle-SymbolicName: group7.commonenemy
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: group7.common.data;uses:="group7.common.entityparts,grou
+ p7.common.events";version="1.0.0.SNAPSHOT",group7.common.services;uses:
+ ="group7.common.data";version="1.0.0.SNAPSHOT",group7.common.events;use
+ s:="group7.common.data";version="1.0.0.SNAPSHOT",group7.common.entitypa
+ rts;uses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.commonen
+ emy;uses:="group7.common.data";version="1.0.0.SNAPSHOT"
+Tool: Bnd-1.50.0

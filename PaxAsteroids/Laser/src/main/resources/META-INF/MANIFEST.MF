@@ -1,0 +1,2 @@
+Bundle-SymbolicName: Laser
+Bundle-ActivationPolicy: lazy
