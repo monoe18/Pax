@@ -41,7 +41,8 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
                     <instructions>
-                        
+                        <Export-Package>!group7.internal.*,group7.*;version="1.0-SNAPSHOT",group7.player</Export-Package>
+                        <Private-Package>group7.player.*</Private-Package>
                     </instructions>
 
                 </configuration>

@@ -1,2 +1,3 @@
 Bundle-SymbolicName: Laser
 Bundle-ActivationPolicy: lazy
+Service-Component: META-INF/entityprocessor.xml, META-INF/weaponsystem.xml

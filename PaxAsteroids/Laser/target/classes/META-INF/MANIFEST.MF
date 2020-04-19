@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1586850278667
+Bnd-LastModified: 1587308785857
 Build-Jdk: 1.8.0_241
-Built-By: mathi
+Built-By: morte
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: group7.laser.Activator
 Bundle-Description: Generated using Pax-Construct
@@ -19,4 +19,6 @@ Export-Package: group7.common.data;uses:="group7.common.entityparts,grou
  ses:="org.osgi.framework,group7.common.services,group7.common.data,grou
  p7.commonweapon,group7.common.entityparts";version="1.0.0.SNAPSHOT"
 Import-Package: org.osgi.framework;version="[1.6,2)"
+Service-Component: META-INF/entityprocessor.xml, META-INF/weaponsystem.x
+ ml
 Tool: Bnd-1.50.0
