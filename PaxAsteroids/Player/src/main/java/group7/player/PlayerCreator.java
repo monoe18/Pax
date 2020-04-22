@@ -5,6 +5,7 @@ import group7.common.data.GameData;
 import group7.common.data.World;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
+import group7.common.entityparts.ShootingPart;
 import group7.common.services.IGamePluginService;
 import group7.common.services.ISpriteService;
 
@@ -35,6 +36,7 @@ public class PlayerCreator implements IGamePluginService {
         playerCharacter.setSpriteWidth(width);
         playerCharacter.add(new MovingPart(maxSpeed, "Player"));
         playerCharacter.add(new PositionPart(x, y, "Player"));
+        //playerCharacter.add(new ShootingPart("Player"));
         // playerShip.add(new LifePart(life, expiration));
 
         return playerCharacter;

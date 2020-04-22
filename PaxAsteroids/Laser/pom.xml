@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>CommonWeapon</artifactId>
+            <artifactId>Common</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -38,7 +38,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>group7.laser.Activator</Bundle-Activator>
+                        <Export-Package>!group7.internal.*,group7.*;version="1.0-SNAPSHOT",group7.laser</Export-Package>
+                        <Private-Package>group7.laser.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>

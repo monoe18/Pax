@@ -6,10 +6,8 @@ import group7.common.data.World;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IEntityProcessingService;
-import group7.commonweapon.IWeaponSystem;
-import group7.commonweapon.Weapon;
 
-public class LaserController implements IEntityProcessingService, IWeaponSystem {
+public class LaserController implements IEntityProcessingService {
 
     private String fileName = "Laser.png";
     private boolean canShoot = true;
@@ -34,7 +32,6 @@ public class LaserController implements IEntityProcessingService, IWeaponSystem 
         }
     }
 
-    @Override
     public Entity createWeapon(Entity shooter, GameData gameData) {
         PositionPart shooterPos = shooter.getPart(PositionPart.class);
         MovingPart shooterMovingPart = shooter.getPart(MovingPart.class);

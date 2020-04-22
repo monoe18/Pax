@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group7.commonweapon;
+package group7.bullet;
 
 import group7.common.data.Entity;
 import group7.common.data.IBullet;
 
 /**
  *
- * @author Daniel
+ * @author morte
  */
-public class Weapon extends Entity implements IBullet {
-
+public class BulletEntity extends Entity implements IBullet{
+    public BulletEntity (){
+    }
+    
 }

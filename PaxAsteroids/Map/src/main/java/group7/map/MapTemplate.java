@@ -9,6 +9,7 @@ import group7.common.data.Entity;
 import group7.common.data.GameData;
 import group7.common.data.IMap;
 import group7.common.data.World;
+import group7.common.entityparts.ShootingPart;
 import group7.common.services.ISpriteService;
 import java.util.ArrayList;
 import org.javatuples.Pair;

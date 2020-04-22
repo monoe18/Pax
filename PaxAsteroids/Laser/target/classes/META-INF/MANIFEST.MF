@@ -1,9 +1,8 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1587308785857
+Bnd-LastModified: 1587476845480
 Build-Jdk: 1.8.0_241
 Built-By: morte
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: group7.laser.Activator
 Bundle-Description: Generated using Pax-Construct
 Bundle-ManifestVersion: 2
 Bundle-Name: Laser

@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group7.commonweapon;
+package group7.common.services;
 
 import group7.common.data.Entity;
 import group7.common.data.GameData;
 
 /**
  *
- * @author Daniel
+ * @author morte
  */
-public interface IWeaponSystem {
-
-    Entity createWeapon(Entity ent, GameData gameData);
+public interface IBulletManager {
+    public Entity createBullet(Entity e, GameData g);
 }

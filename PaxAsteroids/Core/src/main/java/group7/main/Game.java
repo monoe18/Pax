@@ -22,6 +22,9 @@ import group7.common.entityparts.PositionPart;
 import group7.common.data.IMap;
 import group7.common.services.ISpriteService;
 
+import group7.common.entityparts.ShootingPart;
+import group7.common.services.IBulletManager;
+
 import group7.manager.GameInputProcessor;
 import java.util.HashMap;
 
@@ -38,6 +41,8 @@ public class Game implements ApplicationListener {
     private static final List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
     private static final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
     private static List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
+    
+    private static final List<IBulletManager> bulletManagerList = new CopyOnWriteArrayList<>();
 
     private static final List<ISpriteService> spriteServiceList = new CopyOnWriteArrayList<>();
 
@@ -103,6 +108,11 @@ public class Game implements ApplicationListener {
         for (IEntityProcessingService entityProcessorService : entityProcessorList) {
             entityProcessorService.process(gameData, world);
         }
+        
+        for (Entity e : world.getEntities()){
+            checkForShooting(e, gameData);
+        }
+
         for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
             postEntityProcessorService.process(gameData, world);
         }
@@ -174,20 +184,18 @@ public class Game implements ApplicationListener {
         update();
     }
 
-
-
-@Override
-        public void pause() {
+    @Override
+    public void pause() {
 
     }
 
     @Override
-        public void resume() {
+    public void resume() {
 
     }
 
     @Override
-        public void dispose() {
+    public void dispose() {
 
     }
 
@@ -227,6 +235,19 @@ public class Game implements ApplicationListener {
     public void removeSpriteService(ISpriteService eps) {
         System.out.println("tried to remove");
         this.spriteServiceList.remove(eps);
+    }
+
+    private void checkForShooting(Entity e, GameData g) {
+        ShootingPart shootingPart = e.getPart(ShootingPart.class);
+        if (shootingPart != null && shootingPart.isShooting()) {
+           createBullet(e, g);
+        }
+    }
+    
+    private void createBullet(Entity e, GameData g){
+        for(IBulletManager bm : bulletManagerList){
+            bm.createBullet(e, g);
+        }
     }
 
 }

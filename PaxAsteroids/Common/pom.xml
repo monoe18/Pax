@@ -37,21 +37,7 @@
             <version>1.9.10</version>
             <type>jar</type>
         </dependency>-->
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-netbeans-api-annotations-common</artifactId>
-            <version>RELEASE113</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-modules</artifactId>
-            <version>RELEASE113</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util-ui</artifactId>
-            <version>RELEASE113</version>
-        </dependency>
+
     </dependencies>
 
     <build>

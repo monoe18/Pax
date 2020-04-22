@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.player.weapon">
+    <implementation class="group7.player.PlayerController"/>
+    <service>
+        <provide interface="group7.commonweapon.IWeaponSystem"/>
+    </service>
+    
+    <reference bind="setWeaponService" cardinality="0..1"
+               interface="group7.commonweapon.IWeaponSystem"
+               name="IWeaponSystem" policy="dynamic" unbind="removeWeaponService"/>
+</scr:component>

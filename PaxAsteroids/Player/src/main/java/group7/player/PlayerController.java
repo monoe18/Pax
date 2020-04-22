@@ -11,17 +11,13 @@ import group7.common.data.World;
 import group7.common.entityparts.LifePart;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
+import group7.common.entityparts.ShootingPart;
 import group7.common.services.IEntityProcessingService;
-import group7.commonweapon.IWeaponSystem;
 
 public class PlayerController implements IEntityProcessingService {
 
-    private IWeaponSystem iweapon;
-    
-      boolean right = true;
-      boolean left = false;
-      
-      
+    boolean right = true;
+    boolean left = false;
 
     @Override
     public void process(GameData gameData, World world) {
@@ -29,6 +25,7 @@ public class PlayerController implements IEntityProcessingService {
             PositionPart positionPart = player.getPart(PositionPart.class);
             MovingPart movingPart = player.getPart(MovingPart.class);
             LifePart lifePart = player.getPart(LifePart.class);
+            ShootingPart shootingPart = player.getPart(ShootingPart.class);
             double random = Math.random();
 
             movingPart.setLeft(gameData.getKeys().isDown(LEFT));
@@ -36,49 +33,33 @@ public class PlayerController implements IEntityProcessingService {
             movingPart.setUp(gameData.getKeys().isDown(UP));
             movingPart.setDown(gameData.getKeys().isDown(DOWN));
             movingPart.setSpace(gameData.getKeys().isPressed(SPACE));
-           
+            
+            checkShooting(gameData, shootingPart);
+            
             // Used to flip sprite 
-            flipPlayer(player, gameData);   
-            
-            if (gameData.getKeys().isDown(SPACE)) {
-                System.out.println("if space");
-                Entity bullet = iweapon.createWeapon(player, gameData);
-                world.addEntity(bullet);
-            }
-          
-            
-            
+            flipPlayer(player, gameData);
+
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);
 //            lifePart.process(gameData, player);
 
         }
     }
-    
+
     // Flip Sprite when going from left to right
     public void flipPlayer(Entity player, GameData gameData) {
         if (right == true && gameData.getKeys().isDown(LEFT)) {
-            player.setFlipRightLeft(gameData.getKeys().isDown(LEFT));
+            player.setFlipRightLeft(true);
             right = false;
             left = true;
         } else if (left == true && gameData.getKeys().isDown(RIGHT)) {
-            player.setFlipRightLeft(gameData.getKeys().isDown(RIGHT));
+            player.setFlipRightLeft(false);
             left = false;
             right = true;
 
-        } else {
-            player.setFlipRightLeft(false);
-        }
-    }
-
-    //TODO: Dependency injection via Declarative Services
-    public void setWeaponService(IWeaponSystem bulletService) {
-        System.out.println("setweaponlort");
-        this.iweapon = bulletService;
-    }
-
-    public void removeWeaponService() {
-        this.iweapon = null;
+        } //else {
+//            player.setFlipRightLeft(false);
+//        }
     }
 
     public boolean isRight() {
@@ -95,5 +76,13 @@ public class PlayerController implements IEntityProcessingService {
 
     public void setLeft(boolean left) {
         this.left = left;
-    }    
+    }
+
+    private void checkShooting(GameData gameData, ShootingPart shootingPart) {
+        if (gameData.getKeys().isDown(SPACE)) {
+            shootingPart.engageShooting();
+        } else {
+            shootingPart.disengageShooting();
+        }
+    }
 }

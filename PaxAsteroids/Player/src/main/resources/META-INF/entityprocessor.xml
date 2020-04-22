@@ -4,8 +4,4 @@
     <service>
         <provide interface="group7.common.services.IEntityProcessingService"/>
     </service>
-    
-    <reference bind="setWeaponService" cardinality="0..1"
-               interface="group7.common.services.IEntityProcessingService"
-               name="WeaponService" policy="static" activate="activate" immediate="true" unbind="removeWeaponService"/>
 </scr:component>
