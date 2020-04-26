@@ -48,22 +48,22 @@
     </dependency>
     <dependency>
       <groupId>group7.build</groupId>
+      <artifactId>Common</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7.build</groupId>
       <artifactId>Collision</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>group7</groupId>
-      <artifactId>Common</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>group7.build</groupId>
       <artifactId>Common</artifactId>
       <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -71,12 +71,6 @@
       <artifactId>CommonEnemy</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>group7.build</groupId>
-      <artifactId>Common</artifactId>
-      <version>1.0-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

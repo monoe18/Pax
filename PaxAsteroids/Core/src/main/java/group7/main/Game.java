@@ -40,7 +40,7 @@ public class Game implements ApplicationListener {
     private static World world = new World();
     private static final List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
     private static final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
-    private static List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
+    private static final List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
     
     private static final List<IBulletManager> bulletManagerList = new CopyOnWriteArrayList<>();
 
@@ -113,7 +113,10 @@ public class Game implements ApplicationListener {
             checkForShooting(e, gameData);
         }
 
+        System.out.println("reached post entity");
+        System.out.println("post entity length: " + postEntityProcessorList.size());
         for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
+            System.out.println("Service: " + postEntityProcessorService);
             postEntityProcessorService.process(gameData, world);
         }
 
@@ -183,6 +186,19 @@ public class Game implements ApplicationListener {
         gameData.getKeys().update();
         update();
     }
+    
+     private void checkForShooting(Entity e, GameData g) {
+        ShootingPart shootingPart = e.getPart(ShootingPart.class);
+        if (shootingPart != null && shootingPart.isShooting()) {
+           createBullet(e, g);
+        }
+    }
+    
+    private void createBullet(Entity e, GameData g){
+        for(IBulletManager bm : bulletManagerList){
+            world.addEntity(bm.createBullet(e, g));
+        }
+    }
 
     @Override
     public void pause() {
@@ -200,11 +216,11 @@ public class Game implements ApplicationListener {
     }
 
     public void addEntityProcessingService(IEntityProcessingService eps) {
-        this.entityProcessorList.add(eps);
+        entityProcessorList.add(eps);
     }
 
     public void removeEntityProcessingService(IEntityProcessingService eps) {
-        this.entityProcessorList.remove(eps);
+        entityProcessorList.remove(eps);
     }
 
     public void addPostEntityProcessingService(IPostEntityProcessingService eps) {
@@ -216,38 +232,33 @@ public class Game implements ApplicationListener {
     }
 
     public void addGamePluginService(IGamePluginService plugin) {
-        this.gamePluginList.add(plugin);
+        gamePluginList.add(plugin);
         plugin.start(gameData, world);
 
     }
 
     public void removeGamePluginService(IGamePluginService plugin) {
-        this.gamePluginList.remove(plugin);
+        gamePluginList.remove(plugin);
         plugin.stop(gameData, world);
     }
 
     public void addSpriteService(ISpriteService eps) {
-        System.out.println("tried to add");
-        this.spriteServiceList.add(eps);
+        spriteServiceList.add(eps);
         System.out.println(eps);
     }
 
     public void removeSpriteService(ISpriteService eps) {
-        System.out.println("tried to remove");
-        this.spriteServiceList.remove(eps);
+        spriteServiceList.remove(eps);
     }
 
-    private void checkForShooting(Entity e, GameData g) {
-        ShootingPart shootingPart = e.getPart(ShootingPart.class);
-        if (shootingPart != null && shootingPart.isShooting()) {
-           createBullet(e, g);
-        }
+   
+    public void addBulletManager(IBulletManager eps) {
+        Game.bulletManagerList.add(eps);
+        System.out.println(eps);
     }
-    
-    private void createBullet(Entity e, GameData g){
-        for(IBulletManager bm : bulletManagerList){
-            bm.createBullet(e, g);
-        }
+
+    public void removeBulletManager(IBulletManager eps) {
+        Game.bulletManagerList.remove(eps);
     }
 
 }

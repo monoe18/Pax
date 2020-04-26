@@ -49,9 +49,6 @@ public class BulletController implements IEntityProcessingService, IBulletManage
 
         flipBullet(bullet, shooterMovingPart.getDirection());
         
-        System.out.println("spriteHeight  " + bullet.getSpriteHeight());
-        System.out.println("spriteWidth  " + bullet.getSpriteWidth());
-        
         bullet.add(new PositionPart(x, y, "Laser"));
         bullet.add(new MovingPart(speed, "Laser", shooterMovingPart.getDirection()));
 
@@ -69,7 +66,6 @@ public class BulletController implements IEntityProcessingService, IBulletManage
                 weapon.setRotate(0);
                 break;
             case "up":
-                System.out.println("upppp");
                 weapon.setRotate(90);
                 break;
             case "down":

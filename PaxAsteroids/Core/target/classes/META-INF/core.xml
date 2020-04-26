@@ -17,5 +17,9 @@
     <reference bind="addSpriteService" cardinality="0..n"
                interface="group7.common.services.ISpriteService"
                name="ISpriteService" policy="dynamic" unbind="removeSpriteService"/>
+    
+    <reference bind="addBulletManager" cardinality="0..n"
+               interface="group7.common.services.IBulletManager"
+               name="IBulletManager" policy="dynamic" unbind="removeBulletManager"/>
 
 </scr:component>

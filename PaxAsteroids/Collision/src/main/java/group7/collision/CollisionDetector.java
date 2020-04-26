@@ -13,8 +13,12 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
+        System.out.println("called process");
         for (Entity e : world.getEntities()) {
+            System.out.println(world.getEntities().size());
+            System.out.println(world.getMap());
             if (world.getMap() != null) {
+                System.out.println("mapCollision");
                 mapCollision(e, world.getMap(), world);
             }
 
