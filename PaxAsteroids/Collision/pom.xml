@@ -38,7 +38,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Export-Package>!group7.internal.*,group7.*;version="1.0-SNAPSHOT",group7.collision</Export-Package>
+                        <Export-Package>group7.collision</Export-Package>
+                        <Private-Package>group7.collision.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>

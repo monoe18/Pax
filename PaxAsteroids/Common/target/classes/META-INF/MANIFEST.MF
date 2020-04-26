@@ -3,7 +3,7 @@ Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.common
 Built-By: morte
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1587897831530
+Bnd-LastModified: 1587899422837
 Import-Package: group7.common.data,group7.common.entityparts,group7.co
  mmon.events,group7.common.services
 Tool: Bnd-0.0.255

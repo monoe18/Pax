@@ -38,7 +38,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-
+                        <Export-Package>group7.commonenemy</Export-Package>
+                        <Private-Package>group7.commonenemy.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>
