@@ -56,7 +56,6 @@ public class Game implements ApplicationListener {
 //INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
 
     private void init() {
-        System.out.println("init");
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Shooter";
         cfg.width = 1440;
@@ -69,10 +68,7 @@ public class Game implements ApplicationListener {
 
     @Override
     public void create() {
-        System.out.println("started create");
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
-
-        System.out.println(Gdx.graphics.getWidth());
 
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
 
@@ -113,10 +109,7 @@ public class Game implements ApplicationListener {
             checkForShooting(e, gameData);
         }
 
-        System.out.println("reached post entity");
-        System.out.println("post entity length: " + postEntityProcessorList.size());
         for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
-            System.out.println("Service: " + postEntityProcessorService);
             postEntityProcessorService.process(gameData, world);
         }
 
@@ -244,7 +237,6 @@ public class Game implements ApplicationListener {
 
     public void addSpriteService(ISpriteService eps) {
         spriteServiceList.add(eps);
-        System.out.println(eps);
     }
 
     public void removeSpriteService(ISpriteService eps) {
@@ -254,7 +246,6 @@ public class Game implements ApplicationListener {
    
     public void addBulletManager(IBulletManager eps) {
         Game.bulletManagerList.add(eps);
-        System.out.println(eps);
     }
 
     public void removeBulletManager(IBulletManager eps) {

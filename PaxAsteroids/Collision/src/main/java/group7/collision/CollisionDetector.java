@@ -13,12 +13,8 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
-        System.out.println("called process");
         for (Entity e : world.getEntities()) {
-            System.out.println(world.getEntities().size());
-            System.out.println(world.getMap());
             if (world.getMap() != null) {
-                System.out.println("mapCollision");
                 mapCollision(e, world.getMap(), world);
             }
 
@@ -42,9 +38,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
         if (e instanceof ICharacter) {
             characterMapCollision(e, points);
         } else if (e instanceof IBullet) {
-            System.out.println("is bullet");
             if (bulletCollison(e, points)) {
-                System.out.println("removed bullet");
                 world.removeEntity(e);
             }
         }
@@ -69,27 +63,21 @@ public class CollisionDetector implements IPostEntityProcessingService {
     }
 
     private boolean bulletCollison(Entity e, float[] points) {
-        System.out.println("runningBCollision");
         PositionPart ep = e.getPart(PositionPart.class);
         //Left side collision check
         if (ep.getX() - e.getRadius() <= points[0]) {
-            System.out.println("L");
             return true;
         } else //Right side collision check            
         if (ep.getX() + e.getRadius() >= points[2]) {
-            System.out.println("R");
             return true;
         }
         //Top side collision check
         if (ep.getY() + e.getRadius() >= points[3]) {
-            System.out.println("T");
             return true;
         } else //Bottom side collision check
         if (ep.getY() - e.getRadius() <= points[1]) {
-            System.out.println("B");
             return true;
         }
-        System.out.println("return false");
         return false;
     }
 
