@@ -8,29 +8,60 @@ import group7.common.data.World;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IPostEntityProcessingService;
 import group7.common.data.ICharacter;
+import group7.common.entityparts.LifePart;
+import group7.commonbullet.BulletEntity;
+import group7.commonenemy.Enemy;
+import group7.commonplayer.PlayerCharacter;
 
 public class CollisionDetector implements IPostEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
-        for (Entity e : world.getEntities()) {
+        for(Entity e : world.getEntities()){
             if (world.getMap() != null) {
                 mapCollision(e, world.getMap(), world);
             }
+        for (Entity enemy : world.getEntities(Enemy.class)) {
+            if (world.getMap() != null) {
+                mapCollision(enemy, world.getMap(), world);
+            }
+            for (Entity bullet : world.getEntities(BulletEntity.class)) {
+                if (circleCollision(bullet, enemy)) {
+                    LifePart lpe = enemy.getPart(LifePart.class);
+                    int newLife = lpe.getLife();
+                    lpe.setLife(newLife - 25);
+                    System.out.println("Enemy hit");
 
-            for (Entity f : world.getEntities()) {
+                    if (lpe.getLife() < 25) {
+                        world.removeEntity(enemy);
 
-                if (e.getID().equals(f.getID())) {
+                    }
+//                    world.removeEntity(f);
+                }
+            }
+
+            for (Entity player : world.getEntities(PlayerCharacter.class)) {
+
+                if (enemy.getID().equals(player.getID())) {
                     continue;
                 }
 
-                if (circleCollision(e, f)) {
+                if (circleCollision(enemy, player)) {
+                    LifePart lpe = player.getPart(LifePart.class);
+                    int newLife = lpe.getLife();
+                    lpe.setLife(newLife - 25);
+                    System.out.println("Player hit");
 
-                    //world.removeEntity(f);
+                    if (lpe.getLife() < 25) {
+                        world.removeEntity(player);
+
+                    }
+//                    world.removeEntity(f);
                 }
 
             }
         }
+    }
     }
 
     private void mapCollision(Entity e, IMap map, World world) {

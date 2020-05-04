@@ -1,9 +1,15 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
+<<<<<<< HEAD
 Built-By: Daniel
 Bundle-ManifestVersion: 2
 Bnd-LastModified: 1588626245667
+=======
+Built-By: lavan
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1588617987977
+>>>>>>> PaxAiGridCollision
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
  mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.events;version
@@ -26,5 +32,9 @@ Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Name: PlayerCharacter
 Private-Package: group7.player.*
 Created-By: Apache Maven Bundle Plugin
+<<<<<<< HEAD
 Build-Jdk: 1.8.0_181
+=======
+Build-Jdk: 1.8.0_242
+>>>>>>> PaxAiGridCollision
 

@@ -1,7 +1,13 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Bnd-LastModified: 1588626243102
 Build-Jdk: 1.8.0_181
 Built-By: Daniel
+=======
+Bnd-LastModified: 1588617982328
+Build-Jdk: 1.8.0_242
+Built-By: lavan
+>>>>>>> PaxAiGridCollision
 Bundle-ActivationPolicy: lazy
 Bundle-Description: Generated using Pax-Construct
 Bundle-ManifestVersion: 2

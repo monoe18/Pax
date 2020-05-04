@@ -1,5 +1,6 @@
 package group7.bullet;
 
+import group7.commonbullet.BulletEntity;
 import group7.common.data.Entity;
 import group7.common.data.GameData;
 import group7.common.data.World;
@@ -7,6 +8,8 @@ import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IEntityProcessingService;
 import group7.common.services.IBulletManager;
+import group7.commonbullet.BulletEntity;
+
 
 public class BulletController implements IEntityProcessingService, IBulletManager {
 

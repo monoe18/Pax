@@ -60,7 +60,11 @@
         <module>CommonEnemy</module>
         <module>CommonPlayer</module>
         <module>EnemyMob</module>
+<<<<<<< HEAD
     <module>HUD</module>
+=======
+    <module>CommonBullet</module>
+>>>>>>> PaxAiGridCollision
   </modules>
 
     <build>

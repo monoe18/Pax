@@ -4,6 +4,7 @@ import group7.common.data.Entity;
 import group7.common.data.GameData;
 import group7.common.data.World;
 import group7.common.entityparts.AIPart;
+import group7.common.entityparts.LifePart;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IGamePluginService;
@@ -30,8 +31,8 @@ public class EnemyCreator implements IGamePluginService {
         enemy = new Enemy();
         float maxSpeed = 50;
 
-        float x = 400;
-        float y = 400;
+//        float x = 400;
+//        float y = 400;
         int life = 100;
 
 //        enemyShip.add(new LifePart(3));
@@ -46,7 +47,8 @@ public class EnemyCreator implements IGamePluginService {
 
         enemy.add(new MovingPart(maxSpeed, "Enemy"));
         enemy.add(new PositionPart(randomX, randomY, "Enemy"));
-        enemy.add(new AIPart(32, 32));
+        enemy.add(new LifePart(life)); 
+        enemy.add(new AIPart(45, 25));
 
         return enemy;
     }

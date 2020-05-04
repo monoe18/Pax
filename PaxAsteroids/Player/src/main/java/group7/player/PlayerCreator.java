@@ -3,6 +3,7 @@ package group7.player;
 import group7.common.data.Entity;
 import group7.common.data.GameData;
 import group7.common.data.World;
+import group7.common.entityparts.LifePart;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.entityparts.ShootingPart;
@@ -38,7 +39,7 @@ public class PlayerCreator implements IGamePluginService {
         playerCharacter.add(new MovingPart(maxSpeed, "Player"));
         playerCharacter.add(new PositionPart(x, y, "Player"));
         playerCharacter.add(new ShootingPart("Player"));
-        // playerShip.add(new LifePart(life, expiration));
+        playerCharacter.add(new LifePart(life));
 
         return playerCharacter;
     }
