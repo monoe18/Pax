@@ -1,68 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group7.enemymob;
 
 import group7.common.data.Entity;
 import group7.common.data.GameData;
 import group7.common.data.World;
+import group7.common.entityparts.AIPart;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IEntityProcessingService;
 import group7.commonenemy.Enemy;
+import group7.commonplayer.PlayerCharacter;
 
-/**
- *
- * @author lavan
- */
-public class EnemyController implements IEntityProcessingService{
-
+public class EnemyController implements IEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
 
         for (Entity entity : world.getEntities(Enemy.class)) {
-
             PositionPart positionPart = entity.getPart(PositionPart.class);
             MovingPart movingPart = entity.getPart(MovingPart.class);
-            double random = Math.random();
-            movingPart.setLeft(random < 0.2);
-            movingPart.setRight(random > 0.3 && random < 0.5);
-            movingPart.setUp(random > 0.7 && random < 0.9);
-            
-       
+            AIPart aiPart = entity.getPart(AIPart.class);
+
+            PositionPart playerPosition = getPlayerPos(world);
+
+            aiPart.processAi(playerPosition, positionPart);
             movingPart.process(gameData, entity);
-            positionPart.process(gameData, entity);            
-            updateShape(entity);
+            positionPart.process(gameData, entity);
 
         }
     }
 
-    private void updateShape(Entity entity) {
-        float[] shapex = entity.getShapeX();
-        float[] shapey = entity.getShapeY();
-        PositionPart positionPart = entity.getPart(PositionPart.class);
-        float x = positionPart.getX();
-        float y = positionPart.getY();
-        float radians = 3.1415f / 2;
-
-        shapex[0] = (float) (x + Math.cos(radians) * 8);
-        shapey[0] = (float) (y + Math.sin(radians) * 8);
-
-        shapex[1] = (float) (x + Math.cos(radians - 4 * 3.1415f / 5) * 8);
-        shapey[1] = (float) (y + Math.sin(radians - 4 * 3.1145f / 5) * 8);
-
-        shapex[2] = (float) (x + Math.cos(radians + 3.1415f) * 5);
-        shapey[2] = (float) (y + Math.sin(radians + 3.1415f) * 5);
-
-        shapex[3] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
-        shapey[3] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
-
-        entity.setShapeX(shapex);
-        entity.setShapeY(shapey);
+    private PositionPart getPlayerPos(World world) {
+        PositionPart playerPos = null;
+        for (Entity entity : world.getEntities(PlayerCharacter.class)) {
+            playerPos = entity.getPart(PositionPart.class);
+        }
+        return playerPos;
     }
 
-    
 }

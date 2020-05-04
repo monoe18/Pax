@@ -13,6 +13,7 @@ import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.entityparts.ShootingPart;
 import group7.common.services.IEntityProcessingService;
+import group7.commonplayer.PlayerCharacter;
 
 public class PlayerController implements IEntityProcessingService {
 

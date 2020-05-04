@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1587899832053
+Bnd-LastModified: 1588589833250
 Build-Jdk: 1.8.0_241
 Built-By: morte
 Bundle-ActivationPolicy: lazy
@@ -11,18 +11,19 @@ Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 Export-Package: group7.common.data;version="1.0.0.SNAPSHOT";uses:="group
  7.common.entityparts,group7.common.events",group7.common.entityparts;ve
- rsion="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.common.events;
- version="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.common.servi
- ces;version="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.main;ver
- sion="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,group7.common.services",g
- roup7.manager;version="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,group7.c
- ommon.data"
+ rsion="1.0.0.SNAPSHOT";uses:="group7.common.data,group7.common.map",gro
+ up7.common.events;version="1.0.0.SNAPSHOT";uses:="group7.common.data",g
+ roup7.common.map;version="1.0.0.SNAPSHOT",group7.common.services;versio
+ n="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.main;version="1.0.
+ 0.SNAPSHOT";uses:="com.badlogic.gdx,group7.common.services",group7.mana
+ ger;version="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,group7.common.data
+ "
 Import-Package: com.badlogic.gdx,com.badlogic.gdx.backends.lwjgl,com.bad
  logic.gdx.files,com.badlogic.gdx.graphics,com.badlogic.gdx.graphics.g2d
  ,com.badlogic.gdx.graphics.glutils,group7.common.data;version="[1.0,2)"
  ,group7.common.entityparts;version="[1.0,2)",group7.common.events;versi
- on="[1.0,2)",group7.common.services;version="[1.0,2)",group7.manager;ve
- rsion="[1.0,2)"
+ on="[1.0,2)",group7.common.map;version="[1.0,2)",group7.common.services
+ ;version="[1.0,2)",group7.manager;version="[1.0,2)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Service-Component: META-INF/core.xml
 Tool: Bnd-4.2.0.201903051501

@@ -8,6 +8,7 @@ import group7.common.entityparts.PositionPart;
 import group7.common.entityparts.ShootingPart;
 import group7.common.services.IGamePluginService;
 import group7.common.services.ISpriteService;
+import group7.commonplayer.PlayerCharacter;
 
 public class PlayerCreator implements IGamePluginService {
 
