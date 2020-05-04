@@ -7,6 +7,7 @@ public class ShootingPart implements EntityPart {
 
     boolean shooting = false;
     private String type;
+    private int counter = 0;
     
     public ShootingPart(String type){
         this.type = type;
@@ -21,8 +22,9 @@ public class ShootingPart implements EntityPart {
     }
     
     @Override
-    public void process(GameData gameData, Entity entity) {
-        
+    public void process(GameData gameData, Entity entity) { 
+        System.out.println("hesan  dpaoircasess");
+        counter++;
     }
 
     public void setShooting(boolean shooting) {
@@ -30,7 +32,15 @@ public class ShootingPart implements EntityPart {
     }
     
     public void engageShooting(){
-        shooting = true;
+        System.out.println("engageShooting");
+
+        if(counter > 15){
+            shooting = true;
+            counter = 0;
+        }
+        else{
+            disengageShooting();
+        }
     }
     
     public void disengageShooting(){

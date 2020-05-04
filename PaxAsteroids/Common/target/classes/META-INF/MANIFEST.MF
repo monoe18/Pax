@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.common
-Built-By: morte
+Built-By: mathi
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1588589830769
+Bnd-LastModified: 1588600932123
 Import-Package: group7.common.data,group7.common.entityparts,group7.co
  mmon.events,group7.common.map,group7.common.services
 Tool: Bnd-0.0.255
