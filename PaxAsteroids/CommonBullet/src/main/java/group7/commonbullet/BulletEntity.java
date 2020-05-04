@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group7.bullet;
+package group7.commonbullet;
 
 import group7.common.data.Entity;
 import group7.common.data.IBullet;
