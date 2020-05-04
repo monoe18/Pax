@@ -24,6 +24,7 @@ import group7.common.services.ISpriteService;
 
 import group7.common.entityparts.ShootingPart;
 import group7.common.services.IBulletManager;
+import group7.common.services.IHUD;
 
 import group7.manager.GameInputProcessor;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ public class Game implements ApplicationListener {
     private static final List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
     private static final List<IBulletManager> bulletManagerList = new CopyOnWriteArrayList<>();
     private static final List<ISpriteService> spriteServiceList = new CopyOnWriteArrayList<>();
+    private static final List<IHUD> hudList = new CopyOnWriteArrayList<>();
 
     private SpriteBatch batch;
     private static final HashMap<ISpriteService, Sprite> spriteHashMap = new HashMap();
@@ -110,6 +112,10 @@ public class Game implements ApplicationListener {
         for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
             postEntityProcessorService.process(gameData, world);
         }
+
+        for (IHUD hud : hudList) {
+            hud.updateHUD(world, gameData);
+        }
         checkForLifeUpdate();
     }
 
@@ -121,9 +127,7 @@ public class Game implements ApplicationListener {
         batch.begin();
 
         spriteServiceList.forEach((spriteService) -> {
-            if (spriteService instanceof IMap) {
-                ((IMap) spriteService).initMap(gameData, world);
-            }
+
             Texture tex = new Texture(Gdx.files.internal(spriteService.getSprite()));
             Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
             sprite.setSize(spriteService.getSpriteWidth(), spriteService.getSpriteHeight());
@@ -244,6 +248,15 @@ public class Game implements ApplicationListener {
 
     public void removeBulletManager(IBulletManager eps) {
         Game.bulletManagerList.remove(eps);
+    }
+
+    public void addHUD(IHUD hud) {
+        System.out.println("HUD Added ");
+        hudList.add(hud);
+    }
+
+    public void removeHUD(IHUD hud) {
+        hudList.remove(hud);
     }
 
 }

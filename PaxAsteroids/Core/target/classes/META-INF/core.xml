@@ -22,4 +22,7 @@
                interface="group7.common.services.IBulletManager"
                name="IBulletManager" policy="dynamic" unbind="removeBulletManager"/>
 
+       <reference bind="addHUD" cardinality="0..n"
+               interface="group7.common.services.IHUD"
+               name="IHUD" policy="dynamic" unbind="removeHUD"/>
 </scr:component>

@@ -35,8 +35,7 @@ public class EnemyCreator implements IGamePluginService {
 //        float y = 400;
         int life = 100;
 
-//        enemyShip.add(new LifePart(3));
-        enemy.setRadius(4);
+        enemy.setRadius(10);
         enemy.setFileName(filename);
         enemy.setSpriteHeight(SpriteHeight);
         enemy.setSpriteWidth(SpriteWidth);
@@ -47,7 +46,7 @@ public class EnemyCreator implements IGamePluginService {
 
         enemy.add(new MovingPart(maxSpeed, "Enemy"));
         enemy.add(new PositionPart(randomX, randomY, "Enemy"));
-        enemy.add(new LifePart(life)); 
+        enemy.add(new LifePart(life));
         enemy.add(new AIPart(45, 25));
 
         return enemy;

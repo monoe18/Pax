@@ -19,7 +19,7 @@ public class PlayerCreator implements IGamePluginService {
     private int height = 40;
 
     @Override
-    public void start(GameData gameData, World world) {        
+    public void start(GameData gameData, World world) {
         player = createPlayer(gameData);
         world.addEntity(player);
     }
@@ -28,7 +28,7 @@ public class PlayerCreator implements IGamePluginService {
         float maxSpeed = 200;
         float x = 500;
         float y = 500;
-        int life = 100;
+        int life = 100000;
         boolean isHit = false;
 
         Entity playerCharacter = new PlayerCharacter();
