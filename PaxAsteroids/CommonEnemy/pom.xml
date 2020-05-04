@@ -2,19 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <relativePath>../poms/compiled/</relativePath>
-        <groupId>group7.build</groupId>
-        <artifactId>compiled-bundle-settings</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <properties>
-        <bundle.symbolicName>group7.commonenemy</bundle.symbolicName>
-        <bundle.namespace>group7</bundle.namespace>
-    </properties>
+    <artifactId>SemesterProjekt4-parent</artifactId>
+    <groupId>group7</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+    <groupId>group7</groupId>
     <artifactId>CommonEnemy</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
+
     <name>CommonEnemy</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -23,9 +26,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>group7.build</groupId>
             <artifactId>Common</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -38,8 +41,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Export-Package>group7.commonenemy</Export-Package>
-                        <Private-Package>group7.commonenemy.*</Private-Package>
+
                     </instructions>
                 </configuration>
             </plugin>

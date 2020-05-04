@@ -1,24 +1,27 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
-Built-By: morte
+Built-By: mathi
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1587899833222
+Bnd-LastModified: 1588600936422
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
  mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.events;version
- ="1.0.0.SNAPSHOT",group7.common.services;version="1.0.0.SNAPSHOT",gro
- up7.player;version="1.0.0.SNAPSHOT"
+ ="1.0.0.SNAPSHOT",group7.common.map;version="1.0.0.SNAPSHOT",group7.c
+ ommon.services;version="1.0.0.SNAPSHOT",group7.commonplayer;version="
+ 1.0.0.SNAPSHOT",group7.player;version="1.0.0.SNAPSHOT"
 Service-Component: META-INF/entityprocessor.xml, META-INF/gameplugin.x
  ml
 Tool: Bnd-0.0.255
 Export-Package: group7.common.data;uses:="group7.common.entityparts,gr
  oup7.common.events";version="1.0.0.SNAPSHOT",group7.common.services;u
- ses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.common.enti
- typarts;uses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.co
- mmon.events;uses:="group7.common.data";version="1.0.0.SNAPSHOT",group
- 7.player;uses:="group7.common.data,group7.common.services,group7.comm
- on.entityparts";version="1.0.0.SNAPSHOT"
+ ses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.common.map;
+ version="1.0.0.SNAPSHOT",group7.common.entityparts;uses:="group7.comm
+ on.data,group7.common.map";version="1.0.0.SNAPSHOT",group7.commonplay
+ er;uses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.common.
+ events;uses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.pla
+ yer;uses:="group7.common.data,group7.common.services,group7.common.en
+ tityparts,group7.commonplayer";version="1.0.0.SNAPSHOT"
 Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Name: PlayerCharacter
 Private-Package: group7.player.*
