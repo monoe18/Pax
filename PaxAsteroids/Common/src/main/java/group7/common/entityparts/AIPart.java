@@ -42,7 +42,7 @@ public class AIPart implements EntityPart {
         getNewPositions(player, enemy);
         this.closedCells = new boolean[32][32];
 
-        System.out.println("grid length " + grid.length);
+       // System.out.println("grid length " + grid.length);
         for (int x = 0; x < grid.length; x++) {
             for (int y = 0; y < grid[x].length; y++) {
                 grid[x][y] = new Node(x, y);
@@ -205,21 +205,21 @@ public class AIPart implements EntityPart {
         ArrayList<Node> path = new ArrayList();
         if (closedCells[goal.x][goal.y]) {
             //We track back the path
-            System.out.print("Path: ");
+          //  System.out.print("Path: ");
 
             Node currentNode = grid[goal.x][goal.y];
             path.add(currentNode);
-            System.out.print(currentNode); // Change to println ?
+      //      System.out.print(currentNode); // Change to println ?
             grid[currentNode.x][currentNode.y].solution = true;
 
             while (currentNode.parent != null) {
-                System.out.print(" -> " + currentNode.parent);
+         //       System.out.print(" -> " + currentNode.parent);
                 grid[currentNode.parent.x][currentNode.parent.y].solution = true;
                 currentNode = currentNode.parent;
                 path.add(currentNode);
             }
 
-            System.out.println("\n");
+        //    System.out.println("\n");
 
 //            for (int x = 0; x < grid.length; x++) {
 //                for (int y = 0; y < grid[x].length; y++) {

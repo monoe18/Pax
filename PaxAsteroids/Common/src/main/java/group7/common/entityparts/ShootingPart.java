@@ -23,7 +23,7 @@ public class ShootingPart implements EntityPart {
     
     @Override
     public void process(GameData gameData, Entity entity) { 
-        System.out.println("hesan  dpaoircasess");
+       // System.out.println("hesan  dpaoircasess");
         counter++;
     }
 
@@ -32,7 +32,7 @@ public class ShootingPart implements EntityPart {
     }
     
     public void engageShooting(){
-        System.out.println("engageShooting");
+     //   System.out.println("engageShooting");
 
         if(counter > 15){
             shooting = true;
