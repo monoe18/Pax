@@ -12,7 +12,7 @@ import group7.common.services.ISpriteService;
  *
  * @author Daniel
  */
-public class Score_HUD implements ISpriteService {
+public class Score_HUD extends HudManager {
 
     @Override
     public String getSprite() {

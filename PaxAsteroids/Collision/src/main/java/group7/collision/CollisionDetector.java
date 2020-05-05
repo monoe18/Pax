@@ -8,6 +8,7 @@ import group7.common.data.World;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IPostEntityProcessingService;
 import group7.common.data.ICharacter;
+import group7.common.data.IPickUp;
 import group7.common.entityparts.LifePart;
 import group7.commonbullet.BulletEntity;
 import group7.commonenemy.Enemy;
@@ -33,18 +34,31 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
                         if (lpe.getLife() < 25) {
                             world.removeEntity(enemy);
-
                         }
 //                    world.removeEntity(f);
                     }
                 }
 
-                for (Entity player : world.getEntities(PlayerCharacter.class)) {
+                //This code is for healthPickups
+                for (Entity pickup : world.getEntities()) {
+                    for (Entity player : world.getEntities(PlayerCharacter.class)) {
+                        if (pickup instanceof IPickUp && circleCollision(player, pickup)) {
+                            world.removeEntity(pickup);
+                            LifePart life = player.getPart(LifePart.class);
+                            int newlife = 25000 + life.getLife();
+                            if (newlife > 100000) {
+                                life.setLife(100000);
+                            } else {
+                                life.setLife(newlife);
+                            }
+                        }
+                    }
+                }
 
+                for (Entity player : world.getEntities(PlayerCharacter.class)) {
                     if (enemy.getID().equals(player.getID())) {
                         continue;
                     }
-
                     if (circleCollision(enemy, player)) {
                         LifePart lpe = player.getPart(LifePart.class);
                         int newLife = lpe.getLife();
@@ -54,6 +68,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
                             world.removeEntity(player);
 
                         }
+
 //                    world.removeEntity(f);
                     }
 

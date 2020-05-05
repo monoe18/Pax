@@ -11,37 +11,53 @@ import group7.commonplayer.PlayerCharacter;
 
 public class HudManager implements ISpriteService, IHUD {
 
-    private String lifeBar = "life100.png";
+    private String lifeBar;
+
     private int width = 200;
     private int height = 40;
     private int x = 20;
     private int y = 750;
+    int count = 0;
 
     public HudManager() {
-        System.out.println("HUD created ");
+        this.lifeBar = "life100.png";
+
     }
 
     @Override
     public void updateHUD(World world, GameData game) {
+
         for (Entity e : world.getEntities(PlayerCharacter.class)) {
             LifePart playerLifePoint = e.getPart(LifePart.class);
-            updateLifeSprite(playerLifePoint.getLife());
+            //updateLifeSprite(playerLifePoint.getLife());
+
+            if (count > 24) {
+                setLifeBar("life75.png");
+
+            }
+
+            count++;
 
         }
     }
 
+    public void setLifeBar(String lifeBar) {
+        this.lifeBar = lifeBar;
+    }
+
     public void updateLifeSprite(int life) {
 
-        if (life == 100000) {
+        if (life == 100000 && life > 75000) {
             this.lifeBar = "life100.png";
         }
-        if (life <= 75000) {
+        if (life == 75000 && life > 50000) {
+
             this.lifeBar = "life75.png";
         }
-        if (life <= 50000) {
+        if (life == 50000 && life > 25000) {
             this.lifeBar = "life50.png";
         }
-        if (life <= 25000) {
+        if (life == 25000 && life > 0) {
             this.lifeBar = "life25.png";
         }
         if (life == 0) {

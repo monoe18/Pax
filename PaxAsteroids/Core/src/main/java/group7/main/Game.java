@@ -48,6 +48,7 @@ public class Game implements ApplicationListener {
 
     private SpriteBatch batch;
     private static final HashMap<ISpriteService, Sprite> spriteHashMap = new HashMap();
+    private static final HashMap<IHUD, Sprite> hudHahsMap = new HashMap();
     private HashMap<Entity, Sprite> entitySpriteMap = new HashMap();
 
     public Game() {
@@ -114,41 +115,40 @@ public class Game implements ApplicationListener {
         }
 
         for (IHUD hud : hudList) {
+
             hud.updateHUD(world, gameData);
         }
-        checkForLifeUpdate();
+        // checkForLifeUpdate();
     }
 
     @Override
     public void render() {
-        // Gdx.gl.glClearColor(0, 0, 0, 1);
-        // Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //starts the batch and loads all sprites
         batch.begin();
 
         spriteServiceList.forEach((spriteService) -> {
-
-            Texture tex = new Texture(Gdx.files.internal(spriteService.getSprite()));
-            Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
-            sprite.setSize(spriteService.getSpriteWidth(), spriteService.getSpriteHeight());
-            spriteHashMap.put(spriteService, sprite);
+//            System.out.println("GAME " + spriteService.getSprite());
+//
+//            Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
+//            sprite.setSize(spriteService.getSpriteWidth(), spriteService.getSpriteHeight());
+            //  spriteHashMap.put(spriteService, sprite);
         });
 
         for (Map.Entry<ISpriteService, Sprite> entry : spriteHashMap.entrySet()) {
-
+            Texture tex = new Texture(Gdx.files.internal(entry.getKey().getSprite()));
             try {
 
+                entry.getValue().setTexture(tex);
                 entry.getValue().setX(entry.getKey().getX(world));
                 entry.getValue().setY(entry.getKey().getY(world));
-                entry.getValue().draw(batch);
                 entry.getValue().draw(batch);
             } catch (java.lang.NullPointerException e) {
 
             }
+
         }
 
         for (Entity entity : world.getEntities()) {
-
             try {
                 Texture tex = new Texture(Gdx.files.internal(entity.getFileName()));
                 Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
@@ -180,7 +180,6 @@ public class Game implements ApplicationListener {
 
     private void checkForLifeUpdate() {
         for (ISpriteService sprite : spriteServiceList) {
-            System.out.println("SPRITE" + sprite.getSprite().toString());
 
         }
     }
@@ -251,7 +250,6 @@ public class Game implements ApplicationListener {
     }
 
     public void addHUD(IHUD hud) {
-        System.out.println("HUD Added ");
         hudList.add(hud);
     }
 

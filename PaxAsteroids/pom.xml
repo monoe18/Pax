@@ -62,7 +62,7 @@
         <module>EnemyMob</module>
     <module>HUD</module>
     <module>CommonBullet</module>
-
+    <module>Pickup</module>
   </modules>
 
     <build>
