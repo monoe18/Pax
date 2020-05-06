@@ -25,6 +25,7 @@ import group7.common.services.ISpriteService;
 import group7.common.entityparts.ShootingPart;
 import group7.common.services.IBulletManager;
 import group7.common.services.IWaveManager;
+import group7.common.services.IHUD;
 
 import group7.manager.GameInputProcessor;
 import java.util.HashMap;
@@ -42,13 +43,13 @@ public class Game implements ApplicationListener {
     private static final List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
     private static final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
     private static final List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
-
     private static final List<IBulletManager> bulletManagerList = new CopyOnWriteArrayList<>();
-
     private static final List<ISpriteService> spriteServiceList = new CopyOnWriteArrayList<>();
+    private static final List<IHUD> hudList = new CopyOnWriteArrayList<>();
 
     private SpriteBatch batch;
     private static final HashMap<ISpriteService, Sprite> spriteHashMap = new HashMap();
+    private static final HashMap<IHUD, Sprite> hudHahsMap = new HashMap();
     private HashMap<Entity, Sprite> entitySpriteMap = new HashMap();
 
     public Game() {
@@ -123,52 +124,41 @@ public class Game implements ApplicationListener {
                 }
             }
         }
+        for (IHUD hud : hudList) {
 
-    }
-
-    private void drawSprites() {
-
-//        for (Entity entity : world.getEntities()) {
-//            if (entitySpriteMap.get(entity) == null) {
-//                try {
-//                    Texture tex = new Texture(Gdx.files.internal(entity.getFileName()));
-//                    Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
-//                    sprite.setSize(entity.getSpriteWidth(), entity.getSpriteHeight());
-//                    sprite.rotate(entity.getRotate());
-//                    entitySpriteMap.put(entity, sprite);
-//                } catch (NullPointerException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        entitySpriteMap.clear();
-//        entitySpriteMap.putAll(world.getEntities());
-    }
-
-    private void spriteDirection() {
-
-        //  gameData.is
+            hud.updateHUD(world, gameData);
+        }
+        // checkForLifeUpdate();
     }
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //starts the batch and loads all sprites
         batch.begin();
-        drawSprites();
-        for (Map.Entry<ISpriteService, Sprite> entry : spriteHashMap.entrySet()) {
 
+        spriteServiceList.forEach((spriteService) -> {
+//            System.out.println("GAME " + spriteService.getSprite());
+//
+//            Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
+//            sprite.setSize(spriteService.getSpriteWidth(), spriteService.getSpriteHeight());
+            //  spriteHashMap.put(spriteService, sprite);
+        });
+
+        for (Map.Entry<ISpriteService, Sprite> entry : spriteHashMap.entrySet()) {
+            Texture tex = new Texture(Gdx.files.internal(entry.getKey().getSprite()));
             try {
+
+                entry.getValue().setTexture(tex);
                 entry.getValue().setX(entry.getKey().getX(world));
                 entry.getValue().setY(entry.getKey().getY(world));
                 entry.getValue().draw(batch);
             } catch (java.lang.NullPointerException e) {
-            }
-        }
-//        for (Map.Entry<Entity, Sprite> entry : entitySpriteMap.entrySet()) {
-        for (Entity entity : world.getEntities()) {
 
+            }
+
+        }
+
+        for (Entity entity : world.getEntities()) {
             try {
                 Texture tex = new Texture(Gdx.files.internal(entity.getFileName()));
                 Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
@@ -195,6 +185,12 @@ public class Game implements ApplicationListener {
         ShootingPart shootingPart = e.getPart(ShootingPart.class);
         if (shootingPart != null && shootingPart.isShooting()) {
             createBullet(e, g);
+        }
+    }
+
+    private void checkForLifeUpdate() {
+        for (ISpriteService sprite : spriteServiceList) {
+
         }
     }
 
@@ -248,6 +244,7 @@ public class Game implements ApplicationListener {
 
     public void addSpriteService(ISpriteService eps) {
         spriteServiceList.add(eps);
+
     }
 
     public void removeSpriteService(ISpriteService eps) {
@@ -260,6 +257,14 @@ public class Game implements ApplicationListener {
 
     public void removeBulletManager(IBulletManager eps) {
         Game.bulletManagerList.remove(eps);
+    }
+
+    public void addHUD(IHUD hud) {
+        hudList.add(hud);
+    }
+
+    public void removeHUD(IHUD hud) {
+        hudList.remove(hud);
     }
 
 }

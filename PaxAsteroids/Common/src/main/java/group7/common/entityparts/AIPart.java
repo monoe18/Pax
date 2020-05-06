@@ -21,12 +21,12 @@ public class AIPart implements EntityPart {
     private Node start;
     private Node goal;
     private ArrayList<Node> closedList;
-    private int gridFactorX = 45; //grid offset num x
-    private int gridFactorY = 25; //grid offset num y
+    private int gridFactorX = 32; //grid offset num x
+    private int gridFactorY = 32; //grid offset num y
     private boolean closedCells[][];
 
     // new
-    private int gridWidth, gridHeight = 32;
+//    private int gridWidth, gridHeight = 32;
 
     // Constructor - Created once.
     public AIPart(int gridWidth, int gridHeight) {
@@ -40,11 +40,11 @@ public class AIPart implements EntityPart {
         this.goal = null;
         this.start = null;
         getNewPositions(player, enemy);
-        this.closedCells = new boolean[32][32];
+        this.closedCells = new boolean[45][25];
 
         System.out.println("grid length " + grid.length);
-        for (int x = 0; x < grid.length; x++) {
-            for (int y = 0; y < grid[x].length; y++) {
+        for (int x = 5; x < grid.length - 5; x++) {
+            for (int y = 5; y < grid[x].length - 5; y++) {
                 grid[x][y] = new Node(x, y);
                 grid[x][y].heuristic = (int) Math.sqrt(Math.pow(x - goal.x, 2) + Math.pow(y - goal.y, 2));
                 grid[x][y].solution = false;
@@ -56,10 +56,15 @@ public class AIPart implements EntityPart {
     }
 
     public void getNewPositions(PositionPart player, PositionPart enemy) {
-
-        this.goal = new Node((int) player.getX() / this.gridFactorX, (int) player.getY() / this.gridFactorY);
-        this.start = new Node((int) enemy.getX() / this.gridFactorX, (int) enemy.getY() / this.gridFactorY);
-
+       
+        if (player != null)  {
+             this.goal = new Node((int) player.getX() / this.gridFactorX, (int) player.getY() / this.gridFactorY);
+             this.start = new Node((int) enemy.getX() / this.gridFactorX, (int) enemy.getY() / this.gridFactorY);
+        } else {
+            this.goal = new Node(500 / this.gridFactorX, (int) 500/ this.gridFactorY);
+             this.start = new Node((int) enemy.getX() / this.gridFactorX, (int) enemy.getY() / this.gridFactorY);
+        } 
+       
     }
 
     public void updateCostIfNeeded(Node currentNode, Node temporaryNode, int cost) {
@@ -219,8 +224,8 @@ public class AIPart implements EntityPart {
                 path.add(currentNode);
             }
 
-            System.out.println("\n");
-
+//            System.out.println("\n");
+//
 //            for (int x = 0; x < grid.length; x++) {
 //                for (int y = 0; y < grid[x].length; y++) {
 //                    if (x == start.x && y == start.y) {
@@ -253,16 +258,16 @@ public class AIPart implements EntityPart {
         if (update % 70 == 0) {
             newGridSetup(playerPosition, enemyPosition);
             process();
-            // display();
-            // displayScores();
+//             display();
+//             displayScores();
             solution = getSolutionPath();
         }
 
         counter = solution.size();
         if (counter > 0 && update % 20 == 0) {
             Node node = solution.get(counter - 1);
-            enemyPosition.setX(node.x * 45);
-            enemyPosition.setY(node.y * 25);
+            enemyPosition.setX(node.x * 32);
+            enemyPosition.setY(node.y * 32);
             solution.remove(counter - 1);
         }
         update++;

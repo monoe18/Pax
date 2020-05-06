@@ -1,7 +1,13 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Bnd-LastModified: 1588772037389
 Build-Jdk: 1.8.0_241
 Built-By: morte
+=======
+Bnd-LastModified: 1588710420455
+Build-Jdk: 1.8.0_181
+Built-By: Daniel
+>>>>>>> HUD
 Bundle-ActivationPolicy: lazy
 Bundle-Description: Generated using Pax-Construct
 Bundle-ManifestVersion: 2
@@ -10,8 +16,10 @@ Bundle-SymbolicName: group7.collision
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 Export-Package: group7.collision;uses:="group7.common.data,group7.common
- .services,group7.common.entityparts";version="1.0.0.SNAPSHOT"
+ .services,group7.common.entityparts,group7.commonenemy,group7.commonbul
+ let,group7.commonplayer";version="1.0.0.SNAPSHOT"
 Import-Package: group7.common.data,group7.common.entityparts,group7.comm
- on.services
+ on.services,group7.commonbullet;version="[1.0,2)",group7.commonenemy;ve
+ rsion="[1.0,2)",group7.commonplayer;version="[1.0,2)"
 Service-Component: META-INF/ipostentityprocessingservice.xml
 Tool: Bnd-1.50.0

@@ -1,0 +1,3 @@
+Bundle-SymbolicName: HUD
+Bundle-ActivationPolicy: lazy
+Service-Component: META-INF/ispriteservice.xml, META-INF/ihud.xml

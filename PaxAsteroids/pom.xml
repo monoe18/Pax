@@ -60,7 +60,10 @@
         <module>CommonEnemy</module>
         <module>CommonPlayer</module>
         <module>EnemyMob</module>
-    </modules>
+    <module>HUD</module>
+    <module>CommonBullet</module>
+    <module>Pickup</module>
+  </modules>
 
     <build>
         <plugins>
