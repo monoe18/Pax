@@ -3,7 +3,7 @@ Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
 Built-By: Daniel
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1588710424062
+Bnd-LastModified: 1588771499003
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
  mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.events;version
@@ -20,7 +20,7 @@ Export-Package: group7.common.data;uses:="group7.common.entityparts,gr
  on.data,group7.common.map";version="1.0.0.SNAPSHOT",group7.commonplay
  er;uses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.common.
  events;uses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.pla
- yer;uses:="group7.common.data,group7.common.services,group7.common.en
+ yer;uses:="group7.common.services,group7.common.data,group7.common.en
  tityparts,group7.commonplayer";version="1.0.0.SNAPSHOT"
 Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Name: PlayerCharacter

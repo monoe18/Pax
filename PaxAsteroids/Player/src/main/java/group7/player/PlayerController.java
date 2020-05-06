@@ -27,6 +27,11 @@ public class PlayerController implements IEntityProcessingService {
             MovingPart movingPart = player.getPart(MovingPart.class);
             LifePart lifePart = player.getPart(LifePart.class);
             ShootingPart shootingPart = player.getPart(ShootingPart.class);
+            int life = lifePart.getLife();
+
+            if (life < 50000) {
+                player.setFileName("healthFlask.png");
+            }
             double random = Math.random();
 
             movingPart.setLeft(gameData.getKeys().isDown(LEFT));
@@ -34,10 +39,10 @@ public class PlayerController implements IEntityProcessingService {
             movingPart.setUp(gameData.getKeys().isDown(UP));
             movingPart.setDown(gameData.getKeys().isDown(DOWN));
             movingPart.setSpace(gameData.getKeys().isPressed(SPACE));
-            
+
             checkShooting(gameData, shootingPart);
-            
-            // Used to flip sprite 
+
+            // Used to flip sprite
             flipPlayer(player, gameData);
 
             movingPart.process(gameData, player);
