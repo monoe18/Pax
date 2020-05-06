@@ -14,9 +14,10 @@ import java.util.Random;
 public class EnemyCreator implements IGamePluginService {
 
     private Entity enemy;
-    private String filename = "RobotEnemy.png";
+    // private String filename = "RobotEnemy.png";
     private int SpriteWidth = 32;
     private int SpriteHeight = 40;
+    private String[] files = {"RobotEnemy.png", "enemy2.png"};
 
     @Override
     public void start(GameData gameData, World world) {
@@ -30,17 +31,17 @@ public class EnemyCreator implements IGamePluginService {
     private Entity createEnemy(GameData gameData) {
         enemy = new Enemy();
         float maxSpeed = 50;
-
+        Random r = new Random();
 //        float x = 400;
-//        float y = 400;
+        //        float y = 400;
         int life = 100;
-
+        int i = r.nextInt(2);
+        System.out.println("I is " + i);
         enemy.setRadius(10);
-        enemy.setFileName(filename);
+        enemy.setFileName(files[i]);
         enemy.setSpriteHeight(SpriteHeight);
         enemy.setSpriteWidth(SpriteWidth);
 
-        Random r = new Random();
         float randomX = (float) r.nextInt(800) + 200;
         float randomY = (float) r.nextInt(200) + 200;
 
