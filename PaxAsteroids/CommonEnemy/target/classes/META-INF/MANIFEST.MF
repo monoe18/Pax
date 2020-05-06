@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1588600937378
+Bnd-LastModified: 1588770004453
 Build-Jdk: 1.8.0_241
-Built-By: mathi
+Built-By: morte
 Bundle-ManifestVersion: 2
 Bundle-Name: CommonEnemy
 Bundle-SymbolicName: group7.CommonEnemy

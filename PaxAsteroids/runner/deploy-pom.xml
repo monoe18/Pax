@@ -67,6 +67,20 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>group7</groupId>
+      <artifactId>CommonEnemy</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>CommonPlayer</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>group7.build</groupId>
       <artifactId>Core</artifactId>
       <version>1.0-SNAPSHOT</version>
@@ -80,15 +94,20 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>group7.build</groupId>
-      <artifactId>Map</artifactId>
+      <groupId>group7</groupId>
+      <artifactId>CommonEnemy</artifactId>
       <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>group7</groupId>
       <artifactId>CommonPlayer</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7.build</groupId>
+      <artifactId>Map</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>
@@ -102,20 +121,7 @@
     </dependency>
     <dependency>
       <groupId>group7</groupId>
-      <artifactId>CommonPlayer</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>group7</groupId>
       <artifactId>Bullet</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>group7</groupId>
-      <artifactId>CommonEnemy</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>
@@ -125,12 +131,6 @@
       <artifactId>EnemyMob</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>group7</groupId>
-      <artifactId>CommonEnemy</artifactId>
-      <version>1.0-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

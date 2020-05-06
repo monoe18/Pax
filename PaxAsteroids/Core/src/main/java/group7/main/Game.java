@@ -53,6 +53,7 @@ public class Game implements ApplicationListener {
     public Game() {
         init();
     }
+    
 //INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
 
     private void init() {
