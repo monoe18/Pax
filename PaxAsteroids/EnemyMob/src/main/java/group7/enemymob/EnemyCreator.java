@@ -7,10 +7,15 @@ import group7.common.entityparts.AIPart;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IGamePluginService;
+import group7.common.services.IWaveManager;
 import group7.commonenemy.Enemy;
 import java.util.Random;
 
-public class EnemyCreator implements IGamePluginService {
+public class EnemyCreator implements IGamePluginService, IWaveManager {
+
+    private int enemyCount = 4;
+    private int waveCount = 1;
+    private boolean spawnStatus = true;
 
     private Entity enemy;
     private String filename = "RobotEnemy.png";
@@ -19,11 +24,7 @@ public class EnemyCreator implements IGamePluginService {
 
     @Override
     public void start(GameData gameData, World world) {
-        for (int i = 0; i < 4; i++) {
-            enemy = createEnemy(gameData);
-            world.addEntity(enemy);
-        }
-
+        spawnEnemies(gameData, world);
     }
 
     private Entity createEnemy(GameData gameData) {
@@ -56,5 +57,39 @@ public class EnemyCreator implements IGamePluginService {
         for (Entity enemy : world.getEntities(Enemy.class)) {
             world.removeEntity(enemy);
         }
+    }
+
+    @Override
+    public void spawnEnemies(GameData gameData, World world) {
+        for (int i = 0; i < getEnemyCount(); i++) {
+            enemy = createEnemy(gameData);
+            world.addEntity(enemy);
+        }
+    }
+
+    @Override
+    public void checkWaveStatus(World world) {
+        if (world.getEntities(Enemy.class).isEmpty()) {
+            enemyCount += waveCount * 2;
+            waveCount++;
+            spawnStatus = true;
+        } else {
+            spawnStatus = false;
+        }
+    }
+
+    @Override
+    public int getEnemyCount() {
+        return enemyCount;
+    }
+
+    @Override
+    public int getWaveCount() {
+        return waveCount;
+    }
+
+    @Override
+    public boolean isSpawnStatus() {
+        return spawnStatus;
     }
 }

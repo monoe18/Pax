@@ -24,6 +24,7 @@ import group7.common.services.ISpriteService;
 
 import group7.common.entityparts.ShootingPart;
 import group7.common.services.IBulletManager;
+import group7.common.services.IWaveManager;
 
 import group7.manager.GameInputProcessor;
 import java.util.HashMap;
@@ -41,7 +42,7 @@ public class Game implements ApplicationListener {
     private static final List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
     private static final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
     private static final List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
-    
+
     private static final List<IBulletManager> bulletManagerList = new CopyOnWriteArrayList<>();
 
     private static final List<ISpriteService> spriteServiceList = new CopyOnWriteArrayList<>();
@@ -53,9 +54,8 @@ public class Game implements ApplicationListener {
     public Game() {
         init();
     }
-    
-//INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
 
+//INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
     private void init() {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Shooter";
@@ -105,13 +105,23 @@ public class Game implements ApplicationListener {
         for (IEntityProcessingService entityProcessorService : entityProcessorList) {
             entityProcessorService.process(gameData, world);
         }
-        
-        for (Entity e : world.getEntities()){
+
+        for (Entity e : world.getEntities()) {
             checkForShooting(e, gameData);
         }
 
         for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
             postEntityProcessorService.process(gameData, world);
+        }
+
+        for (IGamePluginService plugin : gamePluginList) {
+            if (plugin instanceof IWaveManager) {
+                IWaveManager waveManager = (IWaveManager) plugin;
+                waveManager.checkWaveStatus(world);
+                if (waveManager.isSpawnStatus()) {
+                    waveManager.spawnEnemies(gameData, world);
+                }
+            }
         }
 
     }
@@ -180,16 +190,16 @@ public class Game implements ApplicationListener {
         gameData.getKeys().update();
         update();
     }
-    
-     private void checkForShooting(Entity e, GameData g) {
+
+    private void checkForShooting(Entity e, GameData g) {
         ShootingPart shootingPart = e.getPart(ShootingPart.class);
         if (shootingPart != null && shootingPart.isShooting()) {
-           createBullet(e, g);
+            createBullet(e, g);
         }
     }
-    
-    private void createBullet(Entity e, GameData g){
-        for(IBulletManager bm : bulletManagerList){
+
+    private void createBullet(Entity e, GameData g) {
+        for (IBulletManager bm : bulletManagerList) {
             world.addEntity(bm.createBullet(e, g));
         }
     }
@@ -244,7 +254,6 @@ public class Game implements ApplicationListener {
         spriteServiceList.remove(eps);
     }
 
-   
     public void addBulletManager(IBulletManager eps) {
         Game.bulletManagerList.add(eps);
     }
