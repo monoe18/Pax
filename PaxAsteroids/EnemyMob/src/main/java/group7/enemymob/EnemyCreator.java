@@ -17,9 +17,9 @@ public class EnemyCreator implements IGamePluginService, IWaveManager {
     private int enemyCount = 4;
     private int waveCount = 1;
     private boolean spawnStatus = true;
-
+    private String[] files = {"RobotEnemy.png", "enemy2.png"};
     private Entity enemy;
-    private String filename = "RobotEnemy.png";
+
     private int SpriteWidth = 32;
     private int SpriteHeight = 40;
 
@@ -31,17 +31,16 @@ public class EnemyCreator implements IGamePluginService, IWaveManager {
     private Entity createEnemy(GameData gameData) {
         enemy = new Enemy();
         float maxSpeed = 50;
-
+        Random r = new Random();
 //        float x = 400;
 //        float y = 400;
         int life = 100;
-
+        int index = r.nextInt(2);
         enemy.setRadius(10);
-        enemy.setFileName(filename);
+        enemy.setFileName(files[index]);
         enemy.setSpriteHeight(SpriteHeight);
         enemy.setSpriteWidth(SpriteWidth);
 
-        Random r = new Random();
         float randomX = (float) r.nextInt(800) + 200;
         float randomY = (float) r.nextInt(200) + 200;
 

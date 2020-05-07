@@ -175,6 +175,17 @@ public class Game implements ApplicationListener {
 
             }
         }
+
+        for (IHUD hudElement : hudList) {
+            hudElement.updateHUD(world, gameData);
+            Texture tex = new Texture(Gdx.files.internal(hudElement.getSprite()));
+            Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
+            sprite.setSize(hudElement.getSpriteWidth(), hudElement.getSpriteHeight());
+            sprite.setX(hudElement.getX());
+            sprite.setY(hudElement.getY());
+            sprite.draw(batch);
+        }
+
         batch.end();
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         gameData.getKeys().update();

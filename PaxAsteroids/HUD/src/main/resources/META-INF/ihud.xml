@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.sprite.service.hud">
-    <implementation class="group7.hud.HudManager"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.sprite.service.lifehud">
+    <implementation class="group7.hud.LifeBar_HUD"/>
     <service>
         <provide interface="group7.common.services.IHUD"/>
     </service>

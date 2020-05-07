@@ -1,15 +1,9 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
-<<<<<<< HEAD
-Built-By: morte
-Bundle-ManifestVersion: 2
-Bnd-LastModified: 1588772041965
-=======
 Built-By: Daniel
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1588710424062
->>>>>>> HUD
+Bnd-LastModified: 1588861986021
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
  mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.events;version

@@ -68,48 +68,26 @@
     </dependency>
     <dependency>
       <groupId>group7</groupId>
-<<<<<<< HEAD
-      <artifactId>CommonEnemy</artifactId>
-=======
       <artifactId>CommonPlayer</artifactId>
->>>>>>> HUD
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>group7</groupId>
-<<<<<<< HEAD
-      <artifactId>CommonPlayer</artifactId>
-=======
       <artifactId>CommonBullet</artifactId>
->>>>>>> HUD
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>group7.build</groupId>
-<<<<<<< HEAD
-      <artifactId>Core</artifactId>
-=======
       <artifactId>Collision</artifactId>
->>>>>>> HUD
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
-<<<<<<< HEAD
-      <groupId>group7.build</groupId>
-      <artifactId>OSGiLibGDX</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>group7</groupId>
-      <artifactId>CommonEnemy</artifactId>
-=======
       <groupId>group7</groupId>
       <artifactId>CommonEnemy</artifactId>
       <version>1.0-SNAPSHOT</version>
@@ -143,8 +121,8 @@
     <dependency>
       <groupId>group7.build</groupId>
       <artifactId>Map</artifactId>
->>>>>>> HUD
       <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -155,42 +133,29 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>group7.build</groupId>
-      <artifactId>Map</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-<<<<<<< HEAD
-      <groupId>group7.build</groupId>
-      <artifactId>PlayerCharacter</artifactId>
-=======
       <groupId>group7</groupId>
-      <artifactId>EnemyMob</artifactId>
->>>>>>> HUD
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>group7</groupId>
-<<<<<<< HEAD
       <artifactId>Bullet</artifactId>
-=======
-      <artifactId>HUD</artifactId>
->>>>>>> HUD
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>group7</groupId>
-<<<<<<< HEAD
       <artifactId>EnemyMob</artifactId>
-=======
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>HUD_LifeBar</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
       <artifactId>Pickup</artifactId>
->>>>>>> HUD
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>

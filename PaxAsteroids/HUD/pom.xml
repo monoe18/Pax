@@ -8,14 +8,14 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <properties>
-         <bundle.symbolicName>group7.HUD</bundle.symbolicName>
+         <bundle.symbolicName>group7.HUD_LifeBar</bundle.symbolicName>
         <bundle.namespace>group7</bundle.namespace>
     </properties>
     <groupId>group7</groupId>
-    <artifactId>HUD</artifactId>
+    <artifactId>HUD_LifeBar</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
-    <name>HUD</name>
+    <name>HUD_LifeBar</name>
     <dependencies>
        <dependency>
             <groupId>org.osgi</groupId>

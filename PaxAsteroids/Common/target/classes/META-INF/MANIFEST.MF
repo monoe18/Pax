@@ -1,15 +1,9 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.common
-<<<<<<< HEAD
-Built-By: morte
-Bundle-ManifestVersion: 2
-Bnd-LastModified: 1588772035879
-=======
 Built-By: Daniel
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1588710415457
->>>>>>> HUD
+Bnd-LastModified: 1588861976529
 Import-Package: group7.common.data,group7.common.entityparts,group7.co
  mmon.events,group7.common.map,group7.common.services
 Tool: Bnd-0.0.255
