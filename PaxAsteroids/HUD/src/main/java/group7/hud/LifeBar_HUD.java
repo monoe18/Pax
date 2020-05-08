@@ -2,22 +2,22 @@ package group7.hud;
 
 import group7.common.data.Entity;
 import group7.common.data.GameData;
-import group7.common.data.HudElement;
+
 import group7.common.data.World;
 import group7.common.entityparts.LifePart;
 import group7.common.services.IHUD;
 import group7.commonplayer.PlayerCharacter;
 
-public class LifeBar_HUD extends HudElement implements IHUD {
+public class LifeBar_HUD implements IHUD {
 
     private String lifeSprite = "life100.png";
     private int x = 20;
-    private int y = 720;
+    private int y = 730;
     private int SpriteHeight = 50;
     private int SpriteWidth = 200;
 
     @Override
-    public void updateHUD(World world, GameData gameData) {
+    public void updateHUD(World world, GameData gameData, int displayInfo) {
         Entity player = null;
         for (Entity ent : world.getEntities(PlayerCharacter.class)) {
             player = ent;
@@ -73,6 +73,11 @@ public class LifeBar_HUD extends HudElement implements IHUD {
     @Override
     public int getSpriteHeight() {
         return this.SpriteHeight;
+    }
+
+    @Override
+    public String getHudType() {
+        return "LifeBar";
     }
 
 }

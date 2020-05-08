@@ -125,8 +125,16 @@ public class Game implements ApplicationListener {
             }
         }
         for (IHUD hud : hudList) {
+            if (hud.getHudType().equals("WaveBar")) {
+                for (IGamePluginService plugin : gamePluginList) {
+                    if (plugin instanceof IWaveManager) {
+                        hud.updateHUD(world, gameData, ((IWaveManager) plugin).getWaveCount());
+                    }
+                }
+            } else {
+                hud.updateHUD(world, gameData, 0);
+            }
 
-            hud.updateHUD(world, gameData);
         }
         // checkForLifeUpdate();
     }
@@ -177,7 +185,7 @@ public class Game implements ApplicationListener {
         }
 
         for (IHUD hudElement : hudList) {
-            hudElement.updateHUD(world, gameData);
+            // hudElement.updateHUD(world, gameData,0);
             Texture tex = new Texture(Gdx.files.internal(hudElement.getSprite()));
             Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
             sprite.setSize(hudElement.getSpriteWidth(), hudElement.getSpriteHeight());

@@ -6,6 +6,8 @@ import group7.common.data.World;
 
 public interface IHUD {
 
+    String getHudType();
+
     String getSprite();
 
     int getSpriteWidth();
@@ -16,5 +18,5 @@ public interface IHUD {
 
     float getY();
 
-    public void updateHUD(World world, GameData gameData);
+    public void updateHUD(World world, GameData gameData, int displayInfo);
 }

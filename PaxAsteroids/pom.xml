@@ -63,6 +63,8 @@
     <module>HUD</module>
     <module>CommonBullet</module>
     <module>Pickup</module>
+    <module>HUD_ScoreBar</module>
+    <module>HUD_WaveBar</module>
   </modules>
 
     <build>

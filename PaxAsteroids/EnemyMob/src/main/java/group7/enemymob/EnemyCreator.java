@@ -71,8 +71,10 @@ public class EnemyCreator implements IGamePluginService, IWaveManager {
     public void checkWaveStatus(World world) {
         if (world.getEntities(Enemy.class).isEmpty()) {
             enemyCount += waveCount * 2;
-            waveCount++;
-            spawnStatus = true;
+            if (waveCount < 5) {
+                waveCount++;
+                spawnStatus = true;
+            }
         } else {
             spawnStatus = false;
         }
