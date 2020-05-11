@@ -2,7 +2,6 @@ package group7.common.entityparts;
 
 import group7.common.data.Entity;
 import group7.common.data.GameData;
-import group7.common.data.World;
 import java.util.ArrayList;
 import group7.common.map.Node;
 import java.util.Collections;
@@ -12,6 +11,9 @@ public class AIPart implements EntityPart {
     ArrayList<Node> solution = new ArrayList();
     int counter;
     int update = 50;
+    int startNode = 0;
+
+    String directionString;
 
     public static final int diagonalCost = 14;
     public static final int stepCost = 10;
@@ -24,17 +26,17 @@ public class AIPart implements EntityPart {
     private int gridFactorX = 45; //grid offset num x
     private int gridFactorY = 25; //grid offset num y
     private boolean closedCells[][];
-
-    // new
-    private int gridWidth, gridHeight = 32;
+    private float difference = -1;
+    private float oldMovDif = 0;
+    float lastPos = 0;
+    boolean isX = false;
 
     // Constructor - Created once.
     public AIPart(int gridWidth, int gridHeight) {
         this.grid = new Node[gridWidth][gridHeight];
-
     }
 
-    // It gives each tile in grid a heuristic
+    // Gives each cell in grid a heuristic
     // Called each fifth second to recalclulate where the ai should go
     public void newGridSetup(PositionPart player, PositionPart enemy) {
         this.goal = null;
@@ -62,9 +64,8 @@ public class AIPart implements EntityPart {
 
     }
 
-    public void updateCostIfNeeded(Node currentNode, Node temporaryNode, int cost) {
+    public void updateCostIfNeeded(Node currentNode, Node temporaryNode, int cost, String directionTo) {
 
-        // not sure what this does maybe for non existance ones?
         if (temporaryNode == null || closedCells[temporaryNode.x][temporaryNode.y]) {
             return;
         }
@@ -78,6 +79,8 @@ public class AIPart implements EntityPart {
         if (!isOpen || temporaryFinalCost < temporaryNode.finalCost) {
             temporaryNode.finalCost = temporaryFinalCost;
             temporaryNode.parent = currentNode;
+            
+            temporaryNode.direction = directionTo;
 
             // If not already explored then add it
             if (!isOpen) {
@@ -116,48 +119,52 @@ public class AIPart implements EntityPart {
             if (current.x - 1 >= 0) {
                 temporaryNode = grid[current.x - 1][current.y];
                 // Calculates it here instead
-                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost);
 
-                if (current.y - 1 >= 0) {
-                    temporaryNode = grid[current.x - 1][current.y - 1];
-                    updateCostIfNeeded(current, temporaryNode, current.finalCost + diagonalCost);
-
-                }
-                if (current.y + 1 < grid[0].length) {
-                    temporaryNode = grid[current.x - 1][current.y + 1];
-                    updateCostIfNeeded(current, temporaryNode, current.finalCost + diagonalCost);
-
-                }
+                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "left");
+               
+//                if (current.y - 1 >= 0) {
+//                    temporaryNode = grid[current.x - 1][current.y - 1];
+//                    updateCostIfNeeded(current, temporaryNode, current.finalCost + diagonalCost, "left");
+//
+//
+//                }
+//                if (current.y + 1 < grid[0].length) {
+//                    temporaryNode = grid[current.x - 1][current.y + 1];
+//                    updateCostIfNeeded(current, temporaryNode, current.finalCost + diagonalCost, "left");
+//                    
+//                }
 
             }
             // South
             if (current.y - 1 >= 0) {
                 temporaryNode = grid[current.x][current.y - 1];
-                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost);
+                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "down");
+
             }
 
             // North
             if (current.y + 1 < grid[0].length) {
                 temporaryNode = grid[current.x][current.y + 1];
-                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost);
+                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "up");
+
             }
 
             //East
             if (current.x + 1 < grid.length) {
                 temporaryNode = grid[current.x + 1][current.y];
                 // Calculates it here instead
-                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost);
-
-                if (current.y - 1 >= 0) {
-                    temporaryNode = grid[current.x + 1][current.y - 1];
-                    updateCostIfNeeded(current, temporaryNode, current.finalCost + diagonalCost);
-
-                }
-                if (current.y + 1 < grid[0].length) {
-                    temporaryNode = grid[current.x + 1][current.y + 1];
-                    updateCostIfNeeded(current, temporaryNode, current.finalCost + diagonalCost);
-
-                }
+                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "right");
+   
+//                if (current.y - 1 >= 0) {
+//                    temporaryNode = grid[current.x + 1][current.y - 1];
+//                    updateCostIfNeeded(current, temporaryNode, current.finalCost + diagonalCost, "right");
+//
+//                }
+//                if (current.y + 1 < grid[0].length) {
+//                    temporaryNode = grid[current.x + 1][current.y + 1];
+//                    updateCostIfNeeded(current, temporaryNode, current.finalCost + diagonalCost, "right");
+// 
+//                }
 
             }
 
@@ -248,24 +255,91 @@ public class AIPart implements EntityPart {
 
     }
 
-    public void processAi(PositionPart playerPosition, PositionPart enemyPosition) {
+    public Node processAi(PositionPart playerPosition, PositionPart enemyPosition, MovingPart enemymov, MovingPart playermov, Node currentNode) {
 
         if (update % 70 == 0) {
             newGridSetup(playerPosition, enemyPosition);
             process();
             // display();
             // displayScores();
+
             solution = getSolutionPath();
+
         }
 
         counter = solution.size();
-        if (counter > 0 && update % 20 == 0) {
-            Node node = solution.get(counter - 1);
-            enemyPosition.setX(node.x * 45);
-            enemyPosition.setY(node.y * 25);
+        
+        if(isX){
+            difference =difference - enemyPosition.getX();
+        } else{
+            difference = difference - enemyPosition.getY();
+        }
+       
+        if (counter > 0 && update % 30 == 0 && difference<0) {
+
+            Node previousNode = currentNode;
+            currentNode = solution.get(counter - 1);
+
+            float xDif = (enemyPosition.getX()/45) - currentNode.x;
+            float yDif = (enemyPosition.getY()/25) - currentNode.y;
+            float lastPos = enemyPosition.getX();
+            
+
+            
+            
+            
+            System.out.println("enemy pos: " + enemyPosition.getX() + ", " + enemyPosition.getY()  );
+            System.out.println("enemy pos 25 & 45 : " + enemyPosition.getX()/45 + " , " + enemyPosition.getY()/25  );
+            
+            System.out.println("xDif =  " + xDif);
+            System.out.println("yDif =  " + yDif);
+            
+            if (xDif >= yDif) {
+                
+                isX = true;
+
+                if ((enemyPosition.getX()/45) <= currentNode.x) {
+                    currentNode.direction = "right";
+                                    difference =enemyPosition.getX() + 45;
+
+                } else if ((enemyPosition.getX()/45) > currentNode.x ) {
+                    currentNode.direction = "left";
+                                    difference =enemyPosition.getX() - 45;
+
+                }
+            }
+            
+            
+            
+            
+            
+            else if (Math.abs(xDif) < Math.abs(yDif) ) {
+                
+                isX = false;
+
+
+                if ((enemyPosition.getY()/45) <= currentNode.y) {
+                    currentNode.direction = "up";
+                      difference =enemyPosition.getY() + 25;
+              
+                } else if((enemyPosition.getY()/45) > currentNode.y ){ 
+                    currentNode.direction = "down";   
+                  difference =enemyPosition.getY() - 25;
+              }
+
+            }
+            
+
+            System.out.println("Current Node Direction: " + currentNode.direction);
+
+//            enemymov.setDirection(node.direction);
+//            enemyPosition.setX(node.x * 45);
+//            enemyPosition.setY(node.y * 25);
             solution.remove(counter - 1);
         }
         update++;
+        return currentNode;
+
     }
 
 }

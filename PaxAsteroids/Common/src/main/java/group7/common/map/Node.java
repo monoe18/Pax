@@ -10,8 +10,14 @@ public class Node implements Comparable<Node> {
     public int heuristic;   // Euclidian distance from node     // Estimates cheapest path from this node to goal node
     public int costSoFar = 0;   // The accumulated path cost from start node to this node
     public int finalCost = 0;  // Heuristic + costSoFar
-
     public boolean solution; // If Node is part of the solution path
+    public String direction; // new  --- Used to move the AI
+    public boolean isStart = false;
+    
+    public int getNode;
+    
+    
+    
 
     // hello guy
     public boolean isVisited; // Have we searched this node before?

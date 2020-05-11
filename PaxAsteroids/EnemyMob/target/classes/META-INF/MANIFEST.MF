@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1588600937523
-Build-Jdk: 1.8.0_241
-Built-By: mathi
+Bnd-LastModified: 1589233427775
+Build-Jdk: 1.8.0_251
+Built-By: Karla
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Name: EnemyMob
@@ -9,10 +9,10 @@ Bundle-SymbolicName: group7.EnemyMob
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 Export-Package: group7.enemymob;uses:="group7.common.services,group7.com
- mon.data,group7.common.entityparts,group7.commonenemy,group7.commonplay
- er";version="1.0.0.SNAPSHOT"
+ mon.data,group7.common.map,group7.common.entityparts,group7.commonenemy
+ ,group7.commonplayer";version="1.0.0.SNAPSHOT"
 Import-Package: group7.common.data,group7.common.entityparts,group7.comm
- on.services,group7.commonenemy;version="[1.0,2)",group7.commonplayer;ve
- rsion="[1.0,2)"
+ on.map,group7.common.services,group7.commonenemy;version="[1.0,2)",grou
+ p7.commonplayer;version="[1.0,2)"
 Service-Component: META-INF/entityprocessor.xml, META-INF/gameplugin.xml
 Tool: Bnd-1.50.0

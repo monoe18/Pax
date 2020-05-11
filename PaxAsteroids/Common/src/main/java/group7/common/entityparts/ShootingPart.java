@@ -23,7 +23,6 @@ public class ShootingPart implements EntityPart {
     
     @Override
     public void process(GameData gameData, Entity entity) { 
-        System.out.println("hesan  dpaoircasess");
         counter++;
     }
 

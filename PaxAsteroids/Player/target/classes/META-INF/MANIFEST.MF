@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
-Built-By: mathi
+Built-By: Karla
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1588600936422
+Bnd-LastModified: 1589233426854
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
  mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.events;version
@@ -26,5 +26,5 @@ Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Name: PlayerCharacter
 Private-Package: group7.player.*
 Created-By: Apache Maven Bundle Plugin
-Build-Jdk: 1.8.0_241
+Build-Jdk: 1.8.0_251
 

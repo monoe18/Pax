@@ -16,7 +16,7 @@ public class Entity implements Serializable {
     private float radius;
     private float x, y;
     private boolean flipRightLeft, flipUpDown, prevflipRightLeft, prevflipUpDown = false;
-    private float rotate =0;
+    private float rotate = 0;
     private Map<Class, EntityPart> parts;
 
     public Entity() {
@@ -103,62 +103,24 @@ public class Entity implements Serializable {
         this.shapeY = shapeY;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public boolean isFlipRightLeft() {
-        return flipRightLeft && flipRightLeft!= prevflipRightLeft;
+        return flipRightLeft && flipRightLeft != prevflipRightLeft;
     }
 
-                                                            
-    
-    
     public void setFlipRightLeft(boolean flipRightLeft) {
         this.prevflipRightLeft = this.flipRightLeft;
         this.flipRightLeft = flipRightLeft;
     }
 
-    
-    
-    
-    
-    
-    
-    
-     public void setFlipUpDown(boolean flipUpDown) {
-          this.prevflipUpDown = this.flipUpDown;
+    public void setFlipUpDown(boolean flipUpDown) {
+        this.prevflipUpDown = this.flipUpDown;
         this.flipUpDown = flipUpDown;
     }
-    
-    
-       public boolean isFlipUpDown() {
-         return flipUpDown && flipUpDown!= prevflipUpDown;
+
+    public boolean isFlipUpDown() {
+        return flipUpDown && flipUpDown != prevflipUpDown;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
     public boolean isPrevflipRightLeft() {
         return prevflipRightLeft;
     }
@@ -183,8 +145,4 @@ public class Entity implements Serializable {
         this.rotate = rotate;
     }
 
-    
-   
-    
-    
 }

@@ -82,7 +82,11 @@ public class MovingPart implements EntityPart {
         float x = positionPart.getX();
         float y = positionPart.getY();
         float dt = gameData.getDelta();
-
+        
+        System.out.println(positionPart.getType());
+        System.out.println("Direction : " + direction);
+      
+        try{
         if (positionPart.getType().equals("Player")) {
 
             if (left) {
@@ -102,7 +106,7 @@ public class MovingPart implements EntityPart {
                 this.setDirection("down");
             }
 
-        } else if (positionPart.getType().equals("Laser")) {
+        } else if (positionPart.getType().equals("Laser") || positionPart.getType().equals("Enemy") ) {
             if (direction.equals("left")) {
                 x -= maxSpeed * dt;
             }
@@ -118,6 +122,10 @@ public class MovingPart implements EntityPart {
 
             }
         }
+        }
+        catch(NullPointerException e){
+                
+                }
 
         x += dx * dt;
         if (x
