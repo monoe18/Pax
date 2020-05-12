@@ -36,7 +36,7 @@ public class EnemyCreator implements IGamePluginService, IWaveManager {
 //        float y = 400;
         int life = 100;
         int index = r.nextInt(2);
-        enemy.setRadius(10);
+        enemy.setRadius(35);
         enemy.setFileName(files[index]);
         enemy.setSpriteHeight(SpriteHeight);
         enemy.setSpriteWidth(SpriteWidth);

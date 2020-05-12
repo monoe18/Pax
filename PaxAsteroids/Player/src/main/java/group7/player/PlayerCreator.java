@@ -32,7 +32,7 @@ public class PlayerCreator implements IGamePluginService {
         boolean isHit = false;
 
         Entity playerCharacter = new PlayerCharacter();
-        playerCharacter.setRadius(20);
+        playerCharacter.setRadius(35);
         playerCharacter.setFileName(fileName);
         playerCharacter.setSpriteHeight(height);
         playerCharacter.setSpriteWidth(width);
