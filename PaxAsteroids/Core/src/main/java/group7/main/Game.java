@@ -52,6 +52,7 @@ public class Game implements ApplicationListener {
     private static final HashMap<IHUD, Sprite> hudHahsMap = new HashMap();
     private HashMap<Entity, Sprite> entitySpriteMap = new HashMap();
     private int currentWave = 1;
+    private int starScroller = 0;
 
     public Game() {
         init();
@@ -131,12 +132,10 @@ public class Game implements ApplicationListener {
                 for (IGamePluginService plugin : gamePluginList) {
                     if (plugin instanceof IWaveManager) {
                         currentWave = ((IWaveManager) plugin).getWaveCount();
-                        System.out.println("Updated call wave tp " + currentWave);
                         hud.updateHUD(world, gameData, ((IWaveManager) plugin).getWaveCount());
                     }
                 }
             } else if (hud.getHudType().equals("EndGame")) {
-                System.out.println("called wave: " + currentWave);
                 hud.updateHUD(world, gameData, currentWave);
             } else {
                 hud.updateHUD(world, gameData, 0);
@@ -151,13 +150,7 @@ public class Game implements ApplicationListener {
         //starts the batch and loads all sprites
         batch.begin();
 
-        spriteServiceList.forEach((spriteService) -> {
-//            System.out.println("GAME " + spriteService.getSprite());
-//
-//            Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
-//            sprite.setSize(spriteService.getSpriteWidth(), spriteService.getSpriteHeight());
-            //  spriteHashMap.put(spriteService, sprite);
-        });
+        scrollStars(gameData);
 
         for (Map.Entry<ISpriteService, Sprite> entry : spriteHashMap.entrySet()) {
             Texture tex = new Texture(Gdx.files.internal(entry.getKey().getSprite()));
@@ -194,7 +187,6 @@ public class Game implements ApplicationListener {
         for (IHUD hudElement : hudList) {
             // hudElement.updateHUD(world, gameData,0);
             if (!hudElement.getSprite().equals(".")) {
-                System.out.println("Made sprite with " + hudElement.getSprite() );
                 Texture tex = new Texture(Gdx.files.internal(hudElement.getSprite()));
                 Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
                 sprite.setSize(hudElement.getSpriteWidth(), hudElement.getSpriteHeight());
@@ -208,6 +200,21 @@ public class Game implements ApplicationListener {
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         gameData.getKeys().update();
         update();
+    }
+
+    private void scrollStars(GameData gamedata) {
+        Texture tex = new Texture(Gdx.files.internal("stars.png"));
+        Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
+        sprite.setSize(2000, 70);
+
+        sprite.setX(starScroller - 300);
+        sprite.setY(650);
+        sprite.draw(batch);
+        if (starScroller < 490) {
+            starScroller = starScroller + (5);
+        } else {
+            starScroller = 0;
+        }
     }
 
     private void checkForShooting(Entity e, GameData g) {

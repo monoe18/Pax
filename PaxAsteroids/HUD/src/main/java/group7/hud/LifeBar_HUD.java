@@ -23,7 +23,6 @@ public class LifeBar_HUD implements IHUD {
             player = ent;
             LifePart life = ent.getPart(LifePart.class);
             updateLifeSprite(life.getLife());
-            System.out.println("UPDATE IN HUD");
 
         }
         if (player == null) {
@@ -38,7 +37,6 @@ public class LifeBar_HUD implements IHUD {
             this.lifeSprite = "life100.png";
         }
         if (life <= 75000 && life > 50000) {
-            System.out.println("UPDATE IN HUD LIFE LIFE");
             this.lifeSprite = "life75.png";
         }
         if (life <= 50000 && life > 25000) {
