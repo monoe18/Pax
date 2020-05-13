@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.main.Game">
-    <implementation class="group7.main.Game"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.main.Gamee">
+    <implementation class="group7.main.Gamee"/>
 
     <reference bind="addPostEntityProcessingService" cardinality="0..n"
                interface="group7.common.services.IPostEntityProcessingService"

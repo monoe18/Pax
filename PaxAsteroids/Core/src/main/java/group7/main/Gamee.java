@@ -2,10 +2,11 @@ package group7.main;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import group7.common.data.Entity;
@@ -14,10 +15,11 @@ import group7.common.services.IEntityProcessingService;
 import group7.common.services.IGamePluginService;
 import group7.common.services.IPostEntityProcessingService;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import group7.common.data.GameData;
-import group7.common.data.GameKeys;
 import group7.common.entityparts.PositionPart;
 import group7.common.data.IMap;
 import group7.common.services.ISpriteService;
@@ -34,11 +36,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Game implements ApplicationListener {
+public class Gamee implements Screen {
+// Game + screen 
 
+    ScreenSetter game;
     private static OrthographicCamera cam;
     private ShapeRenderer sr;
-    private final GameData gameData = new GameData();
+    private final GameData gameData; // = new GameData();
     private static World world = new World();
     private static final List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
     private static final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
@@ -48,28 +52,54 @@ public class Game implements ApplicationListener {
     private static final List<IHUD> hudList = new CopyOnWriteArrayList<>();
 
     private SpriteBatch batch;
+    private BitmapFont font;
     private static final HashMap<ISpriteService, Sprite> spriteHashMap = new HashMap();
     private static final HashMap<IHUD, Sprite> hudHahsMap = new HashMap();
     private HashMap<Entity, Sprite> entitySpriteMap = new HashMap();
 
-    public Game() {
-        init();
+    public Gamee(ScreenSetter game) {
+        this.game = game;
+        gameData = new GameData();
+        batch = new SpriteBatch();
+        font = new BitmapFont();
+        //  font.setColor(Color.valueOf("FBDF6B"));
+
+        cam = new OrthographicCamera();
+        cam.setToOrtho(false, 1440, 800);
+        cam.update();
+        System.out.println("Gamee bliver kaldt");
+
+        create();
+        update();
+        render();
+
+        System.out.println(spriteServiceList.size() + "size of sprites");
+        System.out.println(entityProcessorList.size() + "size of Entities");
+        System.out.println(gamePluginList.size() + "size of Gameplugins");
+        System.out.println(entityProcessorList.size() + "size of Entityprocessor");
+    }
+
+    public Gamee() {
+        this.game = new ScreenSetter();
+        gameData = new GameData(); // remove?  
     }
 
 //INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
-    private void init() {
-        LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-        cfg.title = "Shooter";
-        cfg.width = 1440;
-        cfg.height = 800;
-        cfg.useGL30 = false;
-        cfg.resizable = false;
-
-        new LwjglApplication(this, cfg);
-    }
-
-    @Override
+//    private void init() {
+//        LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
+//        cfg.title = "Shooter";
+//        cfg.width = 1440;
+//        cfg.height = 800;
+//        cfg.useGL30 = false;
+//        cfg.resizable = false;
+//
+//        new LwjglApplication(this, cfg);  
+//
+//        
+//        
+//    }
     public void create() {
+
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
 
         gameData.setDisplayHeight(Gdx.graphics.getHeight());
@@ -139,7 +169,6 @@ public class Game implements ApplicationListener {
         // checkForLifeUpdate();
     }
 
-    @Override
     public void render() {
         //starts the batch and loads all sprites
         batch.begin();
@@ -232,6 +261,9 @@ public class Game implements ApplicationListener {
     @Override
     public void dispose() {
 
+        batch.dispose();
+        font.dispose();
+
     }
 
     public void addEntityProcessingService(IEntityProcessingService eps) {
@@ -271,11 +303,11 @@ public class Game implements ApplicationListener {
     }
 
     public void addBulletManager(IBulletManager eps) {
-        Game.bulletManagerList.add(eps);
+        Gamee.bulletManagerList.add(eps);
     }
 
     public void removeBulletManager(IBulletManager eps) {
-        Game.bulletManagerList.remove(eps);
+        Gamee.bulletManagerList.remove(eps);
     }
 
     public void addHUD(IHUD hud) {
@@ -284,6 +316,19 @@ public class Game implements ApplicationListener {
 
     public void removeHUD(IHUD hud) {
         hudList.remove(hud);
+
+    }
+
+    @Override
+    public void show() {
+    }
+
+    @Override
+    public void render(float f) {
+    }
+
+    @Override
+    public void hide() {
     }
 
 }
