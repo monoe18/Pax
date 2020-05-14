@@ -29,7 +29,9 @@ public class AIPart implements EntityPart {
     private float difference = -1;
     private float oldMovDif = 0;
     float lastPos = 0;
-    boolean isX = false;
+    boolean isX;
+    float difCheck = -1;
+    boolean isStart = true;
 
     // Constructor - Created once.
     public AIPart(int gridWidth, int gridHeight) {
@@ -256,88 +258,132 @@ public class AIPart implements EntityPart {
     }
 
     public Node processAi(PositionPart playerPosition, PositionPart enemyPosition, MovingPart enemymov, MovingPart playermov, Node currentNode) {
-
+        
+        float testy = -1;
+        System.out.println("update = " + update);
         if (update % 70 == 0) {
             newGridSetup(playerPosition, enemyPosition);
             process();
-            // display();
-            // displayScores();
-
             solution = getSolutionPath();
-
         }
 
         counter = solution.size();
+//        System.out.println("counter size:" + counter);
         
-        if(isX){
-            difference =difference - enemyPosition.getX();
-        } else{
-            difference = difference - enemyPosition.getY();
+        
+        
+        
+        
+        if (isX) {
+            System.out.println("xMoved");
+            testy = Math.abs(difference - enemyPosition.getX());
+            System.out.println("Difference-enemyposition.getX() " + difference + " - " +enemyPosition.getX() + "  =  " + testy );
+            System.out.println("Testy: " + testy);
+        } else if(!isX && !(currentNode.isStart)) {
+            System.out.println("Does it get inside here at start?");
+            System.out.println("Does this ever happen Y");
+            testy = Math.abs(difference - enemyPosition.getY());
+            System.out.println("Difference-enemyposition.getY() " + difference + " - " +enemyPosition.getY() + "  =  " + testy );
+
         }
-       
-        if (counter > 0 && update % 30 == 0 && difference<0) {
+//
+//        
+//        if(isStart && counter >0){
+//            testy = -3;
+//            isStart = false;
+//        }
+//        
+//        System.out.println(" testy " + testy);
 
-            Node previousNode = currentNode;
-            currentNode = solution.get(counter - 1);
+        
+        
+        System.out.println("testy before " + testy);
+        
 
-            float xDif = (enemyPosition.getX()/45) - currentNode.x;
-            float yDif = (enemyPosition.getY()/25) - currentNode.y;
-            float lastPos = enemyPosition.getX();
+        if (counter > 0 && testy <= 1) {
             
+            System.out.println("Does it go inside?");
+            System.out.println("counter inside " + counter );
+            
+//            Node previousNode = currentNode;
+            Node previousNode = solution.get(counter - 1);
+            currentNode = solution.get(counter - 2);
+
+                        // prev = where Enmey currently is
+                        // current = where it wants to go
+            int xDiff = previousNode.getX() - currentNode.getX();
+            int yDiff = previousNode.getY() - currentNode.getY();
+
+
+            System.out.println("xDiff: " + xDiff);
+            System.out.println("yDiff" + yDiff);
 
             
-            
-            
-            System.out.println("enemy pos: " + enemyPosition.getX() + ", " + enemyPosition.getY()  );
-            System.out.println("enemy pos 25 & 45 : " + enemyPosition.getX()/45 + " , " + enemyPosition.getY()/25  );
-            
-            System.out.println("xDif =  " + xDif);
-            System.out.println("yDif =  " + yDif);
-            
-            if (xDif >= yDif) {
-                
+            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+
+                System.out.println("Math.abs(xDiff) >= Math.abs(yDiff) is = " + (Math.abs(xDiff) >= Math.abs(yDiff)));
                 isX = true;
 
-                if ((enemyPosition.getX()/45) <= currentNode.x) {
+                if (previousNode.x <= currentNode.x) {
                     currentNode.direction = "right";
-                                    difference =enemyPosition.getX() + 45;
+                    difference = enemyPosition.getX() + 45;
 
-                } else if ((enemyPosition.getX()/45) > currentNode.x ) {
+                } else if (previousNode.x > currentNode.x) {
                     currentNode.direction = "left";
-                                    difference =enemyPosition.getX() - 45;
+                    difference = enemyPosition.getX() - 45;
 
                 }
-            }
-            
-            
-            
-            
-            
-            else if (Math.abs(xDif) < Math.abs(yDif) ) {
-                
+            } else if (Math.abs(xDiff) < Math.abs(yDiff)) {
+
                 isX = false;
 
-
-                if ((enemyPosition.getY()/45) <= currentNode.y) {
+                if (previousNode.y <= currentNode.y) {
                     currentNode.direction = "up";
-                      difference =enemyPosition.getY() + 25;
-              
-                } else if((enemyPosition.getY()/45) > currentNode.y ){ 
-                    currentNode.direction = "down";   
-                  difference =enemyPosition.getY() - 25;
-              }
+                    difference = enemyPosition.getY() + 25;
+
+                } else if (previousNode.y > currentNode.y) {
+                    currentNode.direction = "down";
+                    difference = enemyPosition.getY() - 25;
+                }
 
             }
-            
 
-            System.out.println("Current Node Direction: " + currentNode.direction);
+             solution.remove(counter - 1);
+             solution.remove(counter - 2);
 
-//            enemymov.setDirection(node.direction);
-//            enemyPosition.setX(node.x * 45);
-//            enemyPosition.setY(node.y * 25);
-            solution.remove(counter - 1);
+
+
+
+
+
+
+
+
+
+
+//
+//            
+//            float xDif = (enemyPosition.getX() / 45) - currentNode.x;
+//            float yDif = (enemyPosition.getY() / 25) - currentNode.y;
+//            float lastPost = enemyPosition.getX();
+//
+//            System.out.println("enemy pos: " + enemyPosition.getX() + ", " + enemyPosition.getY());
+//            System.out.println("enemy pos 25 & 45 : " + enemyPosition.getX() / 45 + " , " + enemyPosition.getY() / 25);
+//
+//            System.out.println("xDif =  " + xDif);
+//            System.out.println("yDif =  " + yDif);
+//
+//            
+//
+//            System.out.println("Current Node Direction: " + currentNode.direction);
+//
+////            enemymov.setDirection(node.direction);
+////            enemyPosition.setX(node.x * 45);
+////            enemyPosition.setY(node.y * 25);
+           
         }
         update++;
+        System.out.println("Returning node stats: " + currentNode.direction);
         return currentNode;
 
     }

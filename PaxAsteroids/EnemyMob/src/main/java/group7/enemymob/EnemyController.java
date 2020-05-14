@@ -14,35 +14,38 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class EnemyController implements IEntityProcessingService {
-    Node prevNode = new Node(0,0);
+    Node prevNode;
 
     @Override
     public void process(GameData gameData, World world) {
 
         for (Entity entity : world.getEntities(Enemy.class)) {
-            PositionPart positionPart = entity.getPart(PositionPart.class);
+            PositionPart enemyPositionPart = entity.getPart(PositionPart.class);
             MovingPart enemyMovingPart = entity.getPart(MovingPart.class);
             AIPart aiPart = entity.getPart(AIPart.class);
 
             PositionPart playerPosition = getPlayerPos(world);
             MovingPart playerMovingPart =  getPlayerMov(world);
             if(prevNode ==null){
-                prevNode.direction ="right";
+                prevNode = new Node(10, 10);
+//                prevNode.direction ="right";
                 prevNode.isStart = true;
-                prevNode.x = (int) playerPosition.getX()/45;
-                prevNode.y = (int) playerPosition.getY()/25;
-                prevNode.getNode = 0;
+                prevNode.x = (int) (enemyPositionPart.getX()/45);
+                prevNode.y = (int) (enemyPositionPart.getY()/25);
+                
             }
             
-            prevNode =  aiPart.processAi(playerPosition, positionPart, enemyMovingPart, playerMovingPart, prevNode);
+            prevNode =  aiPart.processAi(playerPosition, enemyPositionPart, enemyMovingPart, playerMovingPart, prevNode);
+            
+            enemyMovingPart.setDirection(prevNode.direction);
  
 
-            enemyMovingPart.setDirection(prevNode.direction);
+                
             
             
             
             enemyMovingPart.process(gameData, entity);
-            positionPart.process(gameData, entity);
+            enemyPositionPart.process(gameData, entity);
 
         }
     }
