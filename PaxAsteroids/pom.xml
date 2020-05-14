@@ -23,10 +23,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>group7</groupId>
-    <artifactId>PaxAteroids</artifactId>
+    <artifactId>4-Sem</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>PaxAsteroids (OSGi project)</name>
+    <name>4-Sem-Project</name>
 
     <!--
      | describe your project here
