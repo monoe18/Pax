@@ -9,22 +9,36 @@ import group7.common.entityparts.PositionPart;
 import group7.common.services.IEntityProcessingService;
 import group7.commonenemy.Enemy;
 import group7.commonplayer.PlayerCharacter;
+import group7.common.map.Node;
+import java.util.HashSet;
+import java.util.Set;
 
 public class EnemyController implements IEntityProcessingService {
+    Node prevNode;
 
     @Override
     public void process(GameData gameData, World world) {
 
         for (Entity entity : world.getEntities(Enemy.class)) {
-            PositionPart positionPart = entity.getPart(PositionPart.class);
-            MovingPart movingPart = entity.getPart(MovingPart.class);
+            PositionPart enemyPositionPart = entity.getPart(PositionPart.class);
+            MovingPart enemyMovingPart = entity.getPart(MovingPart.class);
             AIPart aiPart = entity.getPart(AIPart.class);
 
             PositionPart playerPosition = getPlayerPos(world);
+            MovingPart playerMovingPart =  getPlayerMov(world);
+            
+            
+            aiPart.processAi(playerPosition, enemyPositionPart, enemyMovingPart, playerMovingPart);
+            
+//            enemyMovingPart.setDirection(prevNode.direction);
+ 
 
-            aiPart.processAi(playerPosition, positionPart);
-            movingPart.process(gameData, entity);
-            positionPart.process(gameData, entity);
+                
+            
+            
+            
+            enemyMovingPart.process(gameData, entity);
+            enemyPositionPart.process(gameData, entity);
 
         }
     }
@@ -35,6 +49,14 @@ public class EnemyController implements IEntityProcessingService {
             playerPos = entity.getPart(PositionPart.class);
         }
         return playerPos;
+    }
+    
+    private MovingPart getPlayerMov(World world) {
+        MovingPart playermov = null;
+        for (Entity entity : world.getEntities(PlayerCharacter.class)) {
+            playermov = entity.getPart(MovingPart.class);
+        }
+        return playermov;
     }
 
 }
