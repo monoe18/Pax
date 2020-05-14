@@ -298,7 +298,6 @@ public class AIPart implements EntityPart {
             
             larger = java.lang.Math.max(difference, enemyPosition.getX());
             lower = java.lang.Math.min(difference, enemyPosition.getX());
-            
             testy = larger - lower;
                     System.out.println("Larger - Lower  = Testy " +  " " + larger + " - " + lower + " = " + testy);    
 
@@ -320,17 +319,21 @@ public class AIPart implements EntityPart {
 //        } catch(Exception e ){
 //            
 //        }
+
+        
     
 
-        if (counter > 0 && testy <= 1) {
+        if ((counter > 0 && testy <= 4) || (update %71 ==0 && counter >0)) {
             
             System.out.println("Does it go inside?");
             System.out.println("counter inside " + counter );
             
-//            Node previousNode = currentNode;
+            
             Node previousNode = solution.get(counter - 1);
             if(counter>1){
+                System.out.println("pre first");
             thisNode = solution.get(counter - 2);
+                System.out.println("post first");
             }
                         // prev = where Enmey currently is
                         // current = where it wants to go
