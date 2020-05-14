@@ -78,7 +78,6 @@ public class MovingPart implements EntityPart {
     @Override
     public void process(GameData gameData, Entity entity) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
-        //  System.out.println("PositionPart Common: " + positionPart.getX());
         float x = positionPart.getX();
         float y = positionPart.getY();
         float dt = gameData.getDelta();

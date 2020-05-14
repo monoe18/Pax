@@ -34,16 +34,15 @@ public class PlayerController implements IEntityProcessingService {
             movingPart.setUp(gameData.getKeys().isDown(UP));
             movingPart.setDown(gameData.getKeys().isDown(DOWN));
             movingPart.setSpace(gameData.getKeys().isPressed(SPACE));
-            
+
             checkShooting(gameData, shootingPart);
-            
-            // Used to flip sprite 
+
+            // Used to flip sprite
             flipPlayer(player, gameData);
 
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);
             shootingPart.process(gameData, player);
-//            lifePart.process(gameData, player);
 
         }
     }
@@ -59,9 +58,7 @@ public class PlayerController implements IEntityProcessingService {
             left = false;
             right = true;
 
-        } //else {
-//            player.setFlipRightLeft(false);
-//        }
+        }
     }
 
     public boolean isRight() {

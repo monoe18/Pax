@@ -12,10 +12,8 @@ public class AIPart implements EntityPart {
     ArrayList<Node> solution = new ArrayList();
     int counter;
     int update = 50;
-
     public static final int diagonalCost = 14;
     public static final int stepCost = 10;
-
     private Node[][] grid;
     private ArrayList<Node> openList;
     private Node start;
@@ -24,9 +22,6 @@ public class AIPart implements EntityPart {
     private int gridFactorX = 32; //grid offset num x
     private int gridFactorY = 32; //grid offset num y
     private boolean closedCells[][];
-
-    // new
-//    private int gridWidth, gridHeight = 32;
 
     // Constructor - Created once.
     public AIPart(int gridWidth, int gridHeight) {
@@ -42,7 +37,6 @@ public class AIPart implements EntityPart {
         getNewPositions(player, enemy);
         this.closedCells = new boolean[45][25];
 
-        System.out.println("grid length " + grid.length);
         for (int x = 5; x < grid.length - 5; x++) {
             for (int y = 5; y < grid[x].length - 5; y++) {
                 grid[x][y] = new Node(x, y);
@@ -56,15 +50,15 @@ public class AIPart implements EntityPart {
     }
 
     public void getNewPositions(PositionPart player, PositionPart enemy) {
-       
-        if (player != null)  {
-             this.goal = new Node((int) player.getX() / this.gridFactorX, (int) player.getY() / this.gridFactorY);
-             this.start = new Node((int) enemy.getX() / this.gridFactorX, (int) enemy.getY() / this.gridFactorY);
+
+        if (player != null) {
+            this.goal = new Node((int) player.getX() / this.gridFactorX, (int) player.getY() / this.gridFactorY);
+            this.start = new Node((int) enemy.getX() / this.gridFactorX, (int) enemy.getY() / this.gridFactorY);
         } else {
-            this.goal = new Node(500 / this.gridFactorX, (int) 500/ this.gridFactorY);
-             this.start = new Node((int) enemy.getX() / this.gridFactorX, (int) enemy.getY() / this.gridFactorY);
-        } 
-       
+            this.goal = new Node(500 / this.gridFactorX, (int) 500 / this.gridFactorY);
+            this.start = new Node((int) enemy.getX() / this.gridFactorX, (int) enemy.getY() / this.gridFactorY);
+        }
+
     }
 
     public void updateCostIfNeeded(Node currentNode, Node temporaryNode, int cost) {
@@ -169,81 +163,21 @@ public class AIPart implements EntityPart {
         }
     }
 
-//    public void display() {
-//        System.out.println("grid: ");
-//        for (int x = 0; x < grid.length; x++) {
-//            for (int y = 0; y < grid[x].length; y++) {
-//                if (x == start.x && y == start.y) {
-//                    System.out.print("SO  "); // Source Cell
-//                } else if (x == goal.x && y == goal.y) {
-//                    System.out.print("DE  "); // Destination Cell
-//                } else if (grid[x][y] != null) {
-//                    System.out.printf("%-3d ", 0);
-//                } else {
-//                    System.out.print("BL  "); // Block Cell /// not used
-//                }
-//            }
-//            System.out.println();
-//        }
-//        System.out.println();
-//    }
-//    public void displayScores() {
-//        System.out.println("\nScores for cells : ");
-//
-//        for (int x = 0; x < grid.length; x++) {
-//            for (int y = 0; y < grid[x].length; y++) {
-//                if (grid[x][y] != null) {
-//                    System.out.printf("%-3d ", grid[x][y].finalCost);
-//                } else {
-//                    System.out.println("BL  ");
-//                }
-//
-//            }
-//
-//            System.out.println();
-//        }
-//
-//        System.out.println();
-//
-//    }
     public ArrayList<Node> getSolutionPath() {
         ArrayList<Node> path = new ArrayList();
         if (closedCells[goal.x][goal.y]) {
             //We track back the path
-            System.out.print("Path: ");
-
             Node currentNode = grid[goal.x][goal.y];
             path.add(currentNode);
-            System.out.print(currentNode); // Change to println ?
             grid[currentNode.x][currentNode.y].solution = true;
 
             while (currentNode.parent != null) {
-                System.out.print(" -> " + currentNode.parent);
+
                 grid[currentNode.parent.x][currentNode.parent.y].solution = true;
                 currentNode = currentNode.parent;
                 path.add(currentNode);
             }
 
-//            System.out.println("\n");
-//
-//            for (int x = 0; x < grid.length; x++) {
-//                for (int y = 0; y < grid[x].length; y++) {
-//                    if (x == start.x && y == start.y) {
-//                        System.out.print("SO  "); // Source Cell (Start Node)
-//                    } else if (x == goal.x && y == goal.y) {
-//                        System.out.print("DE  "); // Destination Cell // Goal state
-//                    } else if (grid[x][y] != null) {
-//                        System.out.printf("%-3s ", grid[x][y].solution ? "X" : "0");    // Error might be here
-//                    } else {
-//                        System.out.print("BL  "); // Block Cell /// not used
-//                    }
-//                }
-//                System.out.println();
-//            }
-//            System.out.println();
-//        } else {
-//            System.out.println("No possible Path");
-//        }
         }
         return path;
     }
@@ -258,8 +192,6 @@ public class AIPart implements EntityPart {
         if (update % 70 == 0) {
             newGridSetup(playerPosition, enemyPosition);
             process();
-//             display();
-//             displayScores();
             solution = getSolutionPath();
         }
 

@@ -13,7 +13,6 @@ public class Node implements Comparable<Node> {
 
     public boolean solution; // If Node is part of the solution path
 
-    // hello guy
     public boolean isVisited; // Have we searched this node before?
     public ArrayList<Node> neighbours = new ArrayList<Node>();
 

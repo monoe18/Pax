@@ -35,7 +35,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
                         if (lpe.getLife() < 25) {
                             world.removeEntity(enemy);
                         }
-//                    world.removeEntity(f);
+
                     }
                 }
 
@@ -69,7 +69,6 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
                         }
 
-//                    world.removeEntity(f);
                     }
 
                 }

@@ -58,7 +58,6 @@ public class Game implements ApplicationListener {
         init();
     }
 
-//INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
     private void init() {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Shooter";
