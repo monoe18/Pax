@@ -26,18 +26,11 @@ public class EnemyController implements IEntityProcessingService {
 
             PositionPart playerPosition = getPlayerPos(world);
             MovingPart playerMovingPart =  getPlayerMov(world);
-            if(prevNode ==null){
-                prevNode = new Node(10, 10);
-//                prevNode.direction ="right";
-                prevNode.isStart = true;
-                prevNode.x = (int) (enemyPositionPart.getX()/45);
-                prevNode.y = (int) (enemyPositionPart.getY()/25);
-                
-            }
             
-            prevNode =  aiPart.processAi(playerPosition, enemyPositionPart, enemyMovingPart, playerMovingPart, prevNode);
             
-            enemyMovingPart.setDirection(prevNode.direction);
+            aiPart.processAi(playerPosition, enemyPositionPart, enemyMovingPart, playerMovingPart);
+            
+//            enemyMovingPart.setDirection(prevNode.direction);
  
 
                 

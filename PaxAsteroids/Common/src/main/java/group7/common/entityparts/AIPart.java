@@ -31,7 +31,10 @@ public class AIPart implements EntityPart {
     float lastPos = 0;
     boolean isX;
     float difCheck = -1;
+    float prevDiff =0;
     boolean isStart = true;
+    
+    Node thisNode;
 
     // Constructor - Created once.
     public AIPart(int gridWidth, int gridHeight) {
@@ -257,7 +260,12 @@ public class AIPart implements EntityPart {
 
     }
 
-    public Node processAi(PositionPart playerPosition, PositionPart enemyPosition, MovingPart enemymov, MovingPart playermov, Node currentNode) {
+    public void processAi(PositionPart playerPosition, PositionPart enemyPosition, MovingPart enemymov, MovingPart playermov) {
+        
+        if(thisNode ==null){
+            thisNode = new Node((int) (enemyPosition.getX()/45), (int) (enemyPosition.getY()/25));
+            thisNode.isStart = true;
+        }
         
         float testy = -1;
         System.out.println("update = " + update);
@@ -270,35 +278,41 @@ public class AIPart implements EntityPart {
         counter = solution.size();
 //        System.out.println("counter size:" + counter);
         
+       
+       float larger;
+       float lower;
         
         
         
         
         if (isX) {
             System.out.println("xMoved");
-            testy = Math.abs(difference - enemyPosition.getX());
-            System.out.println("Difference-enemyposition.getX() " + difference + " - " +enemyPosition.getX() + "  =  " + testy );
-            System.out.println("Testy: " + testy);
-        } else if(!isX && !(currentNode.isStart)) {
-            System.out.println("Does it get inside here at start?");
-            System.out.println("Does this ever happen Y");
-            testy = Math.abs(difference - enemyPosition.getY());
-            System.out.println("Difference-enemyposition.getY() " + difference + " - " +enemyPosition.getY() + "  =  " + testy );
+            
+            
+            larger = java.lang.Math.max(difference, enemyPosition.getX());
+            lower = java.lang.Math.min(difference, enemyPosition.getX());
+            
+            testy = larger - lower;
+                    System.out.println("Larger - Lower  = Testy " +  " " + larger + " - " + lower + " = " + testy);    
 
+        } else if(!isX && !(thisNode.isStart)) {
+          
+              
+            larger = java.lang.Math.max(difference, enemyPosition.getY());
+            lower = java.lang.Math.min(difference, enemyPosition.getY());
+            System.out.println("Y moved");
+            testy = larger - lower;
+            
+          System.out.println("Larger - Lower  = Testy " +  " " + larger + " - " + lower + " = " + testy);    
+     
         }
-//
-//        
-//        if(isStart && counter >0){
-//            testy = -3;
-//            isStart = false;
+        
+//        try{
+//        System.out.println("Larger - Lower  = Testy " +  " " + larger + " - " + lower + " = " + testy);    
+//        } catch(Exception e ){
+//            
 //        }
-//        
-//        System.out.println(" testy " + testy);
-
-        
-        
-        System.out.println("testy before " + testy);
-        
+    
 
         if (counter > 0 && testy <= 1) {
             
@@ -307,12 +321,13 @@ public class AIPart implements EntityPart {
             
 //            Node previousNode = currentNode;
             Node previousNode = solution.get(counter - 1);
-            currentNode = solution.get(counter - 2);
-
+            if(counter>1){
+            thisNode = solution.get(counter - 2);
+            }
                         // prev = where Enmey currently is
                         // current = where it wants to go
-            int xDiff = previousNode.getX() - currentNode.getX();
-            int yDiff = previousNode.getY() - currentNode.getY();
+            int xDiff = previousNode.getX() - thisNode.getX();
+            int yDiff = previousNode.getY() - thisNode.getY();
 
 
             System.out.println("xDiff: " + xDiff);
@@ -324,33 +339,46 @@ public class AIPart implements EntityPart {
                 System.out.println("Math.abs(xDiff) >= Math.abs(yDiff) is = " + (Math.abs(xDiff) >= Math.abs(yDiff)));
                 isX = true;
 
-                if (previousNode.x <= currentNode.x) {
-                    currentNode.direction = "right";
+                if (previousNode.x <= thisNode.x) {
+                    thisNode.direction = "right";
                     difference = enemyPosition.getX() + 45;
+                    System.out.println("right");
+                    
 
-                } else if (previousNode.x > currentNode.x) {
-                    currentNode.direction = "left";
+                } else if (previousNode.x > thisNode.x) {
+                    thisNode.direction = "left";
                     difference = enemyPosition.getX() - 45;
+                    System.out.println("left");
 
-                }
+                } 
             } else if (Math.abs(xDiff) < Math.abs(yDiff)) {
 
                 isX = false;
 
-                if (previousNode.y <= currentNode.y) {
-                    currentNode.direction = "up";
+                if (previousNode.y <= thisNode.y) {
+                    thisNode.direction = "up";
                     difference = enemyPosition.getY() + 25;
+                    System.out.println("up");
 
-                } else if (previousNode.y > currentNode.y) {
-                    currentNode.direction = "down";
+                } else if (previousNode.y > thisNode.y) {
+                    thisNode.direction = "down";
                     difference = enemyPosition.getY() - 25;
+                    System.out.println("down");
+                    
                 }
+                
 
+            } else{
+                thisNode.direction = null;
+                isStart = true;
             }
 
              solution.remove(counter - 1);
-             solution.remove(counter - 2);
-
+            
+             if(counter>1){
+           solution.remove(counter - 2);
+ }
+             
 
 
 
@@ -382,9 +410,15 @@ public class AIPart implements EntityPart {
 ////            enemyPosition.setY(node.y * 25);
            
         }
+        
+        
+        
+        
+        
+        
         update++;
-        System.out.println("Returning node stats: " + currentNode.direction);
-        return currentNode;
+        System.out.println("Returning node stats: " + thisNode.direction);
+        enemymov.setDirection(thisNode.direction);
 
     }
 
