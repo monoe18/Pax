@@ -313,6 +313,9 @@ public class AIPart implements EntityPart {
      
 
         }
+        if (counter <1){
+            thisNode.direction = null;
+        }
         
 //        try{
 //        System.out.println("Larger - Lower  = Testy " +  " " + larger + " - " + lower + " = " + testy);    
