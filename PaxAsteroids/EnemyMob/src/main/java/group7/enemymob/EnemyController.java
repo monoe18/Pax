@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class EnemyController implements IEntityProcessingService {
+
     Node prevNode;
 
     @Override
@@ -25,18 +26,11 @@ public class EnemyController implements IEntityProcessingService {
             AIPart aiPart = entity.getPart(AIPart.class);
 
             PositionPart playerPosition = getPlayerPos(world);
-            MovingPart playerMovingPart =  getPlayerMov(world);
-            
-            
-            aiPart.processAi(playerPosition, enemyPositionPart, enemyMovingPart, playerMovingPart);
-            
-//            enemyMovingPart.setDirection(prevNode.direction);
- 
+            MovingPart playerMovingPart = getPlayerMov(world);
 
-                
-            
-            
-            
+            aiPart.processAi(playerPosition, enemyPositionPart, enemyMovingPart, playerMovingPart);
+
+//            enemyMovingPart.setDirection(prevNode.direction);
             enemyMovingPart.process(gameData, entity);
             enemyPositionPart.process(gameData, entity);
 
@@ -50,7 +44,7 @@ public class EnemyController implements IEntityProcessingService {
         }
         return playerPos;
     }
-    
+
     private MovingPart getPlayerMov(World world) {
         MovingPart playermov = null;
         for (Entity entity : world.getEntities(PlayerCharacter.class)) {
@@ -58,5 +52,4 @@ public class EnemyController implements IEntityProcessingService {
         }
         return playermov;
     }
-
 }
