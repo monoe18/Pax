@@ -10,7 +10,6 @@ import group7.common.services.IEntityProcessingService;
 import group7.common.services.IBulletManager;
 import group7.commonbullet.BulletEntity;
 
-
 public class BulletController implements IEntityProcessingService, IBulletManager {
 
     private String fileName = "Laser.png";

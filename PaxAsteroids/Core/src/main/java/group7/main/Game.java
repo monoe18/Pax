@@ -1,12 +1,7 @@
 package group7.main;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import group7.common.data.Entity;
@@ -15,7 +10,6 @@ import group7.common.services.IEntityProcessingService;
 import group7.common.services.IGamePluginService;
 import group7.common.services.IPostEntityProcessingService;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -36,13 +30,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Gamee implements Screen {
+public class Game implements Screen {
 // Game + screen 
 
     ScreenSetter game;
     private static OrthographicCamera cam;
     private ShapeRenderer sr;
-    private final GameData gameData; // = new GameData();
+    private final GameData gameData = new GameData();
     private static World world = new World();
     private static final List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
     private static final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
@@ -57,31 +51,36 @@ public class Gamee implements Screen {
     private static final HashMap<IHUD, Sprite> hudHahsMap = new HashMap();
     private HashMap<Entity, Sprite> entitySpriteMap = new HashMap();
 
-    public Gamee(ScreenSetter game) {
+    public Game(ScreenSetter game) { 
+        System.out.println("Game kaldt anden gang.");
+            
         this.game = game;
-        gameData = new GameData();
-        batch = new SpriteBatch();
-        font = new BitmapFont();
-        //  font.setColor(Color.valueOf("FBDF6B"));
-
+        
+        
+       // gameData = new GameData();
+//        batch = new SpriteBatch();
+//        font = new BitmapFont();
+//        //  font.setColor(Color.valueOf("FBDF6B"));
+//
         cam = new OrthographicCamera();
         cam.setToOrtho(false, 1440, 800);
         cam.update();
-        System.out.println("Gamee bliver kaldt");
-
-        create();
-        update();
-        render();
-
-        System.out.println(spriteServiceList.size() + "size of sprites");
-        System.out.println(entityProcessorList.size() + "size of Entities");
-        System.out.println(gamePluginList.size() + "size of Gameplugins");
-        System.out.println(entityProcessorList.size() + "size of Entityprocessor");
+//        System.out.println("Gamee bliver kaldt");
+//
+//        create();
+//        update();
+//        render();
+//
+//        System.out.println(spriteServiceList.size() + "size of sprites");
+//        System.out.println(entityProcessorList.size() + "size of Entities");
+//        System.out.println(gamePluginList.size() + "size of Gameplugins");
+//        System.out.println(entityProcessorList.size() + "size of Entityprocessor");
     }
 
-    public Gamee() {
+    public Game() {
+        System.out.println("Game kaldt første gang");
         this.game = new ScreenSetter();
-        gameData = new GameData(); // remove?  
+       // gameData = new GameData(); // remove?  
     }
 
 //INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
@@ -261,8 +260,6 @@ public class Gamee implements Screen {
     @Override
     public void dispose() {
 
-        batch.dispose();
-        font.dispose();
 
     }
 
@@ -303,11 +300,11 @@ public class Gamee implements Screen {
     }
 
     public void addBulletManager(IBulletManager eps) {
-        Gamee.bulletManagerList.add(eps);
+        Game.bulletManagerList.add(eps);
     }
 
     public void removeBulletManager(IBulletManager eps) {
-        Gamee.bulletManagerList.remove(eps);
+        Game.bulletManagerList.remove(eps);
     }
 
     public void addHUD(IHUD hud) {
@@ -321,6 +318,27 @@ public class Gamee implements Screen {
 
     @Override
     public void show() {
+        
+        batch = new SpriteBatch();
+        font = new BitmapFont();
+        //  font.setColor(Color.valueOf("FBDF6B"));
+
+        cam = new OrthographicCamera();
+        cam.setToOrtho(false, 1440, 800);
+        cam.update();
+        System.out.println("Game.show() bliver kaldt");
+
+        this.create();
+        this.update();
+        this.render();
+
+        System.out.println(spriteServiceList.size() + "size of sprites");
+        System.out.println(entityProcessorList.size() + "size of Entities");
+        System.out.println(gamePluginList.size() + "size of Gameplugins");
+        System.out.println(entityProcessorList.size() + "size of Entityprocessor");
+        
+        
+        
     }
 
     @Override

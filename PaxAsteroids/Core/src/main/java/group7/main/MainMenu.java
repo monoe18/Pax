@@ -32,79 +32,88 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
  */
 public class MainMenu implements Screen {
 
-    ScreenSetter MainMenu;
+    ScreenSetter mainMenu;
     private OrthographicCamera camera;
-    private Stage stage;
-    private TextureAtlas atlas;
-    private Texture backgound;
-    private Skin skin;
-    private Table table;
-    private Texture playButton, ExitButton;
-    private BitmapFont white, black;
-    private Label label;
+    //  private Stage stage;
+//    private TextureAtlas atlas;
+//    private Texture backgound;
+//    private Skin skin;
+//    private Table table;
+//    //private Texture playButton, ExitButton;
+//    private BitmapFont white, black;
+//    private Label label;
+
+    Texture playButton = new Texture("PlayButton.png");
+    Texture ExitButton = new Texture("QuitButton.png");
+    Drawable drawable = new TextureRegionDrawable(new TextureRegion(playButton));
+    Drawable drawables = new TextureRegionDrawable(new TextureRegion(ExitButton));
+    ImageButton Play = new ImageButton(drawable);
+    ImageButton Exit = new ImageButton(drawables);
+    
+    
+    Stage stage = new Stage(new ScreenViewport()); //Set up a stage for the ui  
+    //Creates a stage with the specified viewport.
+    //The stage will use its own Batch which will be disposed when the stage is disposed.
     
 
+    
 //    private static final int PlaybuttonX = 300;
 //    private static final int PlaybuttonY = 300;
-
-    public MainMenu(ScreenSetter MainMenu) {
-        this.MainMenu = MainMenu;
-
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1440, 800);
-
-        playButton = new Texture("PlayButton.png");
-        ExitButton = new Texture("QuitButton.png");
+    public MainMenu(ScreenSetter mainMenu) {
+        System.out.println("Main menu kaldt første gang");
+        this.mainMenu = mainMenu;       
+        // A drawable has information about its size and how to draw itself. It's used to determine size and position by ui components. 
+        //Since you are using a texture, you can use a TextureRegionDrawable. 
 
         
-       // A drawable has information about its size and how to draw itself. It's used to determine size and position by ui components. 
-       //Since you are using a texture, you can use a TextureRegionDrawable. 
         
-       
-        Drawable drawable = new TextureRegionDrawable(new TextureRegion(playButton));
-        Drawable drawables = new TextureRegionDrawable(new TextureRegion(ExitButton));
-        ImageButton Play = new ImageButton(drawable);
-        ImageButton Exit = new ImageButton(drawables);
-
-        Stage stage = new Stage(new ScreenViewport()); //Set up a stage for the ui  
-        stage.addActor(Play);
-        stage.addActor(Exit);
-
-        Gdx.input.setInputProcessor(stage);
-        Play.setPosition(500, 500);
-        Play.addListener(new ClickListener() {
-
-            @Override
-            public void clicked(InputEvent event, float x, float y) {   
-                System.out.println("TJEK FOR PLAY");  
-                System.out.println("X = "+ x +" Y = "+y);  
-                MainMenu.setScreen(new Gamee(MainMenu));  
-                dispose();
-          
-            }
-
-        });
-
-        
-        Exit.setPosition(500, 200);
-        Exit.addListener(new ClickListener()  {
-         
-            
-            @Override
-            public void clicked(InputEvent event, float x, float y) {   
-                System.out.println("TJEK FOR EXIT");  
-                System.out.println("X = "+ x +" Y = "+y);   
-                Gdx.app.exit();
-                dispose();
-          
-            } 
-
-        });
-
+//        Drawable drawable = new TextureRegionDrawable(new TextureRegion(playButton));
+//        Drawable drawables = new TextureRegionDrawable(new TextureRegion(ExitButton));
+//        ImageButton Play = new ImageButton(drawable);
+//        ImageButton Exit = new ImageButton(drawables);
+//        Stage stage = new Stage(new ScreenViewport()); //Set up a stage for the ui  
+//        stage.addActor(Play);
+//        stage.addActor(Exit);
     }
 
     @Override
     public void show() {
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, 1440, 800);
+        Gdx.input.setInputProcessor(stage);
+        Play.setPosition(500, 500);
+        stage.addActor(Play);
+        stage.addActor(Exit);
+        
+            Play.addListener(new ClickListener() {
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("TJEK FOR PLAY");
+                System.out.println("X = " + x + " Y = " + y);
+                dispose();
+                mainMenu.setScreen(new Game(mainMenu));
+//                dispose();
+             
+
+// dispose();  
+            }
+
+        });
+
+        Exit.setPosition(500, 200);
+        Exit.addListener(new ClickListener() {
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("TJEK FOR EXIT");
+                System.out.println("X = " + x + " Y = " + y);
+                Gdx.app.exit();
+                dispose();
+
+            }
+
+        });
 
     }
 
@@ -114,28 +123,23 @@ public class MainMenu implements Screen {
         Gdx.gl.glClearColor(100f / 255f, 100f / 255f, 250f / 255f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-        MainMenu.batch.setProjectionMatrix(camera.combined);
+        mainMenu.batch.setProjectionMatrix(camera.combined);
 
-        MainMenu.batch.begin();
+        mainMenu.batch.begin();
 
-        MainMenu.batch.draw(playButton, 500, 500);
+        mainMenu.batch.draw(playButton, 500, 500);
 
-        MainMenu.batch.draw(ExitButton, 500, 200);
+        mainMenu.batch.draw(ExitButton, 500, 200);
 
-        
         // Draw background
-//        MainMenu.batch.draw(
+//        mainMenu.batch.draw(
 //                backgroundTexture, 0, 0, background.getX(), background.getY(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight()
 //        );
 //        System.out.println("Hej");
-        MainMenu.batch.end();
+        mainMenu.batch.end();
 
-        // Set game screen when user has touched inside the window
-//	if (Gdx.input.isTouched()) {  
-//            System.out.println("Der er blevet trykket en gang");
-//            MainMenu.setScreen(new Gamee(MainMenu));
-//            dispose();
-//	}   
+    
+
     }
 
     @Override
@@ -152,18 +156,31 @@ public class MainMenu implements Screen {
 
     @Override
     public void hide() {
+        System.out.println("HIdden");
+        Gdx.input.setInputProcessor(null);
+
     }
 
     @Override
     public void dispose() { 
-       playButton.dispose(); 
-       ExitButton.dispose();
-     //  white.dispose();
-   //    atlas.dispose();
-    //    stage.dispose();
-     
-
+        System.out.println("Disposed");
+        camera = null;
+        stage.dispose();
+        ExitButton.dispose();
+        playButton.dispose();
+        drawable = null;
+        drawables = null;
+        Play.reset();
+        Exit.reset();   
+        Gdx.input.setInputProcessor(null);  
         
+      
+//        mainMenu.dispose();
+//       playButton.dispose(); 
+//       ExitButton.dispose();
+        //  white.dispose();
+        //    atlas.dispose();
+        //    stage.dispose();
     }
 
 }

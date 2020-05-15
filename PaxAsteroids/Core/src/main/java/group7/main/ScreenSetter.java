@@ -18,18 +18,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class ScreenSetter extends Game {
 
 // Screen and Game objects are used to create a simple and powerful structure for games.
-    
-    
-    
- //used to render objects onto the screen, such as textures
-    public SpriteBatch batch; 
-    
-    
-    //  public BitmapFont font;
+    //used to render objects onto the screen, such as textures
+    public SpriteBatch batch;
 
-    public ScreenSetter() {
+    //  public BitmapFont font;
+    public ScreenSetter() { 
+        System.out.println("SCREENSETTER");
         init();
     }
+
     private void init() {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Shooters";
@@ -43,6 +40,7 @@ public class ScreenSetter extends Game {
     }
 
     public void create() {
+             System.out.println("SCREENSETTER - create");
         batch = new SpriteBatch();
         //Use LibGDX's default Arial font.  
         // Starts the MainMenu Screen, which takes the ScreenSetter Object as 
@@ -50,8 +48,9 @@ public class ScreenSetter extends Game {
         this.setScreen(new MainMenu(this));
     }
 
-    public void render() {
-        super.render();
+    public void render() {  
+      
+     super.render();
     }
 
     public void dispose() {

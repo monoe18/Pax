@@ -8,7 +8,7 @@
   </parent>
 
     <properties>
-        <libGDX.version>1.5.0</libGDX.version>
+        <libGDX.version>1.8.0</libGDX.version>
         <bundle.symbolicName>group7.libgdx</bundle.symbolicName>
         <bundle.namespace>group7</bundle.namespace>
     </properties>
@@ -19,7 +19,6 @@
     <packaging>bundle</packaging>
 
     <name>OSGiLibGDX</name>
-
 
     <dependencies>
         <dependency>
