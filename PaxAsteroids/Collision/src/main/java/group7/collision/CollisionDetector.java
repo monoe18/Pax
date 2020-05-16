@@ -125,7 +125,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
         return false;
     }
 
-    private boolean circleCollision(Entity e, Entity f) {
+    public boolean circleCollision(Entity e, Entity f) {
         PositionPart ep = e.getPart(PositionPart.class);
         PositionPart fp = f.getPart(PositionPart.class);
 
@@ -135,6 +135,14 @@ public class CollisionDetector implements IPostEntityProcessingService {
         }
 
         return false;
+    }
+
+    public double returnRad(Entity e) {
+        return e.getRadius() + 2;
+    }
+
+    public boolean i(Entity e, Entity f) {
+        return (e.getRadius() == f.getRadius());
     }
 
 }
