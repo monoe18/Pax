@@ -136,13 +136,4 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
         return false;
     }
-
-    public double returnRad(Entity e) {
-        return e.getRadius() + 2;
-    }
-
-    public boolean i(Entity e, Entity f) {
-        return (e.getRadius() == f.getRadius());
-    }
-
 }

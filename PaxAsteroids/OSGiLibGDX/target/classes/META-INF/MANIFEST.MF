@@ -3,7 +3,7 @@ Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.build.OSGiLibGDX
 Built-By: Daniel
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1589566190047
+Bnd-LastModified: 1589708118557
 Embed-Dependency: *
 Import-Package: com.badlogic.gdx,com.badlogic.gdx.assets,com.badlogic.
  gdx.assets.loaders,com.badlogic.gdx.assets.loaders.resolvers,com.badl
