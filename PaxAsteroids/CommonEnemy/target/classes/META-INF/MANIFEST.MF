@@ -1,14 +1,14 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Created-By: Apache Maven Bundle Plugin
-Tool: Bnd-0.0.255
-Bnd-LastModified: 1589543773650
-Export-Package: group7.commonenemy;uses:="group7.common.data"
-Import-Package: group7.common.data,group7.commonenemy
-Bundle-Version: 1.0.0.SNAPSHOT
-Bundle-Description: Generated using Pax-Construct
-Bundle-Name: CommonEnemy
-Private-Package: group7.commonenemy.*
+Bnd-LastModified: 1589717923629
+Build-Jdk: 1.8.0_202
 Built-By: pradeepthayaparan
-Build-Jdk: 13.0.2
-
+Bundle-ManifestVersion: 2
+Bundle-Name: CommonEnemy
+Bundle-SymbolicName: group7.CommonEnemy
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: group7.commonenemy;uses:="group7.common.data";version="1
+ .0.0"
+Import-Package: group7.common.data
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-4.2.0.201903051501
