@@ -21,7 +21,7 @@ import group7.common.data.GameKeys;
 import group7.common.entityparts.PositionPart;
 import group7.common.data.IMap;
 import group7.common.services.ISpriteService;
-
+import group7.manager.GameInputProcessor;
 import group7.common.entityparts.ShootingPart;
 import group7.common.services.AIMover;
 import group7.common.services.IAIProcessing;
@@ -29,7 +29,6 @@ import group7.common.services.IBulletManager;
 import group7.common.services.IWaveManager;
 import group7.common.services.IHUD;
 
-import group7.manager.GameInputProcessor;
 import java.util.HashMap;
 
 import java.util.List;
@@ -49,7 +48,7 @@ public class Game implements ApplicationListener {
     private static final List<ISpriteService> spriteServiceList = new CopyOnWriteArrayList<>();
     private static final List<IHUD> hudList = new CopyOnWriteArrayList<>();
     private static IAIProcessing aiProcessing = null;
-    private static int update=0;
+    private static int update = 0;
     private SpriteBatch batch;
     private static final HashMap<ISpriteService, Sprite> spriteHashMap = new HashMap();
     private static final HashMap<IHUD, Sprite> hudHahsMap = new HashMap();
@@ -110,8 +109,7 @@ public class Game implements ApplicationListener {
         // Update
         for (IEntityProcessingService entityProcessorService : entityProcessorList) {
             entityProcessorService.process(gameData, world);
-            
-            if (update % 70 == 0) {
+
             if (entityProcessorService instanceof AIMover) {
 
                 if (aiProcessing != null) {
@@ -119,7 +117,6 @@ public class Game implements ApplicationListener {
                         ((AIMover) entityProcessorService).move(aiProcessing, world);
                     }
                 }
-            }
             }
         }
 

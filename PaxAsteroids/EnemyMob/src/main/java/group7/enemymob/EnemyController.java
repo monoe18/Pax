@@ -14,15 +14,12 @@ import group7.common.services.IAIProcessing;
 
 public class EnemyController implements IEntityProcessingService, AIMover {
 
-    Node prevNode;
-
     @Override
     public void process(GameData gameData, World world) {
 
         for (Entity entity : world.getEntities(Enemy.class)) {
             PositionPart enemyPositionPart = entity.getPart(PositionPart.class);
             MovingPart enemyMovingPart = entity.getPart(MovingPart.class);
-
 
 //            enemyMovingPart.setDirection(prevNode.direction);
             enemyMovingPart.process(gameData, entity);
@@ -54,8 +51,8 @@ public class EnemyController implements IEntityProcessingService, AIMover {
             MovingPart playerMovingPart = getPlayerMov(world);
             PositionPart enemyPositionPart = enemy.getPart(PositionPart.class);
             MovingPart enemyMovingPart = enemy.getPart(MovingPart.class);
-
-            aip.processAi(playerPosition, enemyPositionPart);
+            //  System.out.println("What is null : " + playerPosition + ":" + enemyPositionPart + ":" + enemyMovingPart);
+            aip.processAi(playerPosition, enemyPositionPart, enemyMovingPart);
         }
 
     }

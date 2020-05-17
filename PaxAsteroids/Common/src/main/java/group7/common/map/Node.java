@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class Node implements Comparable<Node> {
 
-    public int x, y; // Coordinates
+    public int x, y;
     public Node parent = null;  // Nodes connecting to this node that offers shortest route
     public int heuristic;   // Euclidian distance from node     // Estimates cheapest path from this node to goal node
     public int costSoFar = 0;   // The accumulated path cost from start node to this node
@@ -13,20 +13,15 @@ public class Node implements Comparable<Node> {
     public boolean solution; // If Node is part of the solution path
     public String direction; // new  --- Used to move the AI
     public boolean isStart = false;
-    
-    public int getNode;
-    
-    
-    
 
-    // hello guy
+    public int getNode;
+
     public boolean isVisited; // Have we searched this node before?
     public ArrayList<Node> neighbours = new ArrayList<Node>();
 
     public Node(int x, int y) {
         this.x = x;
         this.y = y;
-
     }
 
     public int getX() {
@@ -48,7 +43,6 @@ public class Node implements Comparable<Node> {
     @Override
     public String toString() {
         return "(" + x + "," + y + ")";
-
     }
 
     @Override
