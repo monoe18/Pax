@@ -47,7 +47,7 @@ public class Game implements ApplicationListener {
     private static final List<IBulletManager> bulletManagerList = new CopyOnWriteArrayList<>();
     private static final List<ISpriteService> spriteServiceList = new CopyOnWriteArrayList<>();
     private static final List<IHUD> hudList = new CopyOnWriteArrayList<>();
-    private static IAIProcessing aiProcessing = null;
+    //  private static IAIProcessing aiProcessing = null;
     private static int update = 0;
     private SpriteBatch batch;
     private static final HashMap<ISpriteService, Sprite> spriteHashMap = new HashMap();
@@ -110,14 +110,14 @@ public class Game implements ApplicationListener {
         for (IEntityProcessingService entityProcessorService : entityProcessorList) {
             entityProcessorService.process(gameData, world);
 
-            if (entityProcessorService instanceof AIMover) {
-
-                if (aiProcessing != null) {
-                    {
-                        ((AIMover) entityProcessorService).move(aiProcessing, world);
-                    }
-                }
-            }
+//            if (entityProcessorService instanceof AIMover) {
+//
+//                if (aiProcessing != null) {
+//                    {
+//                        ((AIMover) entityProcessorService).move(aiProcessing, world);
+//                    }
+//                }
+//            }
         }
 
         for (Entity e : world.getEntities()) {
@@ -263,14 +263,13 @@ public class Game implements ApplicationListener {
 
     }
 
-    public void addAIProcessingService(IAIProcessing aip) {
-        aiProcessing = aip;
-    }
-
-    public void removeAIProcessingService(IAIProcessing aip) {
-        aiProcessing = null;
-    }
-
+//    public void addAIProcessingService(IAIProcessing aip) {
+//        aiProcessing = aip;
+//    }
+//
+//    public void removeAIProcessingService(IAIProcessing aip) {
+//        aiProcessing = null;
+//    }
     public void addEntityProcessingService(IEntityProcessingService eps) {
         entityProcessorList.add(eps);
     }

@@ -82,50 +82,48 @@ public class MovingPart implements EntityPart {
         float x = positionPart.getX();
         float y = positionPart.getY();
         float dt = gameData.getDelta();
-        
-        System.out.println(positionPart.getType());
-        System.out.println("Direction : " + direction);
-      
-        try{
-        if (positionPart.getType().equals("Player")) {
 
-            if (left) {
-                x -= maxSpeed * dt;
-                this.direction = "left";
-            }
-            if (right) {
-                x += maxSpeed * dt;
-                this.setDirection("right");
-            }
-            if (up) {
-                y += maxSpeed * dt;
-                this.setDirection("up");
-            }
-            if (down) {
-                y -= maxSpeed * dt;
-                this.setDirection("down");
-            }
+        //  System.out.println(positionPart.getType());
+        // System.out.println("Direction : " + direction);
+        try {
+            if (positionPart.getType().equals("Player")) {
 
-        } else if (positionPart.getType().equals("Laser") || positionPart.getType().equals("Enemy") ) {
-            if (direction.equals("left")) {
-                x -= maxSpeed * dt;
-            }
-            if (direction.equals("right")) {
-                x += maxSpeed * dt;
-            }
-            if (direction.equals("up")) {
-                y += maxSpeed * dt;
-            }
-            if (direction.equals("down")) {
-                y -= maxSpeed * dt;
-            } else {
-
-            }
-        }
-        }
-        catch(NullPointerException e){
-                
+                if (left) {
+                    x -= maxSpeed * dt;
+                    this.direction = "left";
                 }
+                if (right) {
+                    x += maxSpeed * dt;
+                    this.setDirection("right");
+                }
+                if (up) {
+                    y += maxSpeed * dt;
+                    this.setDirection("up");
+                }
+                if (down) {
+                    y -= maxSpeed * dt;
+                    this.setDirection("down");
+                }
+
+            } else if (positionPart.getType().equals("Laser") || positionPart.getType().equals("Enemy")) {
+                if (direction.equals("left")) {
+                    x -= maxSpeed * dt;
+                }
+                if (direction.equals("right")) {
+                    x += maxSpeed * dt;
+                }
+                if (direction.equals("up")) {
+                    y += maxSpeed * dt;
+                }
+                if (direction.equals("down")) {
+                    y -= maxSpeed * dt;
+                } else {
+
+                }
+            }
+        } catch (NullPointerException e) {
+
+        }
 
         x += dx * dt;
         if (x

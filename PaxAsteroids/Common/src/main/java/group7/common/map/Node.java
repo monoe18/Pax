@@ -12,7 +12,7 @@ public class Node implements Comparable<Node> {
     public int finalCost = 0;  // Heuristic + costSoFar
     public boolean solution; // If Node is part of the solution path
     public String direction; // new  --- Used to move the AI
-    public boolean isStart = false;
+    public boolean isStart = true;
 
     public int getNode;
 

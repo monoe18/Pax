@@ -4,4 +4,8 @@
     <service>
         <provide interface="group7.common.services.IEntityProcessingService"/>
     </service>
+    
+    <reference bind="setAIService" cardinality="0..1"
+               interface="group7.common.services.IArtificialIntelligence"
+               name="AIService" policy="dynamic" unbind="removeAIService"/>
 </scr:component>

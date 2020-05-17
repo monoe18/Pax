@@ -1,13 +1,17 @@
 package group7.ai;
 
+import group7.common.data.GameData;
+import group7.common.data.World;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import java.util.ArrayList;
 import group7.common.map.Node;
 import group7.common.services.IAIProcessing;
+import group7.common.services.IArtificialIntelligence;
+import group7.common.services.IGamePluginService;
 import java.util.Collections;
 
-public class AI implements IAIProcessing {
+public class AI implements IArtificialIntelligence {
 
     ArrayList<Node> solutionPath = new ArrayList();
 
@@ -41,7 +45,7 @@ public class AI implements IAIProcessing {
         getNewPositions(player, enemy);
         this.visitedTiles = new boolean[45][25];
 
-        System.out.println("grid length " + grid.length);
+        //  System.out.println("grid length " + grid.length);
         for (int x = 5; x < grid.length - 5; x++) {
             for (int y = 5; y < grid[x].length - 5; y++) {
                 grid[x][y] = new Node(x, y);
@@ -95,7 +99,6 @@ public class AI implements IAIProcessing {
         Node current;
 
         while (true) {
-
             current = fringe.get(0);
             fringe.remove(0);
             Collections.sort(fringe);
@@ -108,7 +111,6 @@ public class AI implements IAIProcessing {
             visitedTiles[current.x][current.y] = true;
 
             if (current.x == goalTile.x && current.y == goalTile.y) {
-
                 return;
             }
 
@@ -162,7 +164,7 @@ public class AI implements IAIProcessing {
     }
 
     @Override
-    public void processAi(PositionPart playerPosition, PositionPart enemyPosition, MovingPart enemymov) {
+    public void getSolutionArray(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov) {
 
         if (thisNode == null) {
             thisNode = new Node((int) (enemyPosition.getX() / 45), (int) (enemyPosition.getY() / 25));
@@ -197,7 +199,6 @@ public class AI implements IAIProcessing {
             distanceToNextTile = larger - lower;
 
             System.out.println("Larger - Lower  = Testy " + " " + larger + " - " + lower + " = " + distanceToNextTile);
-
         }
         if (solutionSize < 1) {
             thisNode.direction = null;
@@ -207,7 +208,6 @@ public class AI implements IAIProcessing {
 
             System.out.println("Does it go inside?");
             System.out.println("counter inside " + solutionSize);
-
             Node previousNode = solutionPath.get(solutionSize - 1);
             if (solutionSize > 1) {
                 System.out.println("pre first");
@@ -221,7 +221,6 @@ public class AI implements IAIProcessing {
 
             System.out.println("xDiff: " + xDiff);
             System.out.println("yDiff" + yDiff);
-
             if (Math.abs(xDiff) > Math.abs(yDiff)) {
 
                 System.out.println("Math.abs(xDiff) >= Math.abs(yDiff) is = " + (Math.abs(xDiff) >= Math.abs(yDiff)));
@@ -256,6 +255,7 @@ public class AI implements IAIProcessing {
 
             } else {
                 thisNode.direction = null;
+                thisNode.isStart = true;
 
             }
 
@@ -270,8 +270,7 @@ public class AI implements IAIProcessing {
         updateFrequency++;
         System.out.println("Returning node stats: " + thisNode.direction);
         enemymov.setDirection(thisNode.direction);
-        //  thisNode.direction = null;
-
+        //thisNode.direction = null;
     }
 
 }

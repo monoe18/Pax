@@ -6,6 +6,7 @@ import group7.common.data.World;
 import group7.common.entityparts.LifePart;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
+import group7.common.services.IArtificialIntelligence;
 import group7.common.services.IGamePluginService;
 import group7.common.services.IWaveManager;
 import group7.commonenemy.Enemy;
@@ -13,11 +14,12 @@ import java.util.Random;
 
 public class EnemyCreator implements IGamePluginService, IWaveManager {
 
+    IArtificialIntelligence ai;
     private int enemyCount = 4;
     private int waveCount = 1;
     private boolean spawnStatus = true;
     private String[] files = {"RobotEnemy.png", "enemy2.png"};
-    private Entity enemy;
+    private Enemy enemy;
 
     private int SpriteWidth = 32;
     private int SpriteHeight = 40;
@@ -27,7 +29,7 @@ public class EnemyCreator implements IGamePluginService, IWaveManager {
         spawnEnemies(gameData, world);
     }
 
-    private Entity createEnemy(GameData gameData) {
+    private Enemy createEnemy(GameData gameData) {
         enemy = new Enemy();
         float maxSpeed = 50;
         Random r = new Random();
@@ -39,10 +41,9 @@ public class EnemyCreator implements IGamePluginService, IWaveManager {
         enemy.setFileName(files[index]);
         enemy.setSpriteHeight(SpriteHeight);
         enemy.setSpriteWidth(SpriteWidth);
-
+        enemy.mySuperCoolAI = ai;
         float randomX = (float) r.nextInt(800) + 200;
         float randomY = (float) r.nextInt(200) + 200;
-
         enemy.add(new MovingPart(maxSpeed, "Enemy"));
         enemy.add(new PositionPart(randomX, randomY, "Enemy"));
         enemy.add(new LifePart(life));

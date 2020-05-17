@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1589713850821
+Bnd-LastModified: 1589732471297
 Build-Jdk: 1.8.0_181
 Built-By: Daniel
 Bundle-ActivationPolicy: lazy
@@ -15,11 +15,11 @@ Export-Package: group7.common.data;version="1.0.0.SNAPSHOT";uses:="group
  version="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.common.map;v
  ersion="1.0.0.SNAPSHOT",group7.common.services;version="1.0.0.SNAPSHOT"
  ;uses:="group7.common.data,group7.common.entityparts",group7.commonenem
- y;version="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.commonplay
- er;version="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.main;vers
- ion="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,group7.common.services",gr
- oup7.manager;version="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,group7.co
- mmon.data"
+ y;version="1.0.0.SNAPSHOT";uses:="group7.common.data,group7.common.serv
+ ices",group7.commonplayer;version="1.0.0.SNAPSHOT";uses:="group7.common
+ .data",group7.main;version="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,gro
+ up7.common.services",group7.manager;version="1.0.0.SNAPSHOT";uses:="com
+ .badlogic.gdx,group7.common.data"
 Import-Package: com.badlogic.gdx,com.badlogic.gdx.backends.lwjgl,com.bad
  logic.gdx.files,com.badlogic.gdx.graphics,com.badlogic.gdx.graphics.g2d
  ,com.badlogic.gdx.graphics.glutils,group7.common.data;version="[1.0,2)"
