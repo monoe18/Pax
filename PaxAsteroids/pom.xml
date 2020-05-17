@@ -66,6 +66,7 @@
     <module>HUD_ScoreBar</module>
     <module>HUD_WaveBar</module>
     <module>EndGameHud</module>
+    <module>AI</module>
   </modules>
 
     <build>

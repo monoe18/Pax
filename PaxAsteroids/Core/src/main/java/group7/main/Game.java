@@ -23,6 +23,8 @@ import group7.common.data.IMap;
 import group7.common.services.ISpriteService;
 
 import group7.common.entityparts.ShootingPart;
+import group7.common.services.AIMover;
+import group7.common.services.IAIProcessing;
 import group7.common.services.IBulletManager;
 import group7.common.services.IWaveManager;
 import group7.common.services.IHUD;
@@ -46,7 +48,8 @@ public class Game implements ApplicationListener {
     private static final List<IBulletManager> bulletManagerList = new CopyOnWriteArrayList<>();
     private static final List<ISpriteService> spriteServiceList = new CopyOnWriteArrayList<>();
     private static final List<IHUD> hudList = new CopyOnWriteArrayList<>();
-
+    private static IAIProcessing aiProcessing = null;
+    private static int update=0;
     private SpriteBatch batch;
     private static final HashMap<ISpriteService, Sprite> spriteHashMap = new HashMap();
     private static final HashMap<IHUD, Sprite> hudHahsMap = new HashMap();
@@ -107,6 +110,17 @@ public class Game implements ApplicationListener {
         // Update
         for (IEntityProcessingService entityProcessorService : entityProcessorList) {
             entityProcessorService.process(gameData, world);
+            
+            if (update % 70 == 0) {
+            if (entityProcessorService instanceof AIMover) {
+
+                if (aiProcessing != null) {
+                    {
+                        ((AIMover) entityProcessorService).move(aiProcessing, world);
+                    }
+                }
+            }
+            }
         }
 
         for (Entity e : world.getEntities()) {
@@ -143,6 +157,7 @@ public class Game implements ApplicationListener {
 
         }
         // checkForLifeUpdate();
+        update++;
     }
 
     @Override
@@ -251,6 +266,14 @@ public class Game implements ApplicationListener {
 
     }
 
+    public void addAIProcessingService(IAIProcessing aip) {
+        aiProcessing = aip;
+    }
+
+    public void removeAIProcessingService(IAIProcessing aip) {
+        aiProcessing = null;
+    }
+
     public void addEntityProcessingService(IEntityProcessingService eps) {
         entityProcessorList.add(eps);
     }
@@ -288,11 +311,11 @@ public class Game implements ApplicationListener {
     }
 
     public void addBulletManager(IBulletManager eps) {
-        Game.bulletManagerList.add(eps);
+        bulletManagerList.add(eps);
     }
 
     public void removeBulletManager(IBulletManager eps) {
-        Game.bulletManagerList.remove(eps);
+        bulletManagerList.remove(eps);
     }
 
     public void addHUD(IHUD hud) {

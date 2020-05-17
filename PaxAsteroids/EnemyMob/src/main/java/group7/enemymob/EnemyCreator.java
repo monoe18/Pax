@@ -3,7 +3,6 @@ package group7.enemymob;
 import group7.common.data.Entity;
 import group7.common.data.GameData;
 import group7.common.data.World;
-import group7.common.entityparts.AIPart;
 import group7.common.entityparts.LifePart;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
@@ -47,7 +46,6 @@ public class EnemyCreator implements IGamePluginService, IWaveManager {
         enemy.add(new MovingPart(maxSpeed, "Enemy"));
         enemy.add(new PositionPart(randomX, randomY, "Enemy"));
         enemy.add(new LifePart(life));
-        enemy.add(new AIPart(45, 25));
 
         return enemy;
     }
