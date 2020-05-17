@@ -4,7 +4,7 @@
     <parent>
         <relativePath>../poms/compiled/</relativePath>
         <groupId>group7.build</groupId>
-        <artifactId>compiled-bundle-settings</artifactId>
+        <artifactId>PaxAteroids</artifactId>  
         <version>1.0-SNAPSHOT</version>
     </parent>
     <properties>

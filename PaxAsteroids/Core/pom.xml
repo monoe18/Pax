@@ -19,12 +19,8 @@
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
+             <version>4.3.0</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>OSGiLibGDX</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>group7</groupId>
@@ -36,6 +32,11 @@
             <artifactId>CommonPlayer</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>OSGiLibGDX</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies> 
     
     <build>
@@ -44,11 +45,8 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>4.2.1</version>
-
                 <configuration>
                     <instructions>
-                        <Export-Package>group7.main,group7.manager</Export-Package>
-                        <Private-Package>group7.main.*,group7.manager.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>

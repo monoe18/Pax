@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Bundle-Description: Generated using Pax-Construct
+Bundle-Description: Simple OSGi wrapper around third-party jar(s)
 Bundle-SymbolicName: group7.common
 Built-By: pradeepthayaparan
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1589717918130
+Bnd-LastModified: 1589720305483
 Import-Package: group7.common.data,group7.common.entityparts,group7.co
  mmon.events,group7.common.map,group7.common.services
 Tool: Bnd-0.0.255
@@ -11,8 +11,8 @@ Export-Package: group7.common.data;uses:="group7.common.entityparts,gr
  oup7.common.events",group7.common.services;uses:="group7.common.data"
  ,group7.common.map,group7.common.entityparts;uses:="group7.common.dat
  a,group7.common.map",group7.common.events;uses:="group7.common.data"
-Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Name: Common
+Bundle-Version: 0
 Private-Package: group7.common.data.*,group7.common.entityparts.*,grou
  p7.common.events.*,group7.common.map.*,group7.common.services.*
 Created-By: Apache Maven Bundle Plugin
