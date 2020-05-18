@@ -61,35 +61,38 @@ public class AI implements IArtificialIntelligence {
     
     
     @Override
-    public void getSolutionArray(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov, Entity entity) {
+    public void processAI(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov, Entity entity) {
         
         
         try {
             for (Map.Entry<Entity, AI_movement> entry : aiHashMap.entrySet()) {
                     
                 // We get the specific AI_Movement via getValue()
-                if(entry.getKey().getID().equals(entity.getID())){
-                 entry.getValue().getAIMovement(enemyPosition, playerPosition, enemymov);
-
+                if (entry.getKey().getID().equals(entity.getID())) {
+//                          solutionPath = getNewPathCalculation(playerPosition, enemyPosition);
+                        entry.getValue().getAIMovement(enemyPosition, playerPosition, enemymov);
+                
+                    
                 }
-               
+
             }
         } catch (Exception e) {
         }
 
-
-        
-        
-//        
-//
-//        if (updateFrequency % 70 == 0) {
-//            newGridSetup(playerPosition, enemyPosition);
-//            process();
-//            solutionPath = getSolutionPath();
-//        }
-//        
-//        
+        updateFrequency++;
     }
+    
+    
+    
+    public ArrayList<Node> getNewPathCalculation(PositionPart playerPosition, PositionPart enemyPosition) {
+        newGridSetup(playerPosition, enemyPosition);
+        process();
+        return getSolutionPath();
+    }
+
+    
+    
+    
     
 
     

@@ -30,7 +30,7 @@ public class EnemyController implements IEntityProcessingService {
             MovingPart enemyMovingPart = entity.getPart(MovingPart.class);
 
             if (ai != null) {
-                  ai.getSolutionArray(enemyPositionPart, getPlayerPos(world), enemyMovingPart, entity);
+                  ai.processAI(enemyPositionPart, getPlayerPos(world), enemyMovingPart, entity);
                
 //                Enemy e = (Enemy) entity;
 //                e.mySuperCoolAI = ai;

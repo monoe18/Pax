@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public interface IArtificialIntelligence {
 
-    public void getSolutionArray(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemyMoving, Entity entity);
+    public void processAI(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemyMoving, Entity entity);
      public void AddEntities(World world);
     
     
