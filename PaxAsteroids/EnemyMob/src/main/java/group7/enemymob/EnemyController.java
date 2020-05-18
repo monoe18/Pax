@@ -15,6 +15,7 @@ import group7.common.services.IArtificialIntelligence;
 public class EnemyController implements IEntityProcessingService {
 
     IArtificialIntelligence ai;
+    int update = 0;
 
     @Override
     public void process(GameData gameData, World world) {
@@ -23,19 +24,20 @@ public class EnemyController implements IEntityProcessingService {
             PositionPart enemyPositionPart = entity.getPart(PositionPart.class);
             MovingPart enemyMovingPart = entity.getPart(MovingPart.class);
 
-            if (ai != null) {
-                Enemy e = (Enemy) entity;
+            if (update % 70 == 0) {
+                if (ai != null) {
+                    ai.solutionPathCalculation(enemyPositionPart, world, gameData);
+                } else {
+                    continue;
+                }
 
-                e.mySuperCoolAI.getSolutionArray(enemyPositionPart, enemyPositionPart, enemyMovingPart);
-            } else {
-                continue;
+                //enemyMovingPart.setDirection(prevNode.direction);
+                enemyMovingPart.process(gameData, entity);
+
+                enemyPositionPart.process(gameData, entity);
+
             }
-
-            //enemyMovingPart.setDirection(prevNode.direction);
-            enemyMovingPart.process(gameData, entity);
-
-            enemyPositionPart.process(gameData, entity);
-
+            update++;
         }
     }
 

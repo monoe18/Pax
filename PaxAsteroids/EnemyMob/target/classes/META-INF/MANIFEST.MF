@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1589732476333
+Bnd-LastModified: 1589750637103
 Build-Jdk: 1.8.0_181
 Built-By: Daniel
 Bundle-ActivationPolicy: lazy
@@ -8,8 +8,8 @@ Bundle-Name: EnemyMob
 Bundle-SymbolicName: group7.EnemyMob
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
-Export-Package: group7.enemymob;uses:="group7.common.data,group7.common.
- services,group7.common.entityparts,group7.commonenemy,group7.commonplay
+Export-Package: group7.enemymob;uses:="group7.common.services,group7.com
+ mon.data,group7.common.entityparts,group7.commonenemy,group7.commonplay
  er";version="1.0.0.SNAPSHOT"
 Import-Package: group7.common.data,group7.common.entityparts,group7.comm
  on.services,group7.commonenemy;version="[1.0,2)",group7.commonplayer;ve
