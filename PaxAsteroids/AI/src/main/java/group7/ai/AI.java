@@ -1,5 +1,6 @@
 package group7.ai;
 
+import group7.common.data.Entity;
 import group7.common.data.GameData;
 import group7.common.data.World;
 import group7.common.entityparts.MovingPart;
@@ -9,11 +10,18 @@ import group7.common.map.Node;
 import group7.common.services.IAIProcessing;
 import group7.common.services.IArtificialIntelligence;
 import group7.common.services.IGamePluginService;
+import group7.common.services.IHUD;
+import group7.common.services.ISpriteService;
+import group7.commonenemy.Enemy;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AI implements IArtificialIntelligence {
 
-    ArrayList<Node> solutionPath = new ArrayList();
+    ArrayList<Node> solutionPath;
 
     int solutionSize;
     int updateFrequency = 50;
@@ -28,11 +36,35 @@ public class AI implements IArtificialIntelligence {
     private int gridFactorX = 32; //grid offset num x
     private int gridFactorY = 32; //grid offset num y
     private boolean visitedTiles[][];
+    
+    private static final HashMap<Entity, AI_movement> aiHashMap = new HashMap();
+    
+    @Override
+    public void AddEntities(World world){
+        
+            for (Entity e : world.getEntities(Enemy.class)) {   // Also delete old ones
+                if(aiHashMap.containsKey(e)){
+                    continue;
+                }else {
+                    aiHashMap.put(e, new AI_movement());
+                }
+        }
+    }
+    
+    
 
-    private float remainingDistance = -1;
-    private boolean isHorizontal;
-    private Node thisNode;
+    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public AI() {
     }
 
@@ -164,113 +196,31 @@ public class AI implements IArtificialIntelligence {
     }
 
     @Override
-    public void getSolutionArray(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov) {
+    public void getSolutionArray(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov, Entity entity) {
+        
+        
+        try {
+            for (Map.Entry<Entity, AI_movement> entry : aiHashMap.entrySet()) {
 
-        if (thisNode == null) {
-            thisNode = new Node((int) (enemyPosition.getX() / 45), (int) (enemyPosition.getY() / 25));
-            thisNode.isStart = true;
-        }
-
-        float distanceToNextTile = -1;
-
-        if (updateFrequency % 70 == 0) {
-            newGridSetup(playerPosition, enemyPosition);
-            process();
-            solutionPath = getSolutionPath();
-        }
-
-        solutionSize = solutionPath.size();
-
-        float larger;
-        float lower;
-        if (isHorizontal) {
-            System.out.println("xMoved");
-
-            larger = Math.max(remainingDistance, enemyPosition.getX());
-            lower = Math.min(remainingDistance, enemyPosition.getX());
-            distanceToNextTile = larger - lower;
-            System.out.println("Larger - Lower  = Testy " + " " + larger + " - " + lower + " = " + distanceToNextTile);
-
-        } else if (!isHorizontal && !(thisNode.isStart)) {
-
-            larger = Math.max(remainingDistance, enemyPosition.getY());
-            lower = Math.min(remainingDistance, enemyPosition.getY());
-            System.out.println("Y moved");
-            distanceToNextTile = larger - lower;
-
-            System.out.println("Larger - Lower  = Testy " + " " + larger + " - " + lower + " = " + distanceToNextTile);
-        }
-        if (solutionSize < 1) {
-            thisNode.direction = null;
-        }
-
-        if ((solutionSize > 0 && distanceToNextTile <= 4) || (updateFrequency % 71 == 0 && solutionSize > 0)) {
-
-            System.out.println("Does it go inside?");
-            System.out.println("counter inside " + solutionSize);
-            Node previousNode = solutionPath.get(solutionSize - 1);
-            if (solutionSize > 1) {
-                System.out.println("pre first");
-                thisNode = solutionPath.get(solutionSize - 2);
-                System.out.println("post first");
-            }
-            // prev = where Enmey currently is
-            // current = where it wants to go
-            int xDiff = previousNode.getX() - thisNode.getX();
-            int yDiff = previousNode.getY() - thisNode.getY();
-
-            System.out.println("xDiff: " + xDiff);
-            System.out.println("yDiff" + yDiff);
-            if (Math.abs(xDiff) > Math.abs(yDiff)) {
-
-                System.out.println("Math.abs(xDiff) >= Math.abs(yDiff) is = " + (Math.abs(xDiff) >= Math.abs(yDiff)));
-                isHorizontal = true;
-
-                if (previousNode.x <= thisNode.x) {
-                    thisNode.direction = "right";
-                    remainingDistance = enemyPosition.getX() + 45;
-                    System.out.println("right");
-
-                } else if (previousNode.x > thisNode.x) {
-                    thisNode.direction = "left";
-                    remainingDistance = enemyPosition.getX() - 45;
-                    System.out.println("left");
-
-                }
-            } else if (Math.abs(xDiff) < Math.abs(yDiff)) {
-
-                isHorizontal = false;
-
-                if (previousNode.y <= thisNode.y) {
-                    thisNode.direction = "up";
-                    remainingDistance = enemyPosition.getY() + 25;
-                    System.out.println("up");
-
-                } else if (previousNode.y > thisNode.y) {
-                    thisNode.direction = "down";
-                    remainingDistance = enemyPosition.getY() - 25;
-                    System.out.println("down");
-
-                }
-
-            } else {
-                thisNode.direction = null;
-                thisNode.isStart = true;
+                entry.getValue().getAIMovement(enemyPosition, playerPosition, enemymov);
 
             }
-
-            solutionPath.remove(solutionSize - 1);
-
-            if (solutionSize > 1) {
-                solutionPath.remove(solutionSize - 2);
-            }
-
+        } catch (Exception e) {
         }
 
-        updateFrequency++;
-        System.out.println("Returning node stats: " + thisNode.direction);
-        enemymov.setDirection(thisNode.direction);
-        //thisNode.direction = null;
+
+        
+        
+//        
+//
+//        if (updateFrequency % 70 == 0) {
+//            newGridSetup(playerPosition, enemyPosition);
+//            process();
+//            solutionPath = getSolutionPath();
+//        }
+//        
+//        
     }
 
+ 
 }

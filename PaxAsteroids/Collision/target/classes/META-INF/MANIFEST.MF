@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1589732468327
-Build-Jdk: 1.8.0_181
-Built-By: Daniel
+Bnd-LastModified: 1589803003618
+Build-Jdk: 1.8.0_251
+Built-By: Karla
 Bundle-ActivationPolicy: lazy
 Bundle-Description: Generated using Pax-Construct
 Bundle-ManifestVersion: 2

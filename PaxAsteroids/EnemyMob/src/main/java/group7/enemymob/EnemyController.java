@@ -11,22 +11,34 @@ import group7.commonplayer.PlayerCharacter;
 import group7.common.services.AIMover;
 import group7.common.services.IAIProcessing;
 import group7.common.services.IArtificialIntelligence;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EnemyController implements IEntityProcessingService {
 
     IArtificialIntelligence ai;
+    
 
     @Override
     public void process(GameData gameData, World world) {
+        
+        if(ai !=null){
+            ai.AddEntities(world);
+        }
 
         for (Entity entity : world.getEntities(Enemy.class)) {
+          
+            
+            
             PositionPart enemyPositionPart = entity.getPart(PositionPart.class);
             MovingPart enemyMovingPart = entity.getPart(MovingPart.class);
 
             if (ai != null) {
-                Enemy e = (Enemy) entity;
-
-                e.mySuperCoolAI.getSolutionArray(enemyPositionPart, enemyPositionPart, enemyMovingPart);
+                  ai.getSolutionArray(enemyPositionPart, enemyPositionPart, enemyMovingPart, entity);
+               
+//                Enemy e = (Enemy) entity;
+//                e.mySuperCoolAI = ai;
+//                e.mySuperCoolAI.getSolutionArray(enemyPositionPart, enemyPositionPart, enemyMovingPart);
             } else {
                 continue;
             }
@@ -67,5 +79,7 @@ public class EnemyController implements IEntityProcessingService {
     public void removeAIService() {
         this.ai = null;
     }
+
+
 
 }
