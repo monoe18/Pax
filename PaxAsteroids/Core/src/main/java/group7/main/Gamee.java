@@ -85,20 +85,6 @@ public class Gamee implements Screen {
         gameData = new GameData(); // remove?  
     }
 
-//INFO [org.netbeans.core.netigso.Netigso]: bundle org.eclipse.osgi@3.9.1.v20140110-1610 started
-//    private void init() {
-//        LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-//        cfg.title = "Shooter";
-//        cfg.width = 1440;
-//        cfg.height = 800;
-//        cfg.useGL30 = false;
-//        cfg.resizable = false;
-//
-//        new LwjglApplication(this, cfg);  
-//
-//        
-//        
-//    }
     public void create() {
 
         gameData.setDisplayWidth(Gdx.graphics.getWidth());
@@ -174,13 +160,6 @@ public class Gamee implements Screen {
         //starts the batch and loads all sprites
         batch.begin();
 
-        spriteServiceList.forEach((spriteService) -> {
-//            System.out.println("GAME " + spriteService.getSprite());
-//
-//            Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
-//            sprite.setSize(spriteService.getSpriteWidth(), spriteService.getSpriteHeight());
-            //  spriteHashMap.put(spriteService, sprite);
-        });
 
         for (Map.Entry<ISpriteService, Sprite> entry : spriteHashMap.entrySet()) {
             Texture tex = new Texture(Gdx.files.internal(entry.getKey().getSprite()));

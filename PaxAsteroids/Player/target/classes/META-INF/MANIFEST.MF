@@ -3,7 +3,7 @@ Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
 Built-By: mathi
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1589797828117
+Bnd-LastModified: 1589798469289
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
  mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.events;version

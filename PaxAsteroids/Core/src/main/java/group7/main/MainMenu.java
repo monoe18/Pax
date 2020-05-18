@@ -48,8 +48,8 @@ public class MainMenu implements Screen {
 //    private static final int PlaybuttonX = 300;
 //    private static final int PlaybuttonY = 300;
 
-    public MainMenu(ScreenSetter MainMenuu) {
-        this.MainMenu = MainMenuu;
+    public MainMenu(ScreenSetter MainMenu) {
+        this.MainMenu = MainMenu;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1440, 800);
@@ -79,11 +79,9 @@ public class MainMenu implements Screen {
             public void clicked(InputEvent event, float x, float y) {   
                 System.out.println("TJEK FOR PLAY");  
                 System.out.println("X = "+ x +" Y = "+y);  
-                ((Game)Gdx.app.getApplicationListener()).setScreen(new Gamee(MainMenuu));
+                MainMenu.setScreen(new Gamee(MainMenu));
                 dispose();
-          
             }
-
         });
 
         
@@ -97,11 +95,8 @@ public class MainMenu implements Screen {
                 System.out.println("X = "+ x +" Y = "+y);   
                 Gdx.app.exit();
                 dispose();
-          
             } 
-
         });
-
     }
 
     @Override
@@ -123,20 +118,7 @@ public class MainMenu implements Screen {
 
         MainMenu.batch.draw(ExitButton, 500, 200);
 
-        
-        // Draw background
-//        MainMenu.batch.draw(
-//                backgroundTexture, 0, 0, background.getX(), background.getY(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight()
-//        );
-//        System.out.println("Hej");
         MainMenu.batch.end();
-
-        // Set game screen when user has touched inside the window
-//	if (Gdx.input.isTouched()) {  
-//            System.out.println("Der er blevet trykket en gang");
-//            MainMenu.setScreen(new Gamee(MainMenu));
-//            dispose();
-//	}   
     }
 
     @Override
@@ -159,13 +141,5 @@ public class MainMenu implements Screen {
     public void dispose() { 
        playButton.dispose(); 
        ExitButton.dispose();
-     //  white.dispose();
-   //    atlas.dispose();
-        //stage.dispose();
-        MainMenu.batch.dispose();
-     
-
-        
     }
-
 }
