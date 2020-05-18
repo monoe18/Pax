@@ -71,7 +71,8 @@ public class Gamee implements Screen {
 
         create();
         update();
-        render();
+        float f = 0;
+        render(f);
 
         System.out.println(spriteServiceList.size() + "size of sprites");
         System.out.println(entityProcessorList.size() + "size of Entities");
@@ -168,8 +169,8 @@ public class Gamee implements Screen {
         }
         // checkForLifeUpdate();
     }
-
-    public void render() {
+    @Override
+    public void render(float f) {
         //starts the batch and loads all sprites
         batch.begin();
 
@@ -323,9 +324,6 @@ public class Gamee implements Screen {
     public void show() {
     }
 
-    @Override
-    public void render(float f) {
-    }
 
     @Override
     public void hide() {

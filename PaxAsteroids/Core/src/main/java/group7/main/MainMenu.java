@@ -5,6 +5,7 @@
  */
 package group7.main;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -47,8 +48,8 @@ public class MainMenu implements Screen {
 //    private static final int PlaybuttonX = 300;
 //    private static final int PlaybuttonY = 300;
 
-    public MainMenu(ScreenSetter MainMenu) {
-        this.MainMenu = MainMenu;
+    public MainMenu(ScreenSetter MainMenuu) {
+        this.MainMenu = MainMenuu;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1440, 800);
@@ -78,7 +79,7 @@ public class MainMenu implements Screen {
             public void clicked(InputEvent event, float x, float y) {   
                 System.out.println("TJEK FOR PLAY");  
                 System.out.println("X = "+ x +" Y = "+y);  
-                MainMenu.setScreen(new Gamee(MainMenu));  
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new Gamee(MainMenuu));
                 dispose();
           
             }
@@ -160,7 +161,8 @@ public class MainMenu implements Screen {
        ExitButton.dispose();
      //  white.dispose();
    //    atlas.dispose();
-    //    stage.dispose();
+        //stage.dispose();
+        MainMenu.batch.dispose();
      
 
         

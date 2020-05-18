@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.common
-Built-By: pradeepthayaparan
+Built-By: mathi
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1589362126182
+Bnd-LastModified: 1589797823086
 Import-Package: group7.common.data,group7.common.entityparts,group7.co
  mmon.events,group7.common.map,group7.common.services
 Tool: Bnd-0.0.255
@@ -16,5 +16,5 @@ Bundle-Name: Common
 Private-Package: group7.common.data.*,group7.common.entityparts.*,grou
  p7.common.events.*,group7.common.map.*,group7.common.services.*
 Created-By: Apache Maven Bundle Plugin
-Build-Jdk: 1.8.0_202
+Build-Jdk: 1.8.0_241
 
