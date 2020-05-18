@@ -1,24 +1,16 @@
 package group7.ai;
 
 import group7.common.data.Entity;
-import group7.common.data.GameData;
 import group7.common.data.World;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import java.util.ArrayList;
-import group7.common.map.Node;
-import group7.common.services.IAIProcessing;
 import group7.common.services.IArtificialIntelligence;
-import group7.common.services.IGamePluginService;
-import group7.common.services.IHUD;
-import group7.common.services.ISpriteService;
 import group7.commonenemy.Enemy;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-
 public class AI implements IArtificialIntelligence {
 
     ArrayList<Node> solutionPath;
@@ -37,22 +29,67 @@ public class AI implements IArtificialIntelligence {
     private int gridFactorY = 32; //grid offset num y
     private boolean visitedTiles[][];
     
-    private static final HashMap<Entity, AI_movement> aiHashMap = new HashMap();
+    private static final ConcurrentHashMap<Entity, AI_movement> aiHashMap = new ConcurrentHashMap();
     
+    private CopyOnWriteArrayList<Entity> removeEntities= new CopyOnWriteArrayList<>();
+  
     @Override
     public void AddEntities(World world){
         
             for (Entity e : world.getEntities(Enemy.class)) {   // Also delete old ones
+                
+                removeEntities.add(e); // used to remove from hashmap
+                
                 if(aiHashMap.containsKey(e)){
                     continue;
-                }else {
+                }else{
+                    
+                    
+                    for (Entity en : removeEntities) {
+                        if (!(aiHashMap.containsKey(e))){
+                            aiHashMap.remove(en);
+                            removeEntities.remove(en);
+                        
+                    }
                     aiHashMap.put(e, new AI_movement());
+                    
+                        
+                    }
                 }
         }
     }
     
     
+    @Override
+    public void getSolutionArray(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov, Entity entity) {
+        
+        
+        try {
+            for (Map.Entry<Entity, AI_movement> entry : aiHashMap.entrySet()) {
+                    
+                // We get the specific AI_Movement via getValue()
+                if(entry.getKey().getID().equals(entity.getID())){
+                 entry.getValue().getAIMovement(enemyPosition, playerPosition, enemymov);
 
+                }
+               
+            }
+        } catch (Exception e) {
+        }
+
+
+        
+        
+//        
+//
+//        if (updateFrequency % 70 == 0) {
+//            newGridSetup(playerPosition, enemyPosition);
+//            process();
+//            solutionPath = getSolutionPath();
+//        }
+//        
+//        
+    }
     
 
     
@@ -195,32 +232,7 @@ public class AI implements IArtificialIntelligence {
         return path;
     }
 
-    @Override
-    public void getSolutionArray(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov, Entity entity) {
-        
-        
-        try {
-            for (Map.Entry<Entity, AI_movement> entry : aiHashMap.entrySet()) {
 
-                entry.getValue().getAIMovement(enemyPosition, playerPosition, enemymov);
-
-            }
-        } catch (Exception e) {
-        }
-
-
-        
-        
-//        
-//
-//        if (updateFrequency % 70 == 0) {
-//            newGridSetup(playerPosition, enemyPosition);
-//            process();
-//            solutionPath = getSolutionPath();
-//        }
-//        
-//        
-    }
 
  
 }

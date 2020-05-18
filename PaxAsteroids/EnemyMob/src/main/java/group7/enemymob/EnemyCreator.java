@@ -27,6 +27,7 @@ public class EnemyCreator implements IGamePluginService, IWaveManager {
     @Override
     public void start(GameData gameData, World world) {
         spawnEnemies(gameData, world);
+//        world.addEntity(createEnemy(gameData));
     }
 
     private Enemy createEnemy(GameData gameData) {

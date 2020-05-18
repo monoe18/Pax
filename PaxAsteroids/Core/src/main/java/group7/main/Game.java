@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import group7.common.data.Entity;
@@ -17,14 +16,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import group7.common.data.GameData;
-import group7.common.data.GameKeys;
 import group7.common.entityparts.PositionPart;
 import group7.common.data.IMap;
 import group7.common.services.ISpriteService;
 import group7.manager.GameInputProcessor;
 import group7.common.entityparts.ShootingPart;
-import group7.common.services.AIMover;
-import group7.common.services.IAIProcessing;
 import group7.common.services.IBulletManager;
 import group7.common.services.IWaveManager;
 import group7.common.services.IHUD;
@@ -109,16 +105,8 @@ public class Game implements ApplicationListener {
         // Update
         for (IEntityProcessingService entityProcessorService : entityProcessorList) {
             entityProcessorService.process(gameData, world);
-
-//            if (entityProcessorService instanceof AIMover) {
-//
-//                if (aiProcessing != null) {
-//                    {
-//                        ((AIMover) entityProcessorService).move(aiProcessing, world);
-//                    }
-//                }
-//            }
         }
+        
 
         for (Entity e : world.getEntities()) {
             checkForShooting(e, gameData);
@@ -189,7 +177,7 @@ public class Game implements ApplicationListener {
                 sprite.setX(p.getX() - (entity.getSpriteWidth() / 2));
                 sprite.setY(p.getY() - (entity.getSpriteHeight() / 2));
                 sprite.flip(entity.isFlipRightLeft(), false);
-
+                
                 sprite.draw(batch);
             } catch (NullPointerException ex) {
 

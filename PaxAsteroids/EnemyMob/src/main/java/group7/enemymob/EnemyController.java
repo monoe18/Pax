@@ -8,11 +8,7 @@ import group7.common.entityparts.PositionPart;
 import group7.common.services.IEntityProcessingService;
 import group7.commonenemy.Enemy;
 import group7.commonplayer.PlayerCharacter;
-import group7.common.services.AIMover;
-import group7.common.services.IAIProcessing;
 import group7.common.services.IArtificialIntelligence;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class EnemyController implements IEntityProcessingService {
 
@@ -34,7 +30,7 @@ public class EnemyController implements IEntityProcessingService {
             MovingPart enemyMovingPart = entity.getPart(MovingPart.class);
 
             if (ai != null) {
-                  ai.getSolutionArray(enemyPositionPart, enemyPositionPart, enemyMovingPart, entity);
+                  ai.getSolutionArray(enemyPositionPart, getPlayerPos(world), enemyMovingPart, entity);
                
 //                Enemy e = (Enemy) entity;
 //                e.mySuperCoolAI = ai;

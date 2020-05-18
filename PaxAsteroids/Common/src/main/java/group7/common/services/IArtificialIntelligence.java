@@ -4,7 +4,7 @@ import group7.common.data.Entity;
 import group7.common.data.World;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
-import group7.common.map.Node;
+
 import java.util.ArrayList;
 
 public interface IArtificialIntelligence {
