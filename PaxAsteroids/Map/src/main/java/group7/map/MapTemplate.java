@@ -18,30 +18,26 @@ import org.javatuples.Pair;
  *
  * @author morte
  */
-public class MapTemplate implements ISpriteService, IMap{
+public class MapTemplate implements ISpriteService, IMap {
 
     private final Pair<Integer, Integer>[] mapBoundaryPoints = new Pair[4];
     private final Pair<Integer, Integer>[] spawnAreaBoundaryPoints = new Pair[4];
     private final Pair<Integer, Integer>[] spawnPoints = new Pair[4];
     private Pair<Integer, Integer> playerSpawnPoint = Pair.with(0, 0);
-    
-    
-    
+
     private String fileName = "Map.png";
     private int width = 1440;
     private int height = 800;
 
     public MapTemplate() {
-        System.out.println("Map created");
-        System.out.println("oprettet");
-        
+
     }
 
     @Override
-    public void initMap(GameData gameData, World world){
-        
+    public void initMap(GameData gameData, World world) {
+
         world.setMap(this);
-        
+
         mapBoundaryPoints[0] = Pair.with(152, 152);
         mapBoundaryPoints[1] = Pair.with(152, 648);
         mapBoundaryPoints[2] = Pair.with(1288, 152);
@@ -59,15 +55,16 @@ public class MapTemplate implements ISpriteService, IMap{
 
         playerSpawnPoint = Pair.with(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
     }
+
     @Override
-    public float[] getMapBoundaryPoints(){
-        float[] floatPoints = {mapBoundaryPoints[0].getValue0(), 
-                               mapBoundaryPoints[0].getValue1(),
-                               mapBoundaryPoints[3].getValue0(),
-                               mapBoundaryPoints[3].getValue1()};
+    public float[] getMapBoundaryPoints() {
+        float[] floatPoints = {mapBoundaryPoints[0].getValue0(),
+            mapBoundaryPoints[0].getValue1(),
+            mapBoundaryPoints[3].getValue0(),
+            mapBoundaryPoints[3].getValue1()};
         return floatPoints;
     }
-    
+
     @Override
     public String getSprite() {
         return this.fileName;
@@ -92,6 +89,5 @@ public class MapTemplate implements ISpriteService, IMap{
     public float getY(World world) {
         return 0.0f;
     }
-
 
 }

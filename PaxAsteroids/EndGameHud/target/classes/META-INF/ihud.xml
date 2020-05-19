@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.sprite.service.endhud">
+    <implementation class="group7.endgamehud.EndGame_Hud"/>
+    <service>
+        <provide interface="group7.common.services.IHUD"/>
+    </service>
+    
+</scr:component>

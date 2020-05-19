@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package group7.bullet;
+package group7.pickup;
 
 import group7.common.data.Entity;
-import group7.common.data.IBullet;
+import group7.common.data.IPickUp;
 
 /**
  *
- * @author morte
+ * @author Daniel
  */
-public class BulletEntity extends Entity implements IBullet{
-    public BulletEntity (){
-    }
-    
+public class Pickup extends Entity implements IPickUp {
+
 }

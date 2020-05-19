@@ -1,5 +1,6 @@
 package group7.common.data;
 
+//import group7.commonbullet.BulletEntity; 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -62,5 +63,9 @@ public class World {
     public Entity getEntity(String ID) {
         return entityMap.get(ID);
     }
+
+//    public Iterable<Entity> getEntities(Class<BulletEntity> aClass) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
 }

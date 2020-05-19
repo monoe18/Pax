@@ -54,8 +54,8 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>group7.build</groupId>
-      <artifactId>Collision</artifactId>
+      <groupId>group7</groupId>
+      <artifactId>CommonEnemy</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>
@@ -63,6 +63,45 @@
     <dependency>
       <groupId>group7.build</groupId>
       <artifactId>Common</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>CommonPlayer</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>CommonBullet</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7.build</groupId>
+      <artifactId>Collision</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>CommonEnemy</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>CommonPlayer</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>CommonBullet</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
@@ -87,13 +126,6 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>group7</groupId>
-      <artifactId>CommonPlayer</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>group7.build</groupId>
       <artifactId>PlayerCharacter</artifactId>
       <version>1.0-SNAPSHOT</version>
@@ -102,20 +134,7 @@
     </dependency>
     <dependency>
       <groupId>group7</groupId>
-      <artifactId>CommonPlayer</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>group7</groupId>
       <artifactId>Bullet</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>bundle</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>group7</groupId>
-      <artifactId>CommonEnemy</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
       <scope>provided</scope>
@@ -129,8 +148,30 @@
     </dependency>
     <dependency>
       <groupId>group7</groupId>
-      <artifactId>CommonEnemy</artifactId>
+      <artifactId>HUD_LifeBar</artifactId>
       <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>Pickup</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>HUD_ScoreBar</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>group7</groupId>
+      <artifactId>HUD_WaveBar</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>bundle</type>
       <scope>provided</scope>
     </dependency>
   </dependencies>
