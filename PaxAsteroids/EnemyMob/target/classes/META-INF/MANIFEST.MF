@@ -1,15 +1,21 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Bnd-LastModified: 1589801537850
 Build-Jdk: 1.8.0_241
 Built-By: mathi
+=======
+Bnd-LastModified: 1589831095654
+Build-Jdk: 1.8.0_251
+Built-By: Karla
+>>>>>>> AI_Karl_Refactored
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Name: EnemyMob
 Bundle-SymbolicName: group7.EnemyMob
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
-Export-Package: group7.enemymob;uses:="group7.common.services,group7.com
- mon.data,group7.common.entityparts,group7.commonenemy,group7.commonplay
+Export-Package: group7.enemymob;uses:="group7.common.data,group7.common.
+ services,group7.common.entityparts,group7.commonenemy,group7.commonplay
  er";version="1.0.0.SNAPSHOT"
 Import-Package: group7.common.data,group7.common.entityparts,group7.comm
  on.services,group7.commonenemy;version="[1.0,2)",group7.commonplayer;ve

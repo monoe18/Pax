@@ -3,28 +3,46 @@ package group7.enemymob;
 import group7.common.data.Entity;
 import group7.common.data.GameData;
 import group7.common.data.World;
-import group7.common.entityparts.AIPart;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IEntityProcessingService;
 import group7.commonenemy.Enemy;
 import group7.commonplayer.PlayerCharacter;
+import group7.common.services.IArtificialIntelligence;
 
 public class EnemyController implements IEntityProcessingService {
 
+    IArtificialIntelligence ai;
+    
+
     @Override
     public void process(GameData gameData, World world) {
+        
+        if(ai !=null){
+            ai.AddEntities(world);
+        }
 
         for (Entity entity : world.getEntities(Enemy.class)) {
-            PositionPart positionPart = entity.getPart(PositionPart.class);
-            MovingPart movingPart = entity.getPart(MovingPart.class);
-            AIPart aiPart = entity.getPart(AIPart.class);
+          
+            
+            
+            PositionPart enemyPositionPart = entity.getPart(PositionPart.class);
+            MovingPart enemyMovingPart = entity.getPart(MovingPart.class);
 
-            PositionPart playerPosition = getPlayerPos(world);
+            if (ai != null) {
+                  ai.processAI(enemyPositionPart, getPlayerPos(world), enemyMovingPart, entity);
+               
+//                Enemy e = (Enemy) entity;
+//                e.mySuperCoolAI = ai;
+//                e.mySuperCoolAI.getSolutionArray(enemyPositionPart, enemyPositionPart, enemyMovingPart);
+            } else {
+                continue;
+            }
 
-            aiPart.processAi(playerPosition, positionPart);
-            movingPart.process(gameData, entity);
-            positionPart.process(gameData, entity);
+            //enemyMovingPart.setDirection(prevNode.direction);
+            enemyMovingPart.process(gameData, entity);
+
+            enemyPositionPart.process(gameData, entity);
 
         }
     }
@@ -36,5 +54,28 @@ public class EnemyController implements IEntityProcessingService {
         }
         return playerPos;
     }
+
+//    @Override
+//    public void move(IAIProcessing aip, World world) {
+//        for (Entity enemy : world.getEntities(Enemy.class)) {
+//            PositionPart playerPosition = getPlayerPos(world);
+//
+//            PositionPart enemyPositionPart = enemy.getPart(PositionPart.class);
+//            MovingPart enemyMovingPart = enemy.getPart(MovingPart.class);
+//
+//            aip.processAi(playerPosition, enemyPositionPart, enemyMovingPart);
+//        }
+//
+//    }
+    //TODO: Dependency injection via Declarative Services
+    public void setAIService(IArtificialIntelligence ai) {
+        this.ai = ai;
+    }
+
+    public void removeAIService() {
+        this.ai = null;
+    }
+
+
 
 }

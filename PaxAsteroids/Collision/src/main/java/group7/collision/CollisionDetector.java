@@ -79,7 +79,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
     private void mapCollision(Entity e, IMap map, World world) {
         float[] points = map.getMapBoundaryPoints();
-        if (e instanceof ICharacter) {
+        if (e instanceof ICharacter ||e instanceof Enemy) {
             characterMapCollision(e, points);
         } else if (e instanceof IBullet) {
             if (bulletCollison(e, points)) {
@@ -105,6 +105,9 @@ public class CollisionDetector implements IPostEntityProcessingService {
             ep.setPosition(ep.getX(), points[1] + 1 + e.getRadius());
         }
     }
+    
+    
+    
 
     private boolean bulletCollison(Entity e, float[] points) {
         PositionPart ep = e.getPart(PositionPart.class);

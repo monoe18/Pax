@@ -101,6 +101,7 @@ public class Entity implements Serializable {
 //    public void setShapeY(float[] shapeY) {
 //        this.shapeY = shapeY;
 //    }
+
     public boolean isFlipRightLeft() {
         return flipRightLeft && flipRightLeft != prevflipRightLeft;
     }

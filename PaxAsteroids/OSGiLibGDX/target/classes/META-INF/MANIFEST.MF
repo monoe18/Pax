@@ -1,9 +1,15 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.build.OSGiLibGDX
+<<<<<<< HEAD
 Built-By: mathi
 Bundle-ManifestVersion: 2
 Bnd-LastModified: 1589801530828
+=======
+Built-By: Karla
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1589831081608
+>>>>>>> AI_Karl_Refactored
 Embed-Dependency: *
 Import-Package: com.badlogic.gdx,com.badlogic.gdx.assets,com.badlogic.
  gdx.assets.loaders,com.badlogic.gdx.assets.loaders.resolvers,com.badl
@@ -232,5 +238,9 @@ Ignore-Package: org.objectweb.asm.util,org.objectweb.asm.tree.analysis
  m.tree
 Embed-Transitive: true
 Created-By: Apache Maven Bundle Plugin
+<<<<<<< HEAD
 Build-Jdk: 1.8.0_241
+=======
+Build-Jdk: 1.8.0_251
+>>>>>>> AI_Karl_Refactored
 
