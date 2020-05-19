@@ -1,13 +1,7 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Bnd-LastModified: 1589801537850
+Bnd-LastModified: 1589883040321
 Build-Jdk: 1.8.0_241
 Built-By: mathi
-=======
-Bnd-LastModified: 1589831095654
-Build-Jdk: 1.8.0_251
-Built-By: Karla
->>>>>>> AI_Karl_Refactored
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Name: EnemyMob

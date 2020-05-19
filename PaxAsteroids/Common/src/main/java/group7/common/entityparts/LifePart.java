@@ -34,6 +34,10 @@ public class LifePart implements EntityPart {
     public boolean isDead() {
         return dead;
     }
+    
+    public void setDead(){
+        dead = true;
+    }
 
     @Override
     public void process(GameData gameData, Entity entity) {

@@ -56,6 +56,8 @@ public class Gamee implements Screen {
     private static final HashMap<ISpriteService, Sprite> spriteHashMap = new HashMap();
     private static final HashMap<IHUD, Sprite> hudHahsMap = new HashMap();
     private HashMap<Entity, Sprite> entitySpriteMap = new HashMap();
+    private int currentWave = 1;
+    private int starScroller = 0;
 
     public Gamee(ScreenSetter game) {
         this.game = game;
@@ -119,6 +121,8 @@ public class Gamee implements Screen {
     }
 
     private void update() {
+        
+        
         // Update
         for (IEntityProcessingService entityProcessorService : entityProcessorList) {
             entityProcessorService.process(gameData, world);
@@ -143,11 +147,15 @@ public class Gamee implements Screen {
         }
         for (IHUD hud : hudList) {
             if (hud.getHudType().equals("WaveBar")) {
+
                 for (IGamePluginService plugin : gamePluginList) {
                     if (plugin instanceof IWaveManager) {
+                        currentWave = ((IWaveManager) plugin).getWaveCount();
                         hud.updateHUD(world, gameData, ((IWaveManager) plugin).getWaveCount());
                     }
                 }
+            } else if (hud.getHudType().equals("EndGame")) {
+                hud.updateHUD(world, gameData, currentWave);
             } else {
                 hud.updateHUD(world, gameData, 0);
             }
@@ -155,11 +163,13 @@ public class Gamee implements Screen {
         }
         // checkForLifeUpdate();
     }
+
     @Override
     public void render(float f) {
         //starts the batch and loads all sprites
         batch.begin();
-
+        
+        scrollStars(gameData);
 
         for (Map.Entry<ISpriteService, Sprite> entry : spriteHashMap.entrySet()) {
             Texture tex = new Texture(Gdx.files.internal(entry.getKey().getSprite()));
@@ -195,18 +205,35 @@ public class Gamee implements Screen {
 
         for (IHUD hudElement : hudList) {
             // hudElement.updateHUD(world, gameData,0);
-            Texture tex = new Texture(Gdx.files.internal(hudElement.getSprite()));
-            Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
-            sprite.setSize(hudElement.getSpriteWidth(), hudElement.getSpriteHeight());
-            sprite.setX(hudElement.getX());
-            sprite.setY(hudElement.getY());
-            sprite.draw(batch);
+            if (!hudElement.getSprite().equals(".")) {
+                Texture tex = new Texture(Gdx.files.internal(hudElement.getSprite()));
+                Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
+                sprite.setSize(hudElement.getSpriteWidth(), hudElement.getSpriteHeight());
+                sprite.setX(hudElement.getX());
+                sprite.setY(hudElement.getY());
+                sprite.draw(batch);
+            }
         }
 
         batch.end();
         gameData.setDelta(Gdx.graphics.getDeltaTime());
         gameData.getKeys().update();
         update();
+    }
+
+    private void scrollStars(GameData gamedata) {
+        Texture tex = new Texture(Gdx.files.internal("stars.png"));
+        Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
+        sprite.setSize(2000, 70);
+
+        sprite.setX(starScroller - 300);
+        sprite.setY(650);
+        sprite.draw(batch);
+        if (starScroller < 490) {
+            starScroller = starScroller + (5);
+        } else {
+            starScroller = 0;
+        }
     }
 
     private void checkForShooting(Entity e, GameData g) {
@@ -302,7 +329,6 @@ public class Gamee implements Screen {
     @Override
     public void show() {
     }
-
 
     @Override
     public void hide() {

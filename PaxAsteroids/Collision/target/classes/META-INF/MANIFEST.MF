@@ -1,13 +1,7 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Bnd-LastModified: 1589801535053
+Bnd-LastModified: 1589883037521
 Build-Jdk: 1.8.0_241
 Built-By: mathi
-=======
-Bnd-LastModified: 1589831090415
-Build-Jdk: 1.8.0_251
-Built-By: Karla
->>>>>>> AI_Karl_Refactored
 Bundle-ActivationPolicy: lazy
 Bundle-Description: Generated using Pax-Construct
 Bundle-ManifestVersion: 2
@@ -16,8 +10,8 @@ Bundle-SymbolicName: group7.collision
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 Export-Package: group7.collision;uses:="group7.common.data,group7.common
- .services,group7.common.entityparts,group7.commonenemy,group7.commonbul
- let,group7.commonplayer";version="1.0.0.SNAPSHOT"
+ .services,group7.common.entityparts,group7.commonenemy,group7.commonpla
+ yer,group7.commonbullet";version="1.0.0.SNAPSHOT"
 Import-Package: group7.common.data,group7.common.entityparts,group7.comm
  on.services,group7.commonbullet;version="[1.0,2)",group7.commonenemy;ve
  rsion="[1.0,2)",group7.commonplayer;version="[1.0,2)"

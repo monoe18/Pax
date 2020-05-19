@@ -1,13 +1,7 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Bnd-LastModified: 1589801533477
+Bnd-LastModified: 1589883036471
 Build-Jdk: 1.8.0_241
 Built-By: mathi
-=======
-Bnd-LastModified: 1589831087054
-Build-Jdk: 1.8.0_251
-Built-By: Karla
->>>>>>> AI_Karl_Refactored
 Bundle-ManifestVersion: 2
 Bundle-Name: CommonEnemy
 Bundle-SymbolicName: group7.CommonEnemy

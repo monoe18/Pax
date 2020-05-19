@@ -32,7 +32,7 @@ public class EnemyCreator implements IGamePluginService, IWaveManager {
 
     private Enemy createEnemy(GameData gameData) {
         enemy = new Enemy();
-        float maxSpeed = 50;
+        float maxSpeed = 125;
         Random r = new Random();
 //        float x = 400;
 //        float y = 400;

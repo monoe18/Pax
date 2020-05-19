@@ -30,7 +30,8 @@ public class CollisionDetector implements IPostEntityProcessingService {
                     if (circleCollision(bullet, enemy)) {
                         LifePart lpe = enemy.getPart(LifePart.class);
                         int newLife = lpe.getLife();
-                        lpe.setLife(newLife - 25);
+                        lpe.setLife(newLife - 50);
+                        world.removeEntity(bullet);
 
                         if (lpe.getLife() < 25) {
                             world.removeEntity(enemy);
@@ -65,6 +66,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
                         lpe.setLife(newLife - 25);
 
                         if (lpe.getLife() < 25) {
+                            lpe.setDead();
                             world.removeEntity(player);
 
                         }
