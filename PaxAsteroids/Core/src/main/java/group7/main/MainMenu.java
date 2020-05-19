@@ -56,7 +56,7 @@ public class MainMenu implements Screen {
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1440, 800);
-        texture = new Texture("STUBBI.png");
+        texture = new Texture("MAIN SCREEN.png");
         sprite = new Sprite(texture);
         playButton = new Texture("START.png");
         ExitButton = new Texture("EXIT.png");
@@ -79,7 +79,7 @@ public class MainMenu implements Screen {
         
 
         Gdx.input.setInputProcessor(stage);
-        Play.setPosition(613, 500);
+        Play.setPosition(613, 200);
         Play.addListener(new ClickListener() {
 
             @Override
@@ -91,7 +91,7 @@ public class MainMenu implements Screen {
             }
         });
 
-        Exit.setPosition(636, 300);
+        Exit.setPosition(636, 100);
         Exit.addListener(new ClickListener()  {
          
             @Override
@@ -119,10 +119,10 @@ public class MainMenu implements Screen {
         MainMenu.batch.setProjectionMatrix(camera.combined);
 
         MainMenu.batch.begin();
-        MainMenu.batch.draw(sprite, 0, 0);
-        MainMenu.batch.draw(playButton, 613, 500);
+        MainMenu.batch.draw(sprite,0, 0, 1440, 800);
+        MainMenu.batch.draw(playButton, 613, 200);
 
-        MainMenu.batch.draw(ExitButton, 636, 300);
+        MainMenu.batch.draw(ExitButton, 636, 100);
         
 
         MainMenu.batch.end();
