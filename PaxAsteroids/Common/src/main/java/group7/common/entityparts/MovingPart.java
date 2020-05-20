@@ -78,13 +78,11 @@ public class MovingPart implements EntityPart {
     @Override
     public void process(GameData gameData, Entity entity) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
-        //  System.out.println("PositionPart Common: " + positionPart.getX());
+
         float x = positionPart.getX();
         float y = positionPart.getY();
         float dt = gameData.getDelta();
 
-        //  System.out.println(positionPart.getType());
-        // System.out.println("Direction : " + direction);
         try {
             if (positionPart.getType().equals("Player")) {
 
@@ -122,29 +120,23 @@ public class MovingPart implements EntityPart {
                 }
             }
         } catch (NullPointerException e) {
-
         }
 
         x += dx * dt;
-        if (x
-                > gameData.getDisplayWidth()) {
+        if (x > gameData.getDisplayWidth()) {
             x = 0;
-        } else if (x
-                < 0) {
+        } else if (x < 0) {
             x = gameData.getDisplayWidth();
         }
 
         y += dy * dt;
-        if (y
-                > gameData.getDisplayHeight()) {
+        if (y > gameData.getDisplayHeight()) {
             y = 0;
-        } else if (y
-                < 0) {
+        } else if (y < 0) {
             y = gameData.getDisplayHeight();
         }
 
         positionPart.setX(x);
-
         positionPart.setY(y);
     }
 

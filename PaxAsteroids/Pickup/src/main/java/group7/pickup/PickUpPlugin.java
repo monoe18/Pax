@@ -7,7 +7,7 @@ package group7.pickup;
 
 import group7.common.data.Entity;
 import group7.common.data.GameData;
-import group7.common.data.IPickUp;
+import group7.common.markInterfaces.IPickUp;
 import group7.common.data.World;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IGamePluginService;

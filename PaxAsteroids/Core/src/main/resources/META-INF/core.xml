@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.main.Gamee">
-    <implementation class="group7.main.Gamee"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.main.Main">
+    <implementation class="group7.main.Main"/>
 
     <reference bind="addPostEntityProcessingService" cardinality="0..n"
                interface="group7.common.services.IPostEntityProcessingService"
@@ -25,8 +25,4 @@
     <reference bind="addHUD" cardinality="0..n"
                interface="group7.common.services.IHUD"
                name="IHUD" policy="dynamic" unbind="removeHUD"/>
-       
-    <reference bind="addAIProcessingService" cardinality="0..n"
-               interface="group7.common.services.IAIProcessing"
-               name="AIProcessing" policy="dynamic" unbind="removeAIProcessingService"/>
 </scr:component>

@@ -86,22 +86,6 @@ public class Entity implements Serializable {
         return ID.toString();
     }
 
-//    public float[] getShapeX() {
-//        return shapeX;
-//    }
-//
-//    public void setShapeX(float[] shapeX) {
-//        this.shapeX = shapeX;
-//    }
-//
-//    public float[] getShapeY() {
-//        return shapeY;
-//    }
-//
-//    public void setShapeY(float[] shapeY) {
-//        this.shapeY = shapeY;
-//    }
-
     public boolean isFlipRightLeft() {
         return flipRightLeft && flipRightLeft != prevflipRightLeft;
     }

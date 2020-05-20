@@ -186,6 +186,13 @@ public class AI implements IArtificialIntelligence {
                 return;
             }
 
+        getChildren(current);
+
+        }
+    }
+    
+    public void getChildren ( Node current){
+        
             Node temporaryNode;
 
             //West
@@ -214,8 +221,7 @@ public class AI implements IArtificialIntelligence {
                 updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "right");
 
             }
-
-        }
+        
     }
 
     public ArrayList<Node> getSolutionPath() {

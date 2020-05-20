@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1589883041469
-Build-Jdk: 1.8.0_241
-Built-By: mathi
+Bnd-LastModified: 1589982384444
+Build-Jdk: 1.8.0_251
+Built-By: Karla
 Bundle-ActivationPolicy: lazy
 Bundle-Description: Generated using Pax-Construct
 Bundle-ManifestVersion: 2
@@ -9,8 +9,8 @@ Bundle-Name: EndGameHud
 Bundle-SymbolicName: group7.EndGameHud
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
-Export-Package: group7.endgamehud;uses:="group7.common.services,group7.c
- ommon.data,group7.common.entityparts,group7.commonenemy,group7.commonpl
+Export-Package: group7.endgamehud;uses:="group7.common.data,group7.commo
+ n.services,group7.common.entityparts,group7.commonenemy,group7.commonpl
  ayer";version="1.0.0.SNAPSHOT"
 Import-Package: group7.common.data,group7.common.entityparts,group7.comm
  on.services,group7.commonenemy;version="[1.0,2)",group7.commonplayer;ve

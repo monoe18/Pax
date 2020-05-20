@@ -1,3 +1,0 @@
-Bundle-SymbolicName: HUD
-Bundle-ActivationPolicy: lazy
-Service-Component: META-INF/ihud.xml

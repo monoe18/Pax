@@ -1,30 +1,32 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
-Built-By: mathi
+Built-By: Karla
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1589883040084
+Bnd-LastModified: 1589982380658
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
  mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.events;version
- ="1.0.0.SNAPSHOT",group7.common.services;version="1.0.0.SNAPSHOT",gro
- up7.commonplayer;version="1.0.0.SNAPSHOT",group7.player;version="1.0.
- 0.SNAPSHOT"
+ ="1.0.0.SNAPSHOT",group7.common.markInterfaces;version="1.0.0.SNAPSHO
+ T",group7.common.services;version="1.0.0.SNAPSHOT",group7.commonplaye
+ r;version="1.0.0.SNAPSHOT",group7.player;version="1.0.0.SNAPSHOT"
 Service-Component: META-INF/entityprocessor.xml, META-INF/gameplugin.x
  ml
 Tool: Bnd-0.0.255
 Export-Package: group7.common.data;uses:="group7.common.entityparts,gr
- oup7.common.events";version="1.0.0.SNAPSHOT",group7.common.services;u
- ses:="group7.common.data,group7.common.entityparts";version="1.0.0.SN
- APSHOT",group7.common.entityparts;uses:="group7.common.data";version=
- "1.0.0.SNAPSHOT",group7.commonplayer;uses:="group7.common.data";versi
- on="1.0.0.SNAPSHOT",group7.common.events;uses:="group7.common.data";v
- ersion="1.0.0.SNAPSHOT",group7.player;uses:="group7.common.data,group
- 7.common.services,group7.common.entityparts,group7.commonplayer";vers
- ion="1.0.0.SNAPSHOT"
+ oup7.common.markInterfaces,group7.common.events";version="1.0.0.SNAPS
+ HOT",group7.common.services;uses:="group7.common.data,group7.common.e
+ ntityparts";version="1.0.0.SNAPSHOT",group7.common.entityparts;uses:=
+ "group7.common.data";version="1.0.0.SNAPSHOT",group7.common.markInter
+ faces;uses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.comm
+ onplayer;uses:="group7.common.data,group7.common.markInterfaces";vers
+ ion="1.0.0.SNAPSHOT",group7.common.events;uses:="group7.common.data";
+ version="1.0.0.SNAPSHOT",group7.player;uses:="group7.common.data,grou
+ p7.common.services,group7.common.entityparts,group7.commonplayer";ver
+ sion="1.0.0.SNAPSHOT"
 Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Name: PlayerCharacter
 Private-Package: group7.player.*
 Created-By: Apache Maven Bundle Plugin
-Build-Jdk: 1.8.0_241
+Build-Jdk: 1.8.0_251
 
