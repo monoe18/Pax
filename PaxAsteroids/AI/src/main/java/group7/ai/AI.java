@@ -14,11 +14,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AI implements IArtificialIntelligence {
 
-    private ArrayList<Node> solutionPath;
-
-    private int solutionSize;
-    private int updateFrequency = 50;
-    public static final int diagonalCost = 14;
     public static final int stepCost = 10;
     private Node[][] grid = new Node[45][25];
     private ArrayList<Node> fringe;
@@ -27,7 +22,6 @@ public class AI implements IArtificialIntelligence {
     private int gridFactorX = 32; //grid offset num x
     private int gridFactorY = 32; //grid offset num y
     private boolean visitedTiles[][];
-
     private ConcurrentHashMap<Entity, AI_movement> aiHashMap = new ConcurrentHashMap();
     private CopyOnWriteArrayList<Entity> removeEntities = new CopyOnWriteArrayList<>();
 
@@ -37,7 +31,6 @@ public class AI implements IArtificialIntelligence {
     // Gives each Tile in grid a heuristic
     // Called each fifth second to recalclulate where the ai should go
     public void newGridSetup(PositionPart player, PositionPart enemy) {
-        //maybe here we see   this.grid = new Node[45][25];
         this.goalTile = null;
         this.startTile = null;
         getNewPositions(player, enemy);
@@ -60,12 +53,16 @@ public class AI implements IArtificialIntelligence {
             for (Map.Entry<Entity, AI_movement> entry : aiHashMap.entrySet()) {
 
                 if (entry.getKey().getID().equals(entity.getID())) {
+                    if (entry.getValue().getUpdateFrequency() % 70 == 0) {
+                        entry.getValue().setPath(getNewPathCalculation(playerPosition, enemyPosition));
+                    }
                     entry.getValue().processAIMovement(enemyPosition, playerPosition, enemymov);
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
-        updateFrequency++;
+
     }
 
     public ArrayList<Node> getNewPathCalculation(PositionPart playerPosition, PositionPart enemyPosition) {
@@ -186,23 +183,17 @@ public class AI implements IArtificialIntelligence {
 
     @Override
     public void AddEntities(World world) {
-
         for (Entity e : world.getEntities(Enemy.class)) {   // Also delete old ones
-
             removeEntities.add(e); // used to remove from hashmap
-
             if (aiHashMap.containsKey(e)) {
-                continue;
+                break;
             } else {
-
                 for (Entity en : removeEntities) {
                     if (!(aiHashMap.containsKey(e))) {
                         aiHashMap.remove(en);
                         removeEntities.remove(en);
-
                     }
                     aiHashMap.put(e, new AI_movement());
-
                 }
             }
         }

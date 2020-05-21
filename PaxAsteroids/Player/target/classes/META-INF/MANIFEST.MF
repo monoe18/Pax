@@ -3,7 +3,7 @@ Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
 Built-By: Daniel
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1590065787442
+Bnd-LastModified: 1590093329370
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
  mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.markInterfaces

@@ -83,6 +83,10 @@ public class AI_movement {
         }
     }
 
+    public int getUpdateFrequency() {
+        return this.updateFrequency;
+    }
+
     public void processAIMovement(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov) {
 
         // Initialize first node
@@ -90,11 +94,12 @@ public class AI_movement {
             thisNode = new Node((int) (enemyPosition.getX() / 45), (int) (enemyPosition.getY() / 25));
             thisNode.isStart = true;
         }
-        if (updateFrequency % 70 == 0) {
-            ai.newGridSetup(playerPosition, enemyPosition);
-            ai.process();
-            solutionPath = ai.getSolutionPath();
-        }
+//
+//        if (updateFrequency % 70 == 0) {
+//            ai.newGridSetup(playerPosition, enemyPosition);
+//            ai.process();
+//            solutionPath = ai.getSolutionPath();
+//        }
 
         solutionSize = solutionPath.size();
 
@@ -108,6 +113,10 @@ public class AI_movement {
         }
         updateFrequency++;
         enemymov.setDirection(thisNode.direction);
+    }
+
+    public void setPath(ArrayList<Node> solutionPath) {
+        this.solutionPath = solutionPath;
     }
 
 }
