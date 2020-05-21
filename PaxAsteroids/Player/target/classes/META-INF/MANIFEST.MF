@@ -1,32 +1,30 @@
 Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
-Built-By: Karla
+Built-By: Daniel
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1589982380658
+Bnd-LastModified: 1590065787442
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
- mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.events;version
- ="1.0.0.SNAPSHOT",group7.common.markInterfaces;version="1.0.0.SNAPSHO
- T",group7.common.services;version="1.0.0.SNAPSHOT",group7.commonplaye
- r;version="1.0.0.SNAPSHOT",group7.player;version="1.0.0.SNAPSHOT"
+ mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.markInterfaces
+ ;version="1.0.0.SNAPSHOT",group7.common.services;version="1.0.0.SNAPS
+ HOT",group7.commonplayer;version="1.0.0.SNAPSHOT",group7.player;versi
+ on="1.0.0.SNAPSHOT"
 Service-Component: META-INF/entityprocessor.xml, META-INF/gameplugin.x
  ml
 Tool: Bnd-0.0.255
 Export-Package: group7.common.data;uses:="group7.common.entityparts,gr
- oup7.common.markInterfaces,group7.common.events";version="1.0.0.SNAPS
- HOT",group7.common.services;uses:="group7.common.data,group7.common.e
- ntityparts";version="1.0.0.SNAPSHOT",group7.common.entityparts;uses:=
- "group7.common.data";version="1.0.0.SNAPSHOT",group7.common.markInter
- faces;uses:="group7.common.data";version="1.0.0.SNAPSHOT",group7.comm
- onplayer;uses:="group7.common.data,group7.common.markInterfaces";vers
- ion="1.0.0.SNAPSHOT",group7.common.events;uses:="group7.common.data";
- version="1.0.0.SNAPSHOT",group7.player;uses:="group7.common.data,grou
- p7.common.services,group7.common.entityparts,group7.commonplayer";ver
- sion="1.0.0.SNAPSHOT"
+ oup7.common.markInterfaces";version="1.0.0.SNAPSHOT",group7.common.se
+ rvices;uses:="group7.common.data,group7.common.entityparts";version="
+ 1.0.0.SNAPSHOT",group7.common.entityparts;uses:="group7.common.data";
+ version="1.0.0.SNAPSHOT",group7.common.markInterfaces;uses:="group7.c
+ ommon.data";version="1.0.0.SNAPSHOT",group7.commonplayer;uses:="group
+ 7.common.data,group7.common.markInterfaces";version="1.0.0.SNAPSHOT",
+ group7.player;uses:="group7.common.data,group7.common.services,group7
+ .common.entityparts,group7.commonplayer";version="1.0.0.SNAPSHOT"
 Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Name: PlayerCharacter
 Private-Package: group7.player.*
 Created-By: Apache Maven Bundle Plugin
-Build-Jdk: 1.8.0_251
+Build-Jdk: 1.8.0_181
 

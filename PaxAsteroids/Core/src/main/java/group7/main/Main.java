@@ -104,8 +104,8 @@ public class Main implements Screen {
             entityProcessorService.process(gameData, world);
         }
 
-        for (Entity e : world.getEntities()) {
-            checkForShooting(e, gameData);
+        for (Entity entity : world.getEntities()) {
+            checkForShooting(entity);
         }
 
         for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
@@ -126,13 +126,13 @@ public class Main implements Screen {
                 for (IGamePluginService plugin : gamePluginList) {
                     if (plugin instanceof IWaveManager) {
                         currentWave = ((IWaveManager) plugin).getWaveCount();
-                        hud.updateHUD(world, gameData, ((IWaveManager) plugin).getWaveCount());
+                        hud.updateHUD(world, ((IWaveManager) plugin).getWaveCount());
                     }
                 }
             } else if (hud.getHudType().equals("EndGame")) {
-                hud.updateHUD(world, gameData, currentWave);
+                hud.updateHUD(world, currentWave);
             } else {
-                hud.updateHUD(world, gameData, 0);
+                hud.updateHUD(world, 0);
             }
 
         }
@@ -207,10 +207,10 @@ public class Main implements Screen {
         }
     }
 
-    private void checkForShooting(Entity e, GameData g) {
+    private void checkForShooting(Entity e) {
         ShootingPart shootingPart = e.getPart(ShootingPart.class);
         if (shootingPart != null && shootingPart.isShooting()) {
-            createBullet(e, g);
+            createBullet(e);
         }
     }
 
@@ -220,9 +220,9 @@ public class Main implements Screen {
         }
     }
 
-    private void createBullet(Entity e, GameData g) {
+    private void createBullet(Entity e) {
         for (IBulletManager bm : bulletManagerList) {
-            world.addEntity(bm.createBullet(e, g));
+            world.addEntity(bm.createBullet(e));
         }
     }
 

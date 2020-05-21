@@ -11,16 +11,15 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 public class AI implements IArtificialIntelligence {
 
-    ArrayList<Node> solutionPath;
+    private ArrayList<Node> solutionPath;
 
-    int solutionSize;
-    int updateFrequency = 50;
-
+    private int solutionSize;
+    private int updateFrequency = 50;
     public static final int diagonalCost = 14;
     public static final int stepCost = 10;
-
     private Node[][] grid = new Node[45][25];
     private ArrayList<Node> fringe;
     private Node startTile;
@@ -28,83 +27,10 @@ public class AI implements IArtificialIntelligence {
     private int gridFactorX = 32; //grid offset num x
     private int gridFactorY = 32; //grid offset num y
     private boolean visitedTiles[][];
-    
-    private static final ConcurrentHashMap<Entity, AI_movement> aiHashMap = new ConcurrentHashMap();
-    
-    private CopyOnWriteArrayList<Entity> removeEntities= new CopyOnWriteArrayList<>();
-  
-    @Override
-    public void AddEntities(World world){
-        
-            for (Entity e : world.getEntities(Enemy.class)) {   // Also delete old ones
-                
-                removeEntities.add(e); // used to remove from hashmap
-                
-                if(aiHashMap.containsKey(e)){
-                    continue;
-                }else{
-                    
-                    
-                    for (Entity en : removeEntities) {
-                        if (!(aiHashMap.containsKey(e))){
-                            aiHashMap.remove(en);
-                            removeEntities.remove(en);
-                        
-                    }
-                    aiHashMap.put(e, new AI_movement());
-                    
-                        
-                    }
-                }
-        }
-    }
-    
-    
-    @Override
-    public void processAI(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov, Entity entity) {
-        
-        
-        try {
-            for (Map.Entry<Entity, AI_movement> entry : aiHashMap.entrySet()) {
-                    
-                // We get the specific AI_Movement via getValue()
-                if (entry.getKey().getID().equals(entity.getID())) {
-//                          solutionPath = getNewPathCalculation(playerPosition, enemyPosition);
-                        entry.getValue().getAIMovement(enemyPosition, playerPosition, enemymov);
-                
-                    
-                }
 
-            }
-        } catch (Exception e) {
-        }
+    private ConcurrentHashMap<Entity, AI_movement> aiHashMap = new ConcurrentHashMap();
+    private CopyOnWriteArrayList<Entity> removeEntities = new CopyOnWriteArrayList<>();
 
-        updateFrequency++;
-    }
-    
-    
-    
-    public ArrayList<Node> getNewPathCalculation(PositionPart playerPosition, PositionPart enemyPosition) {
-        newGridSetup(playerPosition, enemyPosition);
-        process();
-        return getSolutionPath();
-    }
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public AI() {
     }
 
@@ -126,6 +52,26 @@ public class AI implements IArtificialIntelligence {
             }
         }
         startTile.finalCost = 0;
+    }
+
+    @Override
+    public void processAI(PositionPart enemyPosition, PositionPart playerPosition, MovingPart enemymov, Entity entity) {
+        try {
+            for (Map.Entry<Entity, AI_movement> entry : aiHashMap.entrySet()) {
+
+                if (entry.getKey().getID().equals(entity.getID())) {
+                    entry.getValue().processAIMovement(enemyPosition, playerPosition, enemymov);
+                }
+            }
+        } catch (Exception e) {
+        }
+        updateFrequency++;
+    }
+
+    public ArrayList<Node> getNewPathCalculation(PositionPart playerPosition, PositionPart enemyPosition) {
+        newGridSetup(playerPosition, enemyPosition);
+        process();
+        return getSolutionPath();
     }
 
     public void getNewPositions(PositionPart player, PositionPart enemy) {
@@ -165,11 +111,9 @@ public class AI implements IArtificialIntelligence {
     }
 
     public void process() {
-
         fringe = new ArrayList();
         fringe.add(startTile);
         Node current;
-
         while (true) {
             current = fringe.get(0);
             fringe.remove(0);
@@ -178,7 +122,6 @@ public class AI implements IArtificialIntelligence {
             if (current == null) {
                 break;
             }
-
             // Sets it to visited
             visitedTiles[current.x][current.y] = true;
 
@@ -186,42 +129,42 @@ public class AI implements IArtificialIntelligence {
                 return;
             }
 
-        getChildren(current);
+            getChildren(current);
 
         }
     }
-    
-    public void getChildren ( Node current){
-        
-            Node temporaryNode;
 
-            //West
-            if (current.x - 1 >= 0) {
-                temporaryNode = grid[current.x - 1][current.y];
-                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "left");
+    public void getChildren(Node current) {
 
-            }
-            // South
-            if (current.y - 1 >= 0) {
-                temporaryNode = grid[current.x][current.y - 1];
-                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "down");
+        Node temporaryNode;
 
-            }
+        //West
+        if (current.x - 1 >= 0) {
+            temporaryNode = grid[current.x - 1][current.y];
+            updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "left");
 
-            // North
-            if (current.y + 1 < grid[0].length) {
-                temporaryNode = grid[current.x][current.y + 1];
-                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "up");
+        }
+        // South
+        if (current.y - 1 >= 0) {
+            temporaryNode = grid[current.x][current.y - 1];
+            updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "down");
 
-            }
+        }
 
-            //East
-            if (current.x + 1 < grid.length) {
-                temporaryNode = grid[current.x + 1][current.y];
-                updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "right");
+        // North
+        if (current.y + 1 < grid[0].length) {
+            temporaryNode = grid[current.x][current.y + 1];
+            updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "up");
 
-            }
-        
+        }
+
+        //East
+        if (current.x + 1 < grid.length) {
+            temporaryNode = grid[current.x + 1][current.y];
+            updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "right");
+
+        }
+
     }
 
     public ArrayList<Node> getSolutionPath() {
@@ -241,7 +184,28 @@ public class AI implements IArtificialIntelligence {
         return path;
     }
 
+    @Override
+    public void AddEntities(World world) {
 
+        for (Entity e : world.getEntities(Enemy.class)) {   // Also delete old ones
 
- 
+            removeEntities.add(e); // used to remove from hashmap
+
+            if (aiHashMap.containsKey(e)) {
+                continue;
+            } else {
+
+                for (Entity en : removeEntities) {
+                    if (!(aiHashMap.containsKey(e))) {
+                        aiHashMap.remove(en);
+                        removeEntities.remove(en);
+
+                    }
+                    aiHashMap.put(e, new AI_movement());
+
+                }
+            }
+        }
+    }
+
 }

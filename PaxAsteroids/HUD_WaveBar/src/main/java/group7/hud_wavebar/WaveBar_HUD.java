@@ -19,7 +19,7 @@ public class WaveBar_HUD implements IHUD {
     }
 
     @Override
-    public void updateHUD(World world, GameData gameData, int displayInfo) {
+    public void updateHUD(World world, int displayInfo) {
         this.waveSprite = "wave" + displayInfo + ".png";
 
     }

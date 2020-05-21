@@ -5,5 +5,5 @@ import group7.common.data.GameData;
 
 public interface IBulletManager {
 
-    public Entity createBullet(Entity e, GameData g);
+    public Entity createBullet(Entity e);
 }

@@ -17,5 +17,5 @@ public interface IHUD {
 
     float getY();
 
-    public void updateHUD(World world, GameData gameData, int displayInfo);
+    public void updateHUD(World world, int displayInfo);
 }
