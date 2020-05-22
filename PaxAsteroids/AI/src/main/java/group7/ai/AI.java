@@ -82,7 +82,7 @@ public class AI implements IArtificialIntelligence {
 
     }
 
-    public void updateCostIfNeeded(Node currentNode, Node temporaryNode, int cost, String directionTo) {
+    public void checkForUpdate(Node currentNode, Node temporaryNode, int cost, String directionTo) {
 
         if (temporaryNode == null || visitedTiles[temporaryNode.x][temporaryNode.y]) {
             return;
@@ -138,27 +138,27 @@ public class AI implements IArtificialIntelligence {
         //West
         if (current.x - 1 >= 0) {
             temporaryNode = grid[current.x - 1][current.y];
-            updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "left");
+            checkForUpdate(current, temporaryNode, current.finalCost + stepCost, "left");
 
         }
         // South
         if (current.y - 1 >= 0) {
             temporaryNode = grid[current.x][current.y - 1];
-            updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "down");
+            checkForUpdate(current, temporaryNode, current.finalCost + stepCost, "down");
 
         }
 
         // North
         if (current.y + 1 < grid[0].length) {
             temporaryNode = grid[current.x][current.y + 1];
-            updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "up");
+            checkForUpdate(current, temporaryNode, current.finalCost + stepCost, "up");
 
         }
 
         //East
         if (current.x + 1 < grid.length) {
             temporaryNode = grid[current.x + 1][current.y];
-            updateCostIfNeeded(current, temporaryNode, current.finalCost + stepCost, "right");
+            checkForUpdate(current, temporaryNode, current.finalCost + stepCost, "right");
 
         }
 
