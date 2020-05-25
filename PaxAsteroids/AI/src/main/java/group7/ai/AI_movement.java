@@ -94,12 +94,6 @@ public class AI_movement {
             thisNode = new Node((int) (enemyPosition.getX() / 45), (int) (enemyPosition.getY() / 25));
             thisNode.isStart = true;
         }
-//
-//        if (updateFrequency % 70 == 0) {
-//            ai.newGridSetup(playerPosition, enemyPosition);
-//            ai.process();
-//            solutionPath = ai.getSolutionPath();
-//        }
 
         solutionSize = solutionPath.size();
 

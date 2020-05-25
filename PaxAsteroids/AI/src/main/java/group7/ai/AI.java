@@ -7,6 +7,7 @@ import group7.common.entityparts.PositionPart;
 import java.util.ArrayList;
 import group7.common.services.IArtificialIntelligence;
 import group7.commonenemy.Enemy;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
