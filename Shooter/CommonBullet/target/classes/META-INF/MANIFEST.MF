@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1590505688956
+Build-Jdk: 1.8.0_241
+Built-By: mathi
+Bundle-Description: Generated using Pax-Construct
+Bundle-ManifestVersion: 2
+Bundle-Name: CommonBullet
+Bundle-SymbolicName: group7.CommonBullet
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: group7.commonbullet;uses:="group7.common.data,group7.com
+ mon.markInterfaces";version="1.0.0.SNAPSHOT"
+Import-Package: group7.common.data,group7.common.markInterfaces
+Tool: Bnd-1.50.0

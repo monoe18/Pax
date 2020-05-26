@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-Description: Generated using Pax-Construct
+Bundle-SymbolicName: group7.common
+Built-By: mathi
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1590505686860
+Import-Package: group7.common.data,group7.common.entityparts,group7.co
+ mmon.markInterfaces,group7.common.services
+Tool: Bnd-0.0.255
+Export-Package: group7.common.data;uses:="group7.common.entityparts,gr
+ oup7.common.markInterfaces",group7.common.services;uses:="group7.comm
+ on.data,group7.common.entityparts",group7.common.entityparts;uses:="g
+ roup7.common.data",group7.common.markInterfaces;uses:="group7.common.
+ data"
+Bundle-Version: 1.0.0.SNAPSHOT
+Bundle-Name: Common
+Private-Package: group7.common.data.*,group7.common.entityparts.*,grou
+ p7.common.events.*,group7.common.map.*,group7.common.services.*
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_241
+

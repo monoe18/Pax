@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1590505698135
+Build-Jdk: 1.8.0_241
+Built-By: mathi
+Bundle-ActivationPolicy: lazy
+Bundle-Description: Generated using Pax-Construct
+Bundle-ManifestVersion: 2
+Bundle-Name: AI
+Bundle-SymbolicName: group7.AI
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: group7.ai;uses:="group7.common.data,group7.common.servic
+ es,group7.common.entityparts,group7.commonenemy";version="1.0.0.SNAPSHO
+ T"
+Import-Package: group7.common.data,group7.common.entityparts,group7.comm
+ on.services,group7.commonenemy;version="[1.0,2)"
+Service-Component: META-INF/aiprocessing.xml
+Tool: Bnd-1.50.0

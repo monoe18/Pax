@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="group7.ai">
+    <implementation class="group7.ai.AI"/>
+    <service>
+        <provide interface="group7.common.services.IArtificialIntelligence"/>
+    </service>
+</scr:component>
