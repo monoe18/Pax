@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1590500388066
+Build-Jdk: 1.8.0_241
+Built-By: mathi
+Bundle-ManifestVersion: 2
+Bundle-Name: CommonEnemy
+Bundle-SymbolicName: group7.CommonEnemy
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: group7.commonenemy;uses:="group7.common.data,group7.comm
+ on.services";version="1.0.0.SNAPSHOT"
+Import-Package: group7.common.data,group7.common.services
+Tool: Bnd-1.50.0

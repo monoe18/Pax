@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1590500390452
+Build-Jdk: 1.8.0_241
+Built-By: mathi
+Bundle-ActivationPolicy: lazy
+Bundle-Description: Generated using Pax-Construct
+Bundle-ManifestVersion: 2
+Bundle-Name: Core
+Bundle-SymbolicName: group7.common
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: group7.common.data;version="1.0.0.SNAPSHOT";uses:="group
+ 7.common.entityparts,group7.common.markInterfaces",group7.common.entity
+ parts;version="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.common
+ .markInterfaces;version="1.0.0.SNAPSHOT";uses:="group7.common.data",gro
+ up7.common.services;version="1.0.0.SNAPSHOT";uses:="group7.common.data,
+ group7.common.entityparts",group7.commonenemy;version="1.0.0.SNAPSHOT";
+ uses:="group7.common.data,group7.common.services",group7.commonplayer;v
+ ersion="1.0.0.SNAPSHOT";uses:="group7.common.data,group7.common.markInt
+ erfaces",group7.main;version="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,c
+ om.badlogic.gdx.graphics.g2d,group7.common.services",group7.manager;ver
+ sion="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,group7.common.data"
+Import-Package: com.badlogic.gdx,com.badlogic.gdx.backends.lwjgl,com.bad
+ logic.gdx.files,com.badlogic.gdx.graphics,com.badlogic.gdx.graphics.g2d
+ ,com.badlogic.gdx.math,com.badlogic.gdx.scenes.scene2d,com.badlogic.gdx
+ .scenes.scene2d.ui,com.badlogic.gdx.scenes.scene2d.utils,com.badlogic.g
+ dx.utils.viewport,group7.common.data;version="[1.0,2)",group7.common.en
+ tityparts;version="[1.0,2)",group7.common.markInterfaces;version="[1.0,
+ 2)",group7.common.services;version="[1.0,2)",group7.manager;version="[1
+ .0,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Service-Component: META-INF/core.xml
+Tool: Bnd-4.2.0.201903051501
