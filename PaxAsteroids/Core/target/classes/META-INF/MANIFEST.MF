@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Bnd-LastModified: 1589883038989
 Build-Jdk: 1.8.0_241
 Built-By: mathi
@@ -14,6 +15,11 @@ Bnd-LastModified: 1590093328059
 Build-Jdk: 1.8.0_181
 Built-By: Daniel
 >>>>>>> _Clean_Refactor_Branch
+=======
+Bnd-LastModified: 1589912432336
+Build-Jdk: 1.8.0_241
+Built-By: morte
+>>>>>>> NewSprites
 Bundle-ActivationPolicy: lazy
 Bundle-Description: Generated using Pax-Construct
 Bundle-ManifestVersion: 2

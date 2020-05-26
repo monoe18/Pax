@@ -11,10 +11,10 @@ import group7.commonplayer.PlayerCharacter;
 public class EndGame_Hud implements IHUD {
 
     private String sprite = ".";
-    private int x = 0;
-    private int y = 0;
-    private int SpriteHeight = 800;
-    private int SpriteWidth = 1440;
+    private int x = 360;
+    private int y = 200;
+    private int SpriteHeight = 400;
+    private int SpriteWidth = 720;
     LifePart lp;
 
     @Override

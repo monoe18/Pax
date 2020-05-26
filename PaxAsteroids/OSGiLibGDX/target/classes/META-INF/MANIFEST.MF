@@ -3,6 +3,7 @@ Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.build.OSGiLibGDX
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: mathi
 Bundle-ManifestVersion: 2
 Bnd-LastModified: 1589883033899
@@ -16,6 +17,11 @@ Built-By: Daniel
 Bundle-ManifestVersion: 2
 Bnd-LastModified: 1590093318307
 >>>>>>> _Clean_Refactor_Branch
+=======
+Built-By: morte
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1589912426906
+>>>>>>> NewSprites
 Embed-Dependency: *
 Import-Package: com.badlogic.gdx,com.badlogic.gdx.assets,com.badlogic.
  gdx.assets.loaders,com.badlogic.gdx.assets.loaders.resolvers,com.badl

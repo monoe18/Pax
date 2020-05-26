@@ -3,6 +3,7 @@ Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.Player
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: mathi
 Bundle-ManifestVersion: 2
 Bnd-LastModified: 1589883040084
@@ -16,6 +17,11 @@ Built-By: Daniel
 Bundle-ManifestVersion: 2
 Bnd-LastModified: 1590093329370
 >>>>>>> _Clean_Refactor_Branch
+=======
+Built-By: morte
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1589912433328
+>>>>>>> NewSprites
 Bundle-ActivationPolicy: lazy
 Import-Package: group7.common.data;version="1.0.0.SNAPSHOT",group7.com
  mon.entityparts;version="1.0.0.SNAPSHOT",group7.common.markInterfaces
