@@ -89,6 +89,6 @@ public class CollisionDetectorTest {
 
         assertTrue(world.getEntities().size() == 2);
         collision.process(game, world);
-        assertTrue(world.getEntities().size() == 1);
+        assertTrue(world.getEntities().size() == 0);
     }
 }
