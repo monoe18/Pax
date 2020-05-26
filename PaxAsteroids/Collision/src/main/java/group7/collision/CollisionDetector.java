@@ -123,7 +123,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
         return false;
     }
 
-    private boolean circleCollision(Entity entityA, Entity entityB) {
+    public boolean circleCollision(Entity entityA, Entity entityB) {
         PositionPart positionA = entityA.getPart(PositionPart.class);
         PositionPart positionB = entityB.getPart(PositionPart.class);
 
