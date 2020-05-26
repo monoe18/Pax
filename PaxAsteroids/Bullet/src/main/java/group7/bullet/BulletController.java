@@ -1,6 +1,5 @@
 package group7.bullet;
 
-import group7.commonbullet.BulletEntity;
 import group7.common.data.Entity;
 import group7.common.data.GameData;
 import group7.common.data.World;
@@ -9,7 +8,6 @@ import group7.common.entityparts.PositionPart;
 import group7.common.services.IEntityProcessingService;
 import group7.common.services.IBulletManager;
 import group7.commonbullet.BulletEntity;
-
 
 public class BulletController implements IEntityProcessingService, IBulletManager {
 
@@ -34,13 +32,12 @@ public class BulletController implements IEntityProcessingService, IBulletManage
     }
 
     @Override
-    public Entity createBullet(Entity e, GameData gameData) {
+    public Entity createBullet(Entity e) {
         PositionPart shooterPos = e.getPart(PositionPart.class);
         MovingPart shooterMovingPart = e.getPart(MovingPart.class);
 
         float x = shooterPos.getX();
         float y = shooterPos.getY();
-        float dt = gameData.getDelta();
         float speed = 1000;
 
         Entity bullet = new BulletEntity();
@@ -51,7 +48,7 @@ public class BulletController implements IEntityProcessingService, IBulletManage
         bullet.setSpriteWidth(width);
 
         flipBullet(bullet, shooterMovingPart.getDirection());
-        
+
         bullet.add(new PositionPart(x, y, "Laser"));
         bullet.add(new MovingPart(speed, "Laser", shooterMovingPart.getDirection()));
 

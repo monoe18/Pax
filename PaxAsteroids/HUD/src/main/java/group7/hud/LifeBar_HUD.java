@@ -17,7 +17,7 @@ public class LifeBar_HUD implements IHUD {
     private int SpriteWidth = 200;
 
     @Override
-    public void updateHUD(World world, GameData gameData, int displayInfo) {
+    public void updateHUD(World world, int displayInfo) {
         Entity player = null;
         for (Entity ent : world.getEntities(PlayerCharacter.class)) {
             player = ent;

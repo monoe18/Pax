@@ -2,13 +2,13 @@ package group7.collision;
 
 import group7.common.data.Entity;
 import group7.common.data.GameData;
-import group7.common.data.IBullet;
-import group7.common.data.IMap;
+import group7.common.markInterfaces.IBullet;
+import group7.common.markInterfaces.IMap;
 import group7.common.data.World;
 import group7.common.entityparts.PositionPart;
 import group7.common.services.IPostEntityProcessingService;
-import group7.common.data.ICharacter;
-import group7.common.data.IPickUp;
+import group7.common.markInterfaces.ICharacter;
+import group7.common.markInterfaces.IPickUp;
 import group7.common.entityparts.LifePart;
 import group7.commonbullet.BulletEntity;
 import group7.commonenemy.Enemy;
@@ -18,9 +18,9 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
-        for (Entity e : world.getEntities()) {
+        for (Entity entity : world.getEntities()) {
             if (world.getMap() != null) {
-                mapCollision(e, world.getMap(), world);
+                mapCollision(entity, world.getMap(), world);
             }
             for (Entity enemy : world.getEntities(Enemy.class)) {
                 if (world.getMap() != null) {
@@ -28,19 +28,17 @@ public class CollisionDetector implements IPostEntityProcessingService {
                 }
                 for (Entity bullet : world.getEntities(BulletEntity.class)) {
                     if (circleCollision(bullet, enemy)) {
-                        LifePart lpe = enemy.getPart(LifePart.class);
-                        int newLife = lpe.getLife();
-                        lpe.setLife(newLife - 50);
+                        LifePart enemyLifePart = enemy.getPart(LifePart.class);
+                        int newLife = enemyLifePart.getLife();
+                        enemyLifePart.setLife(newLife - 50);
                         world.removeEntity(bullet);
 
-                        if (lpe.getLife() < 25) {
+                        if (enemyLifePart.getLife() < 25) {
                             world.removeEntity(enemy);
                         }
-//                    world.removeEntity(f);
                     }
                 }
 
-                //This code is for healthPickups
                 for (Entity pickup : world.getEntities()) {
                     for (Entity player : world.getEntities(PlayerCharacter.class)) {
                         if (pickup instanceof IPickUp && circleCollision(player, pickup)) {
@@ -61,17 +59,15 @@ public class CollisionDetector implements IPostEntityProcessingService {
                         continue;
                     }
                     if (circleCollision(enemy, player)) {
-                        LifePart lpe = player.getPart(LifePart.class);
-                        int newLife = lpe.getLife();
-                        lpe.setLife(newLife - 25);
+                        LifePart enemyLifePart = player.getPart(LifePart.class);
+                        int newLife = enemyLifePart.getLife();
+                        enemyLifePart.setLife(newLife - 25);
 
-                        if (lpe.getLife() < 25) {
-                            lpe.setDead();
+                        if (enemyLifePart.getLife() < 25) {
+                            enemyLifePart.setDead();
                             world.removeEntity(player);
 
                         }
-
-//                    world.removeEntity(f);
                     }
 
                 }
@@ -79,63 +75,60 @@ public class CollisionDetector implements IPostEntityProcessingService {
         }
     }
 
-    private void mapCollision(Entity e, IMap map, World world) {
+    private void mapCollision(Entity entity, IMap map, World world) {
         float[] points = map.getMapBoundaryPoints();
-        if (e instanceof ICharacter ||e instanceof Enemy) {
-            characterMapCollision(e, points);
-        } else if (e instanceof IBullet) {
-            if (bulletCollison(e, points)) {
-                world.removeEntity(e);
+        if (entity instanceof ICharacter || entity instanceof Enemy) {
+            characterMapCollision(entity, points);
+        } else if (entity instanceof IBullet) {
+            if (bulletCollison(entity, points)) {
+                world.removeEntity(entity);
             }
         }
     }
 
-    private void characterMapCollision(Entity e, float[] points) {
-        PositionPart ep = e.getPart(PositionPart.class);
+    private void characterMapCollision(Entity entity, float[] points) {
+        PositionPart positionPart = entity.getPart(PositionPart.class);
         //Left side collision check
-        if (ep.getX() - e.getRadius() <= points[0]) {
-            ep.setPosition(points[0] + 1 + e.getRadius(), ep.getY());
+        if (positionPart.getX() - entity.getRadius() <= points[0]) {
+            positionPart.setPosition(points[0] + 1 + entity.getRadius(), positionPart.getY());
         } else //Right side collision check
-        if (ep.getX() + e.getRadius() >= points[2]) {
-            ep.setPosition(points[2] - 1 - e.getRadius(), ep.getY());
+        if (positionPart.getX() + entity.getRadius() >= points[2]) {
+            positionPart.setPosition(points[2] - 1 - entity.getRadius(), positionPart.getY());
         }
         //Top side collision check
-        if (ep.getY() + e.getRadius() >= points[3]) {
-            ep.setPosition(ep.getX(), points[3] - 1 - e.getRadius());
+        if (positionPart.getY() + entity.getRadius() >= points[3]) {
+            positionPart.setPosition(positionPart.getX(), points[3] - 1 - entity.getRadius());
         } else //Bottom side collision check
-        if (ep.getY() - e.getRadius() <= points[1]) {
-            ep.setPosition(ep.getX(), points[1] + 1 + e.getRadius());
+        if (positionPart.getY() - entity.getRadius() <= points[1]) {
+            positionPart.setPosition(positionPart.getX(), points[1] + 1 + entity.getRadius());
         }
     }
-    
-    
-    
 
-    private boolean bulletCollison(Entity e, float[] points) {
-        PositionPart ep = e.getPart(PositionPart.class);
+    private boolean bulletCollison(Entity entity, float[] points) {
+        PositionPart ep = entity.getPart(PositionPart.class);
         //Left side collision check
-        if (ep.getX() - e.getRadius() <= points[0]) {
+        if (ep.getX() - entity.getRadius() <= points[0]) {
             return true;
         } else //Right side collision check
-        if (ep.getX() + e.getRadius() >= points[2]) {
+        if (ep.getX() + entity.getRadius() >= points[2]) {
             return true;
         }
         //Top side collision check
-        if (ep.getY() + e.getRadius() >= points[3]) {
+        if (ep.getY() + entity.getRadius() >= points[3]) {
             return true;
         } else //Bottom side collision check
-        if (ep.getY() - e.getRadius() <= points[1]) {
+        if (ep.getY() - entity.getRadius() <= points[1]) {
             return true;
         }
         return false;
     }
 
-    public boolean circleCollision(Entity e, Entity f) {
-        PositionPart ep = e.getPart(PositionPart.class);
-        PositionPart fp = f.getPart(PositionPart.class);
+    private boolean circleCollision(Entity entityA, Entity entityB) {
+        PositionPart positionA = entityA.getPart(PositionPart.class);
+        PositionPart positionB = entityB.getPart(PositionPart.class);
 
-        if ((ep.getX() - fp.getX()) * (ep.getX() - fp.getX()) + (ep.getY() - fp.getY()) * (ep.getY() - fp.getY())
-                < (e.getRadius() + f.getRadius()) * (e.getRadius() + f.getRadius())) {
+        if ((positionA.getX() - positionB.getX()) * (positionA.getX() - positionB.getX()) + (positionA.getY() - positionB.getY()) * (positionA.getY() - positionB.getY())
+                < (entityA.getRadius() + entityB.getRadius()) * (entityA.getRadius() + entityB.getRadius())) {
             return true;
         }
 

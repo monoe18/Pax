@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-Description: Generated using Pax-Construct
 Bundle-SymbolicName: group7.build.OSGiLibGDX
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: mathi
 Bundle-ManifestVersion: 2
 Bnd-LastModified: 1589883033899
@@ -10,6 +11,11 @@ Built-By: Daniel
 Bundle-ManifestVersion: 2
 Bnd-LastModified: 1589708118557
 >>>>>>> TestBranch
+=======
+Built-By: Daniel
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1590093318307
+>>>>>>> _Clean_Refactor_Branch
 Embed-Dependency: *
 Import-Package: com.badlogic.gdx,com.badlogic.gdx.assets,com.badlogic.
  gdx.assets.loaders,com.badlogic.gdx.assets.loaders.resolvers,com.badl

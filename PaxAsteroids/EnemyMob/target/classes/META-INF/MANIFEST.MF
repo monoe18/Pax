@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Bnd-LastModified: 1589883040321
 Build-Jdk: 1.8.0_241
 Built-By: mathi
@@ -8,6 +9,11 @@ Bnd-LastModified: 1589708133872
 Build-Jdk: 1.8.0_181
 Built-By: Daniel
 >>>>>>> TestBranch
+=======
+Bnd-LastModified: 1590093330633
+Build-Jdk: 1.8.0_181
+Built-By: Daniel
+>>>>>>> _Clean_Refactor_Branch
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Name: EnemyMob

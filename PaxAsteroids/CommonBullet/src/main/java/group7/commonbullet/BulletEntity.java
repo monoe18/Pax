@@ -6,7 +6,7 @@
 package group7.commonbullet;
 
 import group7.common.data.Entity;
-import group7.common.data.IBullet;
+import group7.common.markInterfaces.IBullet;
 
 /**
  *

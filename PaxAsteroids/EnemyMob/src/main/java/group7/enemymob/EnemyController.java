@@ -13,35 +13,26 @@ import group7.common.services.IArtificialIntelligence;
 public class EnemyController implements IEntityProcessingService {
 
     IArtificialIntelligence ai;
-    
 
     @Override
     public void process(GameData gameData, World world) {
-        
-        if(ai !=null){
+
+        if (ai != null) {
             ai.AddEntities(world);
         }
-
         for (Entity entity : world.getEntities(Enemy.class)) {
-          
-            
-            
+
             PositionPart enemyPositionPart = entity.getPart(PositionPart.class);
             MovingPart enemyMovingPart = entity.getPart(MovingPart.class);
 
             if (ai != null) {
-                  ai.processAI(enemyPositionPart, getPlayerPos(world), enemyMovingPart, entity);
-               
-//                Enemy e = (Enemy) entity;
-//                e.mySuperCoolAI = ai;
-//                e.mySuperCoolAI.getSolutionArray(enemyPositionPart, enemyPositionPart, enemyMovingPart);
+                ai.processAI(enemyPositionPart, getPlayerPos(world), enemyMovingPart, entity);
+
             } else {
                 continue;
             }
 
-            //enemyMovingPart.setDirection(prevNode.direction);
             enemyMovingPart.process(gameData, entity);
-
             enemyPositionPart.process(gameData, entity);
 
         }
@@ -55,19 +46,6 @@ public class EnemyController implements IEntityProcessingService {
         return playerPos;
     }
 
-//    @Override
-//    public void move(IAIProcessing aip, World world) {
-//        for (Entity enemy : world.getEntities(Enemy.class)) {
-//            PositionPart playerPosition = getPlayerPos(world);
-//
-//            PositionPart enemyPositionPart = enemy.getPart(PositionPart.class);
-//            MovingPart enemyMovingPart = enemy.getPart(MovingPart.class);
-//
-//            aip.processAi(playerPosition, enemyPositionPart, enemyMovingPart);
-//        }
-//
-//    }
-    //TODO: Dependency injection via Declarative Services
     public void setAIService(IArtificialIntelligence ai) {
         this.ai = ai;
     }
@@ -75,7 +53,5 @@ public class EnemyController implements IEntityProcessingService {
     public void removeAIService() {
         this.ai = null;
     }
-
-
 
 }

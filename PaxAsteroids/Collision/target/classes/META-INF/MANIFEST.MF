@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Bnd-LastModified: 1589883037521
 Build-Jdk: 1.8.0_241
 Built-By: mathi
@@ -8,6 +9,11 @@ Bnd-LastModified: 1589708125357
 Build-Jdk: 1.8.0_181
 Built-By: Daniel
 >>>>>>> TestBranch
+=======
+Bnd-LastModified: 1590093325358
+Build-Jdk: 1.8.0_181
+Built-By: Daniel
+>>>>>>> _Clean_Refactor_Branch
 Bundle-ActivationPolicy: lazy
 Bundle-Description: Generated using Pax-Construct
 Bundle-ManifestVersion: 2
@@ -16,10 +22,12 @@ Bundle-SymbolicName: group7.collision
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 Export-Package: group7.collision;uses:="group7.common.data,group7.common
- .services,group7.common.entityparts,group7.commonenemy,group7.commonpla
- yer,group7.commonbullet";version="1.0.0.SNAPSHOT"
+ .services,group7.common.entityparts,group7.commonenemy,group7.common.ma
+ rkInterfaces,group7.commonbullet,group7.commonplayer";version="1.0.0.SN
+ APSHOT"
 Import-Package: group7.common.data,group7.common.entityparts,group7.comm
- on.services,group7.commonbullet;version="[1.0,2)",group7.commonenemy;ve
- rsion="[1.0,2)",group7.commonplayer;version="[1.0,2)"
+ on.markInterfaces,group7.common.services,group7.commonbullet;version="[
+ 1.0,2)",group7.commonenemy;version="[1.0,2)",group7.commonplayer;versio
+ n="[1.0,2)"
 Service-Component: META-INF/ipostentityprocessingservice.xml
 Tool: Bnd-1.50.0

@@ -63,11 +63,10 @@
     <module>HUD</module>
     <module>CommonBullet</module>
     <module>Pickup</module>
-    <module>HUD_ScoreBar</module>
     <module>HUD_WaveBar</module>
     <module>EndGameHud</module>
     <module>AI</module>
-  </modules>
+    </modules>
 
     <build>
         <plugins>

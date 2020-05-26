@@ -1,27 +1,20 @@
 package group7.main;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import group7.common.data.Entity;
 import group7.common.data.World;
 import group7.common.services.IEntityProcessingService;
 import group7.common.services.IGamePluginService;
 import group7.common.services.IPostEntityProcessingService;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import group7.common.data.GameData;
 import group7.common.entityparts.PositionPart;
-import group7.common.data.IMap;
+import group7.common.markInterfaces.IMap;
 import group7.common.services.ISpriteService;
 
 import group7.common.entityparts.ShootingPart;
@@ -36,13 +29,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Gamee implements Screen {
-// Game + screen 
+public class Main implements Screen {
 
     ScreenSetter game;
     private static OrthographicCamera cam;
-    private ShapeRenderer sr;
-    private final GameData gameData; // = new GameData();
+    private final GameData gameData;
     private static World world = new World();
     private static final List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
     private static final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
@@ -59,32 +50,25 @@ public class Gamee implements Screen {
     private int currentWave = 1;
     private int starScroller = 0;
 
-    public Gamee(ScreenSetter game) {
+    public Main(ScreenSetter game) {
         this.game = game;
         gameData = new GameData();
         batch = new SpriteBatch();
         font = new BitmapFont();
-        //  font.setColor(Color.valueOf("FBDF6B"));
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false, 1440, 800);
         cam.update();
-        System.out.println("Gamee bliver kaldt");
 
         create();
         update();
         float f = 0;
         render(f);
-
-        System.out.println(spriteServiceList.size() + "size of sprites");
-        System.out.println(entityProcessorList.size() + "size of Entities");
-        System.out.println(gamePluginList.size() + "size of Gameplugins");
-        System.out.println(entityProcessorList.size() + "size of Entityprocessor");
     }
 
-    public Gamee() {
+    public Main() {
         this.game = new ScreenSetter();
-        gameData = new GameData(); // remove?  
+        gameData = new GameData();
     }
 
     public void create() {
@@ -97,11 +81,10 @@ public class Gamee implements Screen {
         cam.translate(gameData.getDisplayWidth() / 2, gameData.getDisplayHeight() / 2);
         cam.update();
 
-        sr = new ShapeRenderer();
-
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
 
         batch = new SpriteBatch();
+
         //Loads all textures from sprite ServiceProviders
         spriteServiceList.forEach((spriteService) -> {
             if (spriteService instanceof IMap) {
@@ -115,21 +98,14 @@ public class Gamee implements Screen {
 
     }
 
-    @Override
-    public void resize(int i, int j) {
-
-    }
-
     private void update() {
-        
-        
-        // Update
+
         for (IEntityProcessingService entityProcessorService : entityProcessorList) {
             entityProcessorService.process(gameData, world);
         }
 
-        for (Entity e : world.getEntities()) {
-            checkForShooting(e, gameData);
+        for (Entity entity : world.getEntities()) {
+            checkForShooting(entity);
         }
 
         for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
@@ -147,42 +123,37 @@ public class Gamee implements Screen {
         }
         for (IHUD hud : hudList) {
             if (hud.getHudType().equals("WaveBar")) {
-
                 for (IGamePluginService plugin : gamePluginList) {
                     if (plugin instanceof IWaveManager) {
                         currentWave = ((IWaveManager) plugin).getWaveCount();
-                        hud.updateHUD(world, gameData, ((IWaveManager) plugin).getWaveCount());
+                        hud.updateHUD(world, ((IWaveManager) plugin).getWaveCount());
                     }
                 }
             } else if (hud.getHudType().equals("EndGame")) {
-                hud.updateHUD(world, gameData, currentWave);
+                hud.updateHUD(world, currentWave);
             } else {
-                hud.updateHUD(world, gameData, 0);
+                hud.updateHUD(world, 0);
             }
 
         }
-        // checkForLifeUpdate();
     }
 
     @Override
     public void render(float f) {
         //starts the batch and loads all sprites
         batch.begin();
-        
+
         scrollStars(gameData);
 
         for (Map.Entry<ISpriteService, Sprite> entry : spriteHashMap.entrySet()) {
             Texture tex = new Texture(Gdx.files.internal(entry.getKey().getSprite()));
             try {
-
                 entry.getValue().setTexture(tex);
                 entry.getValue().setX(entry.getKey().getX(world));
                 entry.getValue().setY(entry.getKey().getY(world));
                 entry.getValue().draw(batch);
             } catch (java.lang.NullPointerException e) {
-
             }
-
         }
 
         for (Entity entity : world.getEntities()) {
@@ -191,7 +162,7 @@ public class Gamee implements Screen {
                 Sprite sprite = new Sprite(tex, 0, 0, tex.getWidth(), tex.getHeight());
                 sprite.setSize(entity.getSpriteWidth(), entity.getSpriteHeight());
                 sprite.rotate(entity.getRotate());
-                PositionPart p = entity.getPart(PositionPart.class); // Overholder PositionPartdet CBSE regler???
+                PositionPart p = entity.getPart(PositionPart.class);
 
                 sprite.setX(p.getX() - (entity.getSpriteWidth() / 2));
                 sprite.setY(p.getY() - (entity.getSpriteHeight() / 2));
@@ -236,10 +207,10 @@ public class Gamee implements Screen {
         }
     }
 
-    private void checkForShooting(Entity e, GameData g) {
+    private void checkForShooting(Entity e) {
         ShootingPart shootingPart = e.getPart(ShootingPart.class);
         if (shootingPart != null && shootingPart.isShooting()) {
-            createBullet(e, g);
+            createBullet(e);
         }
     }
 
@@ -249,20 +220,10 @@ public class Gamee implements Screen {
         }
     }
 
-    private void createBullet(Entity e, GameData g) {
+    private void createBullet(Entity e) {
         for (IBulletManager bm : bulletManagerList) {
-            world.addEntity(bm.createBullet(e, g));
+            world.addEntity(bm.createBullet(e));
         }
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
     }
 
     @Override
@@ -310,11 +271,11 @@ public class Gamee implements Screen {
     }
 
     public void addBulletManager(IBulletManager eps) {
-        Gamee.bulletManagerList.add(eps);
+        bulletManagerList.add(eps);
     }
 
     public void removeBulletManager(IBulletManager eps) {
-        Gamee.bulletManagerList.remove(eps);
+        bulletManagerList.remove(eps);
     }
 
     public void addHUD(IHUD hud) {
@@ -326,12 +287,27 @@ public class Gamee implements Screen {
 
     }
 
+    // LibGDX methods
     @Override
     public void show() {
     }
 
     @Override
     public void hide() {
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void resize(int i, int j) {
     }
 
 }

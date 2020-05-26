@@ -8,7 +8,6 @@ import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.entityparts.ShootingPart;
 import group7.common.services.IGamePluginService;
-import group7.common.services.ISpriteService;
 import group7.commonplayer.PlayerCharacter;
 
 public class PlayerCreator implements IGamePluginService {
@@ -29,7 +28,6 @@ public class PlayerCreator implements IGamePluginService {
         float x = 500;
         float y = 500;
         int life = 100000;
-        boolean isHit = false;
 
         Entity playerCharacter = new PlayerCharacter();
         playerCharacter.setRadius(35);

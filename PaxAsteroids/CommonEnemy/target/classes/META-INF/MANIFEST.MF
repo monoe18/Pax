@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Bnd-LastModified: 1589883036471
 Build-Jdk: 1.8.0_241
 Built-By: mathi
@@ -8,6 +9,11 @@ Bnd-LastModified: 1589708122451
 Build-Jdk: 1.8.0_181
 Built-By: Daniel
 >>>>>>> TestBranch
+=======
+Bnd-LastModified: 1590093322487
+Build-Jdk: 1.8.0_181
+Built-By: Daniel
+>>>>>>> _Clean_Refactor_Branch
 Bundle-ManifestVersion: 2
 Bundle-Name: CommonEnemy
 Bundle-SymbolicName: group7.CommonEnemy

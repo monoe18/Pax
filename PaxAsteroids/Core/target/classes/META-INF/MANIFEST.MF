@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Bnd-LastModified: 1589883038989
 Build-Jdk: 1.8.0_241
 Built-By: mathi
@@ -8,6 +9,11 @@ Bnd-LastModified: 1589708129146
 Build-Jdk: 1.8.0_181
 Built-By: Daniel
 >>>>>>> TestBranch
+=======
+Bnd-LastModified: 1590093328059
+Build-Jdk: 1.8.0_181
+Built-By: Daniel
+>>>>>>> _Clean_Refactor_Branch
 Bundle-ActivationPolicy: lazy
 Bundle-Description: Generated using Pax-Construct
 Bundle-ManifestVersion: 2
@@ -16,24 +22,24 @@ Bundle-SymbolicName: group7.common
 Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 Export-Package: group7.common.data;version="1.0.0.SNAPSHOT";uses:="group
- 7.common.entityparts,group7.common.events",group7.common.entityparts;ve
- rsion="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.common.events;
- version="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.common.servi
- ces;version="1.0.0.SNAPSHOT";uses:="group7.common.data,group7.common.en
- tityparts",group7.commonenemy;version="1.0.0.SNAPSHOT";uses:="group7.co
- mmon.data,group7.common.services",group7.commonplayer;version="1.0.0.SN
- APSHOT";uses:="group7.common.data",group7.main;version="1.0.0.SNAPSHOT"
- ;uses:="com.badlogic.gdx,com.badlogic.gdx.graphics.g2d,group7.common.se
- rvices",group7.manager;version="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx
- ,group7.common.data"
+ 7.common.entityparts,group7.common.markInterfaces",group7.common.entity
+ parts;version="1.0.0.SNAPSHOT";uses:="group7.common.data",group7.common
+ .markInterfaces;version="1.0.0.SNAPSHOT";uses:="group7.common.data",gro
+ up7.common.services;version="1.0.0.SNAPSHOT";uses:="group7.common.data,
+ group7.common.entityparts",group7.commonenemy;version="1.0.0.SNAPSHOT";
+ uses:="group7.common.data,group7.common.services",group7.commonplayer;v
+ ersion="1.0.0.SNAPSHOT";uses:="group7.common.data,group7.common.markInt
+ erfaces",group7.main;version="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,c
+ om.badlogic.gdx.graphics.g2d,group7.common.services",group7.manager;ver
+ sion="1.0.0.SNAPSHOT";uses:="com.badlogic.gdx,group7.common.data"
 Import-Package: com.badlogic.gdx,com.badlogic.gdx.backends.lwjgl,com.bad
  logic.gdx.files,com.badlogic.gdx.graphics,com.badlogic.gdx.graphics.g2d
- ,com.badlogic.gdx.graphics.glutils,com.badlogic.gdx.math,com.badlogic.g
- dx.scenes.scene2d,com.badlogic.gdx.scenes.scene2d.ui,com.badlogic.gdx.s
- cenes.scene2d.utils,com.badlogic.gdx.utils.viewport,group7.common.data;
- version="[1.0,2)",group7.common.entityparts;version="[1.0,2)",group7.co
- mmon.events;version="[1.0,2)",group7.common.services;version="[1.0,2)",
- group7.manager;version="[1.0,2)"
+ ,com.badlogic.gdx.math,com.badlogic.gdx.scenes.scene2d,com.badlogic.gdx
+ .scenes.scene2d.ui,com.badlogic.gdx.scenes.scene2d.utils,com.badlogic.g
+ dx.utils.viewport,group7.common.data;version="[1.0,2)",group7.common.en
+ tityparts;version="[1.0,2)",group7.common.markInterfaces;version="[1.0,
+ 2)",group7.common.services;version="[1.0,2)",group7.manager;version="[1
+ .0,2)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Service-Component: META-INF/core.xml
 Tool: Bnd-4.2.0.201903051501

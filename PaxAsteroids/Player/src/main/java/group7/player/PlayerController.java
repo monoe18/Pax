@@ -8,7 +8,6 @@ import static group7.common.data.GameKeys.UP;
 import static group7.common.data.GameKeys.DOWN;
 import static group7.common.data.GameKeys.SPACE;
 import group7.common.data.World;
-import group7.common.entityparts.LifePart;
 import group7.common.entityparts.MovingPart;
 import group7.common.entityparts.PositionPart;
 import group7.common.entityparts.ShootingPart;
@@ -25,25 +24,22 @@ public class PlayerController implements IEntityProcessingService {
         for (Entity player : world.getEntities(PlayerCharacter.class)) {
             PositionPart positionPart = player.getPart(PositionPart.class);
             MovingPart movingPart = player.getPart(MovingPart.class);
-            LifePart lifePart = player.getPart(LifePart.class);
             ShootingPart shootingPart = player.getPart(ShootingPart.class);
-            double random = Math.random();
 
             movingPart.setLeft(gameData.getKeys().isDown(LEFT));
             movingPart.setRight(gameData.getKeys().isDown(RIGHT));
             movingPart.setUp(gameData.getKeys().isDown(UP));
             movingPart.setDown(gameData.getKeys().isDown(DOWN));
             movingPart.setSpace(gameData.getKeys().isPressed(SPACE));
-            
+
             checkShooting(gameData, shootingPart);
-            
-            // Used to flip sprite 
+
+            // Used to flip sprite
             flipPlayer(player, gameData);
 
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);
             shootingPart.process(gameData, player);
-//            lifePart.process(gameData, player);
 
         }
     }

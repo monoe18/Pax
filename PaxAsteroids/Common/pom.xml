@@ -16,7 +16,7 @@
     <packaging>bundle</packaging>
     <name>Common</name>
     <dependencies>
-         <dependency>
+        <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-api-annotations-common</artifactId>
             <version>RELEASE113</version>
@@ -31,13 +31,6 @@
             <artifactId>org-openide-util-ui</artifactId>
             <version>RELEASE113</version>
         </dependency>
-        <!--        <dependency>
-            <groupId>com.badlogicgames.gdx</groupId>
-            <artifactId>gdx</artifactId>
-            <version>1.9.10</version>
-            <type>jar</type>
-        </dependency>-->
-
     </dependencies>
 
     <build>
@@ -47,7 +40,7 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
                     <instructions>
-                        <Export-Package>group7.common.data,group7.common.entityparts,group7.common.events,group7.common.map,group7.common.services</Export-Package>
+                        <Export-Package>group7.common.data,group7.common.entityparts,group7.common.events,group7.common.map,group7.common.services,group7.common.markInterfaces </Export-Package>
                         <Private-Package>group7.common.data.*,group7.common.entityparts.*,group7.common.events.*,group7.common.map.*,group7.common.services.*</Private-Package>
                     </instructions>
                 </configuration>
